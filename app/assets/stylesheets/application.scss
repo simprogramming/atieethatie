@@ -1,0 +1,21 @@
+@import 'bootstrap/scss/bootstrap';
+
+// Mixins
+@import "mixins/media";
+
+// Configuration
+@import "config/variables";
+@import "config/reset";
+@import "config/animations";
+
+// Components
+@import "components/btn";
+@import "components/navbar";
+
+// Layouts
+@import "layouts/container";
+@import "layouts/header";
+
+
+// Utilities
+@import "utilities/margins";

@@ -1,0 +1,126 @@
+inherit_gem:
+  rubocop-rails_config:
+    - config/rails.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  DisplayCopNames: true
+  # Rubocop-rails_config disable all defaults cops. Override this behavior.
+  DisabledByDefault: false
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - Guardfile
+    - lib/tasks/**/*
+    - node_modules/**/*
+    - config/initializers/devise.rb
+    - lib/templates/**/*
+    - vendor/**/*
+
+# Override Rubocop-rails_config
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Override Rubocop-rails_config
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
+
+# Override Rubocop-rails_config
+Layout/EmptyLinesAroundAccessModifier:
+  EnforcedStyle: around
+
+#######################################
+#       Override defaults cops        #
+#######################################
+Rails/OutputSafety:
+  Enabled: true
+  Exclude:
+    - app/decorators/*
+    - app/helpers/*
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - db/migrate/*
+    - db/seed/*
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Layout/LineLength:
+  Exclude:
+    - config/initializers/*
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+    - db/seed/*
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - db/seeds.rb
+
+Rails/Delegate:
+  Enabled: false
+
+Lint/EmptyBlock:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/StructInheritance:
+  Enabled: false
+
+Lint/UnusedBlockArgument:
+  Enabled: false
+
+Rails/NotNullColumn:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - db/seeds.rb
+    - db/seed/*
+
+Style/HashSyntax:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/RepeatedExample:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 10
+
+Naming/BlockForwarding:
+  Enabled: false

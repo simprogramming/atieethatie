@@ -47,6 +47,8 @@ group :development, :test do
   gem "rubocop-rspec", require: false
 end
 
+gem "devise"
+gem 'devise-i18n'
 gem "draper"
 gem "haml-rails"
 gem "html2haml"
@@ -54,5 +56,5 @@ gem "i18n-tasks"
 gem "rubocop"
 gem "rubocop-performance"
 gem "rubocop-rails_config"
-gem 'simple_form'
+gem "simple_form"
 gem "rails-i18n", "~> 7.0.0"

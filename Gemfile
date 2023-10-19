@@ -48,6 +48,8 @@ group :development, :test do
 end
 
 
+gem "haml-rails"
+gem "html2haml"
 gem "rubocop"
 gem "rubocop-performance"
 gem "rubocop-rails_config"

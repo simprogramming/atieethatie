@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  scope controller: "admin" do
+    get "dashboard"
+  end
+  resources :users
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  put :change_locale, controller: "application"
+  root "sites#home"
 end

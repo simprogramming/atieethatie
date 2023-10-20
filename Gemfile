@@ -60,6 +60,7 @@ gem "rubocop"
 gem "rubocop-performance"
 gem "rubocop-rails_config"
 gem "simple_form"
+gem 'square.rb', '~> 33.0', '>= 33.0.0.20231018'
 gem "translate_enum"
 gem "will_paginate"
 gem "will_paginate-bootstrap-style"

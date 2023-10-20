@@ -16,6 +16,9 @@ fr:
       user:
         one: Utilisateur
         other: Utilisateurs
+      fragrance_profile:
+        one: Profile de fragrance
+        other: Profiles de fragrance
     notices:
       default:
         archived_successfully: "%{model} archivé(e) avec succès"

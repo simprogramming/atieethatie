@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_20_150034) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_20_200233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
   enable_extension "unaccent"
+
+  create_table "fragrance_profiles", force: :cascade do |t|
+    t.string "name_en"
+    t.string "name_fr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

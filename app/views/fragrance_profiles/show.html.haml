@@ -1,0 +1,21 @@
+- model_class = FragranceProfile
+- content_for :title do
+  %h1= t '.title', :default => model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :name_fr
+  %dd.col-sm-9= fragrance_profile.name_fr
+  %dt.col-sm-3= model_class.human_attribute_name :name_en
+  %dd.col-sm-9= fragrance_profile.name_en
+
+
+
+- if policy(fragrance_profile).index?
+  = link_to fragrance_profiles_url, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', :default => t("helpers.links.back"))
+
+- if policy(fragrance_profile).edit?
+  = link_to edit_fragrance_profile_url(@fragrance_profile), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', :default => t("helpers.links.edit"))

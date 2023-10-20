@@ -1,0 +1,2 @@
+module FragranceProfilesHelper
+end

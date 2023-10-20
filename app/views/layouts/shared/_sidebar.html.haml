@@ -18,11 +18,11 @@
       %hr.my-1
       %b.my-2= t '.categorizations'
 
-      -# - if policy(Category).index?
-      -#   %li.nav-item
-      -#     = link_to categories_path, class: "nav-link #{controller_name == "categories" ? "active" : ""}" do
-      -#       %i.fa-solid.fa-tags
-      -#       = Category.model_name.human(count: 2)
+      - if policy(FragranceProfile).index?
+        %li.nav-item
+          = link_to fragrance_profiles_path, class: "nav-link #{controller_name == "fragrance_profiles" ? "active" : ""}" do
+            %i.fa-solid.fa-spray-can-sparkles
+            = FragranceProfile.model_name.human(count: 2)
 
 
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get "admin"
   end
   resources :users
+  resources :fragrance_profiles
 
   put :change_locale, controller: "application"
   root "sites#home"

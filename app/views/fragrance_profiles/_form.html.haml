@@ -1,0 +1,10 @@
+= simple_form_for @fragrance_profile do |f|
+  .row
+    .col-md-6
+      = f.input :name_fr
+    .col-md-6
+      = f.input :name_en
+
+  .mt-3
+    = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success"
+    = link_to t('.cancel', default: t("helpers.links.cancel")), fragrance_profiles_path, class: "btn btn-outline-secondary"

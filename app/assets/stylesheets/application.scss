@@ -5,6 +5,7 @@ $success: green;
 $danger: red;
 $warning: yellow;
 $info: blue;
+@import 'bootstrap/scss/bootstrap';
 
 // Mixins
 @import "mixins/media";
@@ -17,6 +18,7 @@ $info: blue;
 // Components
 @import "components/btn";
 @import "components/navbar";
+@import "components/sidebar";
 
 // Layouts
 @import "layouts/container";
@@ -24,5 +26,3 @@ $info: blue;
 
 // Utilities
 @import "utilities/margins";
-
-@import 'bootstrap/scss/bootstrap';

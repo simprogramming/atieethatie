@@ -1,7 +1,7 @@
 class AdminPolicy < ApplicationPolicy
   include AdminBasePolicy
 
-  def dashboard?
+  def admin?
     true
   end
 end

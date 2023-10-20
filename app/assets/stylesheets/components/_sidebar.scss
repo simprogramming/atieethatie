@@ -1,0 +1,107 @@
+/**
+ * Sidebar styling
+ *
+ * sidebar-toggled: When screen > breakpoint(lg), toggled means closed, otherwise open.
+ */
+$sidebar_width: 18rem;
+
+body {
+  overflow-x: hidden;
+}
+
+/*
+  Smooth animation on load (annoying more than anything else)
+*/
+#sidebar-wrapper, #page-content-wrapper {
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#wrapper {
+  overflow-x: hidden;
+
+  #sidebar-wrapper {
+    width: $sidebar_width;
+    margin-left: -$sidebar_width; /* mobile is closed when not toggled */
+
+    @include media-breakpoint-up(lg) {
+      margin-left: 0; /* desktop is open when not toggled */
+    }
+  }
+
+  #page-content-wrapper {
+    margin-left: 0; /* mobile is closed when not toggled */
+
+    @include media-breakpoint-up(lg) {
+      margin-left: $sidebar_width; /* desktop is open when not toggled */
+    }
+  }
+
+  &.sidebar-toggled {
+    #sidebar-wrapper {
+      margin-left: 0; /* mobile is open when toggled */
+
+      @include media-breakpoint-up(lg) {
+        margin-left: -$sidebar_width; /* desktop is closed when toggled */
+      }
+    }
+
+    #page-content-wrapper {
+      margin-left: $sidebar_width; /* mobile is open when toggled */
+
+      @include media-breakpoint-up(lg) {
+        margin-left: 0; /* desktop is closed when toggled */
+      }
+    }
+  }
+}
+
+#sidebar-wrapper {
+  @extend .text-light;
+
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  margin-left: -$sidebar_width;
+  display: flex;
+  flex-direction: column;
+
+  i {
+    width: 1.4rem;
+  }
+
+  ul.nav.nav-pills {
+    &.full-sidebar-width {
+      .nav-link {
+        @extend .rounded-0;
+        margin-left: -16px;
+        margin-right: -16px;
+      }
+    }
+  }
+
+  .nav-link {
+    @extend .text-light;
+
+    &.active {
+      @extend .bg-white;
+      @extend .text-dark;
+    }
+  }
+}
+
+#page-content-wrapper {
+  min-width: 100vw; /* this translates the page content outside screen */
+  min-height: 100vh;
+  height: 100%;
+  margin-left: $sidebar_width;
+  padding-bottom: 60px; /* Footer height */
+
+  @include media-breakpoint-up(lg) {
+    /* this "stretch" the page content */
+    min-width: 0;
+    width: 100%;
+  }
+}

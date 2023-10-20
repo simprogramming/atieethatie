@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   scope controller: "admin" do
-    get "dashboard"
+    get "admin"
   end
   resources :users
 

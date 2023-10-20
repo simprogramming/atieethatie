@@ -1,4 +1,10 @@
-@import 'bootstrap/scss/bootstrap';
+// bootstrap theme color
+$primary: yellow;
+$secondary: #6c757d; // Gray
+$success: green;
+$danger: red;
+$warning: yellow;
+$info: blue;
 
 // Mixins
 @import "mixins/media";
@@ -16,6 +22,7 @@
 @import "layouts/container";
 @import "layouts/header";
 
-
 // Utilities
 @import "utilities/margins";
+
+@import 'bootstrap/scss/bootstrap';

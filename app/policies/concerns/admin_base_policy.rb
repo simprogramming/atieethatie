@@ -6,7 +6,7 @@ module AdminBasePolicy
     # rubocop:disable Lint/ConstantDefinitionInBlock, Style/ClassAndModuleChildren
     class klass::Scope < klass::Scope
       def resolve
-        scope.all
+        scope.all if user.admin?
       end
     end
     # rubocop:enable Lint/ConstantDefinitionInBlock, Style/ClassAndModuleChildren

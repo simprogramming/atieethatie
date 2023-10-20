@@ -29,43 +29,43 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
-  app_name: "Atie & Hatie"
+fr:
+  hello: "Salut world"
+  app_name: "Atie et Hatie"
   helpers:
     filters:
-      active: Enabled
-      all: All
-      inactive: Disabled
+      active: Activé
+      all: Tous
+      inactive: Désactivé
     links:
-      activate: Activate
-      add: Add
-      add_to_cart: Add to cart
-      back: Back
-      cancel: Cancel
-      destroy: Delete
-      discard: Discard
-      edit: Edit
-      export: Export
-      new: New
-      reset: Reset filters
-      search: Search
-      sign_out: Sign out
+      activate: Activer
+      add: Ajouter
+      add_to_cart: Ajouter au panier
+      back: Retour
+      cancel: Annuler
+      destroy: Supprimer
+      discard: Désactiver
+      edit: Modifier
+      export: Exporter
+      new: Nouveau
+      reset: Réinitialiser les filtres
+      search: Rechercher
+      sign_out: Se déconnecter
     submit:
-      create: Create
-      filter: Filter
-      submit: Submit
-      update: Update
+      create: Créer
+      filter: Filtrer
+      submit: Enregistrer
+      update: Modifier
     titles:
-      edit: Edit %{model}
-      new: New %{model}
-      newf: New %{model}
-      newm: New %{model}
+      edit: Modifier %{model}
+      new: Nouveau %{model}
+      newf: Nouvelle %{model}
+      newm: Nouvel %{model}
     format:
-      money: "$%{val} CAD"
+      money: "%{val}$ CAD"
   layouts:
     shared:
       sidebar:
         administration: "Administration"
-        categorizations: "Categorizations"
-        change_language: "FR"
+        categorizations: "Catégorisations"
+        change_language: "EN"

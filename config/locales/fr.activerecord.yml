@@ -1,0 +1,42 @@
+---
+fr:
+  activerecord:
+    attributes:
+      user:
+        first_name: Prénom
+        last_name: Nom de famille
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        remember_me: Se souvenir de moi
+        role: Rôle
+        role_list:
+          admin: Administrateur
+          client: Client
+    models:
+      user:
+        one: Utilisateur
+        other: Utilisateurs
+    notices:
+      default:
+        archived_successfully: "%{model} archivé(e) avec succès"
+        created_successfully: "%{model} créé(e) avec succès"
+        destroyed_successfully: "%{model} supprimé(e) avec succès"
+        restored_successfully: "%{model} restauré(e) avec succès"
+        updated_successfully: "%{model} mis(e) à jour avec succès"
+  attributes:
+    created_at: Créé le
+    description_en: Description anglais
+    description_fr: Description français
+    email: Courriel
+    id: Identifiant
+    name: Nom
+    name_en: Nom anglais
+    name_fr: Nom français
+    updated_at: Modifié le
+  will_paginate:
+    page_entries_info:
+      multi_page_html: Affichage de %{from} - %{to} sur %{count} %{model}
+      single_page_html:
+        one: Affichage de 1-1 sur 1 %{model}
+        other: Affichage de %{count} %{model}
+        zero: Aucune entrée trouvé

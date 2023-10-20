@@ -1,0 +1,13 @@
+- if model_class.respond_to?(:searchable?)
+  = simple_form_for :search, method: :get, html: { class: 'd-flex align-items-end gap-3' } do |f|
+    - if model_class.respond_to?(:searchable?)
+      = f.input :query, input_html: { value: params[:search], name: :search }, label: false, wrapper: false,
+          required: false, placeholder: t("helpers.links.search")
+
+    = yield f if block_given?
+
+
+    .text-nowrap
+      = f.button :button, name: nil, class: "btn btn-primary" do
+        %i.fa-solid.fa-search
+        = t("helpers.links.search")

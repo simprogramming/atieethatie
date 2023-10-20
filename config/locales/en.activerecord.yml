@@ -1,0 +1,42 @@
+---
+en:
+  activerecord:
+    attributes:
+      user:
+        first_name: First Name
+        last_name: Last Name
+        password: Password
+        password_confirmation: Password confirmation
+        remember_me: Remember me
+        role: Role
+        role_list:
+          admin: Admin
+          client: Client
+    models:
+      user:
+        one: User
+        other: Users
+    notices:
+      default:
+        archived_successfully: "%{model} archived successfully"
+        created_successfully: "%{model} created successfully"
+        destroyed_successfully: "%{model} destroyed successfully"
+        restored_successfully: "%{model} restored successfully"
+        updated_successfully: "%{model} updated successfully"
+  attributes:
+    created_at: Created at
+    description_en: Description english
+    description_fr: Description french
+    email: Email
+    id: Id
+    name: Name
+    name_en: Name english
+    name_fr: Name french
+    updated_at: Updated at
+  will_paginate:
+    page_entries_info:
+      multi_page_html: Displaying of %{from} - %{to} on %{count} %{model}
+      single_page_html:
+        one: Displaying 1-1 of 1 %{model}
+        other: Display of %{count} %{model}
+        zero: No entry found

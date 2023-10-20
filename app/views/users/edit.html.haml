@@ -1,0 +1,6 @@
+- model_class = User
+
+- content_for :title do
+  %h1= t ".title", :default => [:"helpers.titles.edit", "Edit %{model}"], model: model_class.model_name.human
+
+= render partial: "form"

@@ -1,3 +1,10 @@
+// bootstrap theme color
+$primary: hsl(350, 67%, 50%);
+$secondary: #6c757d; // Gray
+$success: green;
+$danger: red;
+$warning: yellow;
+$info: blue;
 @import 'bootstrap/scss/bootstrap';
 
 // Mixins
@@ -11,11 +18,11 @@
 // Components
 @import "components/btn";
 @import "components/navbar";
+@import "components/sidebar";
 
 // Layouts
 @import "layouts/container";
 @import "layouts/header";
-
 
 // Utilities
 @import "utilities/margins";

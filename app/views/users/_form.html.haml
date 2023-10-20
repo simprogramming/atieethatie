@@ -1,0 +1,17 @@
+= simple_form_for [@user], url: user_path(@user), data: { turbo: false } do |f|
+  .row.pb-2
+    .col-md-6
+      = f.input :first_name, input_html: { autocomplete: "off" }
+    .col-md-6
+      = f.input :last_name, input_html: { autocomplete: "off" }
+    .col-md-6
+      = f.input :email, input_html: { autocomplete: "off" }
+    .col-md-6
+      = f.input :role, collection: User.translated_roles, input_html: { autocomplete: "off" }
+    .col-md-6
+      = f.input :password, input_html: { autocomplete: "off" }
+    .col-md-6
+      = f.input :password_confirmation, input_html: { autocomplete: "off" }
+
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary"
+  = link_to t('.cancel', default: t("helpers.links.cancel")), users_path, class: "btn btn-outline-secondary"

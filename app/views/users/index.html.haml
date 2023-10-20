@@ -1,0 +1,25 @@
+- model_class = User
+- content_for :title do
+  %h1= model_class.model_name.human count: 2
+
+
+= render "shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :first_name, model_class.human_attribute_name(:name)
+      %th= sortable_header :email, model_class.human_attribute_name(:email)
+      %th= sortable_header :role, model_class.human_attribute_name(:role)
+      %th
+
+  %tbody
+    - users.each do |user|
+      %tr
+        %td= link_to user.full_name, user_url(user)
+        %td= user.email
+        %td= user.translated_role
+        %td.text-nowrap
+
+
+= add_pagination @users

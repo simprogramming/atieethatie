@@ -1,0 +1,21 @@
+- model_class = User
+- content_for :title do
+  %h1= t '.title', :default => model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :name
+  %dd.col-sm-9= user.full_name
+  %dt.col-sm-3= model_class.human_attribute_name :email
+  %dd.col-sm-9= user.email
+  %dt.col-sm-3= model_class.human_attribute_name :role
+  %dd.col-sm-9= user.translated_role
+
+- if policy(user).index?
+  = link_to users_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', :default => t("helpers.links.back"))
+
+- if policy(user).edit?
+  = link_to edit_user_path(user), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', :default => t("helpers.links.edit"))

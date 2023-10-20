@@ -8,11 +8,11 @@
   %ul.nav.nav-pills.flex-column.mb-auto.pb-3.full-sidebar-width
     %b.my-2= t '.administration'
     - if user_signed_in?
-      -# - if policy(User).index?
-      -#   %li.nav-item
-      -#     = link_to users_path, class: "nav-link #{controller_name == "users" ? "active" : ""}" do
-      -#       %i.fa-solid.fa-users
-      -#       = User.model_name.human(count: 2)
+      - if policy(User).index?
+        %li.nav-item
+          = link_to users_path, class: "nav-link #{controller_name == "users" ? "active" : ""}" do
+            %i.fa-solid.fa-users
+            = User.model_name.human(count: 2)
 
 
       %hr.my-1

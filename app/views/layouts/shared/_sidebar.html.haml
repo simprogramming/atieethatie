@@ -24,6 +24,12 @@
             %i.fa-solid.fa-spray-can-sparkles
             = FragranceProfile.model_name.human(count: 2)
 
+      - if policy(Fragrance).index?
+        %li.nav-item
+          = link_to fragrances_path, class: "nav-link #{controller_name == "fragrances" ? "active" : ""}" do
+            %i.fa-solid.fa-flask
+            = Fragrance.model_name.human(count: 2)
+
 
 
 

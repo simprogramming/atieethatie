@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :fragrance_profiles
+  resources :fragrances
 
   put :change_locale, controller: "application"
   root "sites#home"

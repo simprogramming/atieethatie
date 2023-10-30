@@ -6,6 +6,7 @@ class FragrancesController < ApplicationController
   decorates_assigned :fragrance, :fragrances
   add_controller_helpers :fragrances, only: :index
 
+  def index
     @fragrances = policy_scope(Fragrance).order(:name_fr)
   end
 

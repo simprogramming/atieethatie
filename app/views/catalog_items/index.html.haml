@@ -1,0 +1,42 @@
+- model_class = CatalogItem
+- content_for :title do
+  %h1= model_class.model_name.human count: 2
+
+- content_for :title_actions do
+  -# - if policy(CatalogItem).sync?
+  -#   = link_to sync_categories_path, class: "btn btn-outline-secondary mx-2" do
+  -#     %i.fa-solid.fa-rotate
+  -#     = "Sync with Square"
+  - if policy(CatalogItem).new?
+    = link_to new_catalog_item_url, class: "btn btn-outline-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
+
+= render "shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :name_fr, model_class.human_attribute_name(:name_fr)
+      %th= sortable_header :name_en, model_class.human_attribute_name(:name_en)
+      %th= sortable_header :category_id, Category.model_name.human
+      %th
+
+  %tbody
+    - catalog_items.each do |catalog_item|
+      %tr
+        %td= link_to catalog_item.name_fr, catalog_item_url(catalog_item)
+        %td= catalog_item.name_en
+        %td= catalog_item.category.name_fr
+
+
+        %td.text-nowrap
+          - if policy(catalog_item).edit?
+            = link_to edit_catalog_item_url(catalog_item), class: "btn btn-primary btn-sm mx-1" do
+              %i.fa-solid.fa-pen
+          - if policy(catalog_item).destroy?
+            = link_to catalog_item, class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do
+              %i.fa-solid.fa-trash
+
+
+= add_pagination @catalog_items

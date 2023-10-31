@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   scope controller: "admin" do
     get "admin"
   end
+  resources :categories do
+    collection do
+      get "sync"
+    end
+  end
   resources :users
   resources :fragrance_profiles
   resources :fragrances

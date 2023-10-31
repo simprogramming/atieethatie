@@ -13,6 +13,9 @@ en:
           admin: Admin
           client: Client
     models:
+      category:
+        one: Category
+        other: Categories
       user:
         one: User
         other: Users
@@ -35,7 +38,9 @@ en:
     name: Name
     name_en: Name english
     name_fr: Name french
+    square_id: Square ID
     updated_at: Updated at
+    version: Square version
   will_paginate:
     page_entries_info:
       multi_page_html: Displaying of %{from} - %{to} on %{count} %{model}

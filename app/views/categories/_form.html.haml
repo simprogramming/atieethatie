@@ -1,0 +1,13 @@
+= simple_form_for @category do |f|
+  .row
+    .col-md-6
+      = f.input :name_fr
+    .col-md-6
+      = f.input :name_en
+    .col-md-6
+      = f.input :square_id, disabled: true
+    .col-md-6
+      = f.input :version, disabled: true
+
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary my-3"
+  = link_to t('.cancel', default: t("helpers.links.cancel")), categories_url, class: "btn btn-outline-secondary"

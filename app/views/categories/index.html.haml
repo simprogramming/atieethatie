@@ -1,0 +1,40 @@
+- model_class = Category
+- content_for :title do
+  %h1= model_class.model_name.human count: 2
+
+- content_for :title_actions do
+  - if policy(Category).sync?
+    = link_to sync_categories_path, class: "btn btn-outline-secondary mx-2" do
+      %i.fa-solid.fa-rotate
+      = "Sync with Square"
+  - if policy(Category).new?
+    = link_to new_category_url, class: "btn btn-outline-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
+
+= render "shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :name_fr, model_class.human_attribute_name(:name_fr)
+      %th= sortable_header :name_en, model_class.human_attribute_name(:name_en)
+      %th
+
+  %tbody
+    - categories.each do |category|
+      %tr
+        %td= link_to category.name_fr, category_url(category)
+        %td= category.name_en
+
+
+        %td.text-nowrap
+          - if policy(category).edit?
+            = link_to edit_category_url(category), class: "btn btn-primary btn-sm mx-1" do
+              %i.fa-solid.fa-pen
+          - if policy(category).destroy?
+            = link_to category, class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do
+              %i.fa-solid.fa-trash
+
+
+= add_pagination @categories

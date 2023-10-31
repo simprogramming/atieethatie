@@ -31,7 +31,7 @@ class FragrancesController < ApplicationController
   end
 
   def update
-    @fragrance.assign_attributes(fragrance_params)
+    @fragrance.update(permitted_attributes(fragrance))
     if @fragrance.save
       redirect_to fragrances_path, notice: update_successful_notice
     else

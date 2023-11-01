@@ -2,6 +2,8 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import './components/sidebar';
+import "trix"
+import "@rails/actiontext"
 
 // bootstrap
 import * as bootstrap from "bootstrap"

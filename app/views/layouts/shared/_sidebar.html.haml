@@ -14,6 +14,12 @@
             %i.fa-solid.fa-users
             = User.model_name.human(count: 2)
 
+      - if policy(CatalogItem).index?
+        %li.nav-item
+          = link_to catalog_items_path, class: "nav-link #{controller_name == "catalog_items" ? "active" : ""}" do
+            %i.fa-solid.fa-tag
+            = CatalogItem.model_name.human(count: 2)
+
 
       %hr.my-1
       %b.my-2= t '.categorizations'

@@ -1,0 +1,35 @@
+- model_class = CatalogItem
+- content_for :title do
+  %h1= t '.title', :default => model_class.model_name.human
+
+
+.row.m-5
+  .col-md-3.col-12.text-center
+    %img{ src: catalog_item.image_url, alt: "#{catalog_item.name_fr} image" }
+    .my-4
+      %dt.col-12= Category.model_name.human
+      %dd.col-12.my-2= catalog_item.category.name_fr
+
+  .col-md-9.col-12
+    .row
+      .col-6
+        %dt.col-12= model_class.human_attribute_name :name_fr
+        %dd.col-12.my-2= catalog_item.name_fr
+        %dt.col-12= model_class.human_attribute_name :description_fr
+        %dd.col-12.my-2= catalog_item.description_fr
+      .col-6
+        %dt.col-12= model_class.human_attribute_name :name_en
+        %dd.col-12.my-2= catalog_item.name_en
+        %dt.col-12= model_class.human_attribute_name :description_en
+        %dd.col-12.my-2= catalog_item.description_en
+
+
+- if policy(catalog_item).index?
+  = link_to catalog_items_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', :default => t("helpers.links.back"))
+
+- if policy(catalog_item).edit?
+  = link_to edit_catalog_item_url(@catalog_item), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', :default => t("helpers.links.edit"))

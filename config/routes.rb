@@ -8,9 +8,14 @@ Rails.application.routes.draw do
       get "sync"
     end
   end
-  resources :users
+  resources :catalog_items do
+    collection do
+      get "sync"
+    end
+  end
   resources :fragrance_profiles
   resources :fragrances
+  resources :users
 
   put :change_locale, controller: "application"
   root "sites#home"

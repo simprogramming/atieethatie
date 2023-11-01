@@ -1,0 +1,21 @@
+= simple_form_for @catalog_item do |f|
+  .row
+    .col-md-12.py-2
+      = f.association :category, collection: policy_scope(Category).order(:name_fr).map { |category| [category.name_fr, category.id] }
+    .col-md-6
+      = f.input :name_fr
+    .col-md-6
+      = f.input :name_en
+    .col-md-6.py-2
+      = f.label :description_fr
+      = f.rich_text_area :description_fr
+    .col-md-6.py-2
+      = f.label :description_en
+      = f.rich_text_area :description_en
+    .col-md-6
+      = f.input :square_id, disabled: true
+    .col-md-6
+      = f.input :version, disabled: true
+
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary my-3"
+  = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_items_url, class: "btn btn-outline-secondary"

@@ -1,5 +1,5 @@
-module PushServices
-  class Category
+module UpsertServices
+  class ObjectCategory
     include SquareClient
 
     def initialize(category:, params:)

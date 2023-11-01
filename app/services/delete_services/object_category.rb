@@ -1,5 +1,5 @@
 module DeleteServices
-  class Category
+  class ObjectCategory
     include SquareClient
 
     def initialize(id)

@@ -13,6 +13,9 @@ fr:
           admin: Administrateur
           client: Client
     models:
+      catalog_item:
+        one: Produit
+        other: Produits
       category:
         one: Catégorie
         other: Catégories

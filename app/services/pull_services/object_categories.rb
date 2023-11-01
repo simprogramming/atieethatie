@@ -1,5 +1,5 @@
 module PullServices
-  class Categories
+  class ObjectCategories
     include SquareClient
 
     def run!

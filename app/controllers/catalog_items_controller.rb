@@ -25,7 +25,7 @@ class CatalogItemsController < ApplicationController
     @catalog_item = CatalogItem.new(permitted_attributes(CatalogItem))
 
     if @catalog_item.save
-      # UpsertServices::CatalogItem.new(catalog_item: @catalog_item, params: permitted_attributes(CatalogItem)).run!
+      # UpsertServices::ObjectItem.new(item: @catalog_item, params: permitted_attributes(CatalogItem)).run!
       redirect_to @catalog_item, notice: create_successful_notice
     else
       render :new, status: :unprocessable_entity
@@ -36,7 +36,7 @@ class CatalogItemsController < ApplicationController
     @catalog_item.update(permitted_attributes(catalog_item))
     if @catalog_item.save
       # UpsertServices::CatalogItem.new(catalog_item: @catalog_item, params: permitted_attributes(catalog_item)).run!
-      redirect_to categories_path, notice: update_successful_notice
+      redirect_to catalog_items_path, notice: update_successful_notice
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,13 +45,13 @@ class CatalogItemsController < ApplicationController
   def destroy
     # DeleteServices::CatalogItem.new(@catalog_item.square_id).run!
     @catalog_item.destroy
-    redirect_to categories_path, notice: destroy_successful_notice
+    redirect_to catalog_items_path, notice: destroy_successful_notice
   end
 
   def sync
     skip_policy_scope
-    PullServices::CatalogItem.new.run!
-    redirect_to categories_path, notice: update_successful_notice
+    PullServices::ObjectItems.new.run!
+    redirect_to catalog_items_path, notice: update_successful_notice
   end
 
   private

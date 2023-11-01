@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_193839) do
     t.bigint "category_id", null: false
     t.string "square_id"
     t.bigint "version"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_catalog_items_on_category_id"

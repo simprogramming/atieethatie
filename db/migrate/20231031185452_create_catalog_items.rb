@@ -6,6 +6,7 @@ class CreateCatalogItems < ActiveRecord::Migration[7.0]
       t.references :category, null: false, foreign_key: true
       t.string :square_id
       t.bigint :version
+      t.string :image_url
 
       t.timestamps
     end

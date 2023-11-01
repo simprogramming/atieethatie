@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(permitted_attributes(Category))
 
     if @category.save
-      UpsertServices::Category.new(category: @category, params: permitted_attributes(Category)).run!
+      UpsertServices::ObjectCategory.new(category: @category, params: permitted_attributes(Category)).run!
       redirect_to @category, notice: create_successful_notice
     else
       render :new, status: :unprocessable_entity
@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
   def update
     @category.update(permitted_attributes(category))
     if @category.save
-      UpsertServices::Category.new(category: @category, params: permitted_attributes(category)).run!
+      UpsertServices::ObjectCategory.new(category: @category, params: permitted_attributes(category)).run!
       redirect_to categories_path, notice: update_successful_notice
     else
       render :edit, status: :unprocessable_entity
@@ -43,14 +43,14 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    DeleteServices::Category.new(@category.square_id).run!
+    DeleteServices::ObjectCategory.new(@category.square_id).run!
     @category.destroy
     redirect_to categories_path, notice: destroy_successful_notice
   end
 
   def sync
     skip_policy_scope
-    PullServices::Categories.new.run!
+    PullServices::ObjectCategories.new.run!
     redirect_to categories_path, notice: update_successful_notice
   end
 

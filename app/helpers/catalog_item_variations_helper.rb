@@ -1,0 +1,2 @@
+module CatalogItemVariationsHelper
+end

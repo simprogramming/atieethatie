@@ -20,6 +20,12 @@
             %i.fa-solid.fa-tag
             = CatalogItem.model_name.human(count: 2)
 
+      - if policy(CatalogItemVariation).index?
+        %li.nav-item
+          = link_to catalog_item_variations_path, class: "nav-link #{controller_name == "catalog_item_variations" ? "active" : ""}" do
+            %i.fa-solid.fa-tag
+            = CatalogItemVariation.model_name.human(count: 2)
+
 
       %hr.my-1
       %b.my-2= t '.categorizations'

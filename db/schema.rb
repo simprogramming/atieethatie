@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_31_193839) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_01_030034) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -52,6 +52,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_193839) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "catalog_item_variations", force: :cascade do |t|
+    t.string "name_fr"
+    t.string "name_en"
+    t.bigint "catalog_item_id", null: false
+    t.integer "inventory", default: 0
+    t.float "price"
+    t.string "square_id"
+    t.bigint "version"
+    t.string "image_urls", default: [], array: true
+    t.string "color"
+    t.string "size"
+    t.string "sku"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["catalog_item_id"], name: "index_catalog_item_variations_on_catalog_item_id"
   end
 
   create_table "catalog_items", force: :cascade do |t|
@@ -108,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_193839) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "catalog_item_variations", "catalog_items"
   add_foreign_key "catalog_items", "categories"
   add_foreign_key "fragrances", "fragrance_profiles"
 end

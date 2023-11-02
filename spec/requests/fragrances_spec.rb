@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "Fragrances", type: :request do
+RSpec.describe "Fragrances" do
   describe "GET /index" do
     it "returns http success" do
       get "/fragrances/index"
@@ -28,5 +28,4 @@ RSpec.describe "Fragrances", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

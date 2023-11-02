@@ -1,5 +1,5 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "fragrances/new.html.haml", type: :view do
+RSpec.describe "fragrances/new.html.haml" do
   pending "add some examples to (or delete) #{__FILE__}"
 end

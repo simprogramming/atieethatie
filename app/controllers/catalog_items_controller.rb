@@ -10,22 +10,23 @@ class CatalogItemsController < ApplicationController
     @catalog_items = policy_scope(CatalogItem).order(:name_fr)
   end
 
-
   def show
   end
 
   def new
     @catalog_item = CatalogItem.new
+    @catalog_item.catalog_item_variations.build
   end
 
   def edit
   end
 
   def create
-    @catalog_item = CatalogItem.new(permitted_attributes(CatalogItem))
-
+    @catalog_item = CatalogItem.new(permitted_attributes(CatalogItem).except("images"))
     if @catalog_item.save
-      # UpsertServices::ObjectItem.new(item: @catalog_item, params: permitted_attributes(CatalogItem)).run!
+      UpsertServices::ObjectItem.new(item: @catalog_item).run!
+      UpsertServices::ObjectImage.new(item: @catalog_item.catalog_item_variations.first,
+                                      images: params[:catalog_item][:images].compact_blank).run!
       redirect_to @catalog_item, notice: create_successful_notice
     else
       render :new, status: :unprocessable_entity
@@ -35,7 +36,7 @@ class CatalogItemsController < ApplicationController
   def update
     @catalog_item.update(permitted_attributes(catalog_item))
     if @catalog_item.save
-      # UpsertServices::CatalogItem.new(catalog_item: @catalog_item, params: permitted_attributes(catalog_item)).run!
+      UpsertServices::ObjectItem.new(item: @catalog_item).run!
       redirect_to catalog_items_path, notice: update_successful_notice
     else
       render :edit, status: :unprocessable_entity

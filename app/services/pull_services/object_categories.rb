@@ -17,12 +17,12 @@ module PullServices
     end
 
     def fetched_categories
-      result.success? ? result.data['objects'] : handle_error
+      result.success? ? result.data["objects"] : handle_error
     end
 
     def result
       @result ||= client.catalog.list_catalog(
-        types: 'CATEGORY'
+        types: "CATEGORY"
       )
     end
 

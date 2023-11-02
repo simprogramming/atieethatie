@@ -1,0 +1,43 @@
+- model_class = CatalogItemVariation
+- content_for :title do
+  %h1= t '.title', :default => model_class.model_name.human
+
+
+.row.m-5
+  .col-md-3.col-12.text-center
+    - if catalog_item_variation.image_url.present?
+      %img.my-4{ src: catalog_item_variation.image_url, alt: "#{catalog_item_variation.name_fr} image" }
+    %dt.col-12= CatalogItem.model_name.human
+    %dd.col-12= catalog_item_variation.catalog_item.name_fr
+
+  .col-md-9.col-12
+    .row
+      .col-6
+        %dt.col-12= model_class.human_attribute_name :name_fr
+        %dd.col-12.my-2= catalog_item_variation.name_fr
+        %dt.col-12= model_class.human_attribute_name :price
+        %dd.col-12.my-2= catalog_item_variation.price
+        %dt.col-12= model_class.human_attribute_name :color
+        %dd.col-12.my-2= catalog_item_variation.color
+        %dt.col-12= model_class.human_attribute_name :information_fr
+        %dd.col-12.my-2= catalog_item_variation.information_fr
+      .col-6
+        %dt.col-12= model_class.human_attribute_name :name_en
+        %dd.col-12.my-2= catalog_item_variation.name_en
+        %dt.col-12= model_class.human_attribute_name :size
+        %dd.col-12.my-2= catalog_item_variation.size
+        %dt.col-12= model_class.human_attribute_name :sku
+        %dd.col-12.my-2= catalog_item_variation.sku
+        %dt.col-12= model_class.human_attribute_name :information_en
+        %dd.col-12.my-2= catalog_item_variation.information_en
+
+
+- if policy(catalog_item_variation).index?
+  = link_to catalog_item_variations_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', :default => t("helpers.links.back"))
+
+- if policy(catalog_item_variation).edit?
+  = link_to edit_catalog_item_variation_url(@catalog_item_variation), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', :default => t("helpers.links.edit"))

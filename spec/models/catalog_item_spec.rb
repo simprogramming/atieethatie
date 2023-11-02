@@ -1,5 +1,5 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe CatalogItem, type: :model do
+RSpec.describe CatalogItem do
   pending "add some examples to (or delete) #{__FILE__}"
 end

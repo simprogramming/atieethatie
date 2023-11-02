@@ -23,7 +23,7 @@
       - if policy(CatalogItemVariation).index?
         %li.nav-item
           = link_to catalog_item_variations_path, class: "nav-link #{controller_name == "catalog_item_variations" ? "active" : ""}" do
-            %i.fa-solid.fa-tag
+            %i.fa-solid.fa-sitemap
             = CatalogItemVariation.model_name.human(count: 2)
 
 

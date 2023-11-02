@@ -17,12 +17,12 @@ module PullServices
     end
 
     def fetched_catalog_items
-      result.success? ? result.data['objects'] : handle_error
+      result.success? ? result.data["objects"] : handle_error
     end
 
     def result
       @result ||= client.catalog.list_catalog(
-        types: 'ITEM'
+        types: "ITEM"
       )
     end
 
@@ -36,7 +36,7 @@ module PullServices
         description_fr: catalog_item.description_fr.presence || square_catalog_item[:item_data][:description],
         description_en: square_catalog_item[:item_data][:description],
         category: Category.find_by(square_id: square_catalog_item[:item_data][:category_id]),
-        image_url: image_url(square_catalog_item[:item_data][:image_ids]&.first)
+        image_urls: [image_url(square_catalog_item[:item_data][:image_ids]&.first)]
       )
       catalog_item.save!
     end
@@ -52,7 +52,7 @@ module PullServices
       image = client.catalog.retrieve_catalog_object(
         object_id: id
       )
-      image.data['object'][:image_data][:url] if image.present?
+      image.data["object"][:image_data][:url] if image.present?
     end
   end
 end

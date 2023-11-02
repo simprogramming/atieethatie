@@ -10,7 +10,6 @@ class CategoriesController < ApplicationController
     @categories = policy_scope(Category).order(:name_fr)
   end
 
-
   def show
   end
 

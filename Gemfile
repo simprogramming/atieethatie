@@ -12,7 +12,7 @@ gem "rails", "~> 7.0.8"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # no need for now
 # gem "jbuilder"
@@ -23,7 +23,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -60,7 +60,7 @@ gem "rubocop"
 gem "rubocop-performance"
 gem "rubocop-rails_config"
 gem "simple_form"
-gem 'square.rb', '~> 33.0', '>= 33.0.0.20231018'
+gem "square.rb", "~> 33.0", ">= 33.0.0.20231018"
 gem "translate_enum"
 gem "will_paginate"
 gem "will_paginate-bootstrap-style"

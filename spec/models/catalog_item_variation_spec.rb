@@ -1,5 +1,5 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe CatalogItemVariation, type: :model do
+RSpec.describe CatalogItemVariation do
   pending "add some examples to (or delete) #{__FILE__}"
 end

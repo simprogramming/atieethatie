@@ -7,15 +7,11 @@
     .col-md-6
       = f.input :name_en
     .col-md-6.py-2
-      = f.label :description_fr
-      = f.rich_text_area :description_fr
+      = f.label :information_fr
+      = f.rich_text_area :information_fr
     .col-md-6.py-2
-      = f.label :description_en
-      = f.rich_text_area :description_en
-    .col-md-6
-      = f.input :square_id, disabled: true
-    .col-md-6
-      = f.input :version, disabled: true
+      = f.label :information_en
+      = f.rich_text_area :information_en
     .col-md-6
       = f.input :price
     -# .col-md-6
@@ -26,6 +22,10 @@
       = f.input :size
     .col-md-6
       = f.input :sku
+    .col-md-6
+      = f.input :square_id, disabled: true
+    .col-md-6
+      = f.input :version, disabled: true
 
   = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary my-3"
   = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_item_variations_url, class: "btn btn-outline-secondary"

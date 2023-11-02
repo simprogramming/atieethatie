@@ -17,5 +17,24 @@
     .col-md-6
       = f.input :version, disabled: true
 
+
+    - unless @catalog_item.persisted?
+      %h2.my-3= "Créer une première variante du produit"
+      = f.simple_fields_for :catalog_item_variations do |ff|
+        .col-md-6
+          = ff.input :name_fr
+        .col-md-6
+          = ff.input :name_en
+        .col-md-6
+          = ff.input :price
+        .col-md-6
+          = ff.input :inventory
+        .col-md-6
+          = ff.input :color
+        .col-md-6
+          = ff.input :size
+      .col-md-4.my-4
+        = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
+
   = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary my-3"
   = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_items_url, class: "btn btn-outline-secondary"

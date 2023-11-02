@@ -13,6 +13,12 @@ en:
           admin: Admin
           client: Client
     models:
+      catalog_item:
+        one: Product
+        other: Products
+      catalog_item_variation:
+        one: Product variant
+        other: Products variants
       category:
         one: Category
         other: Categories
@@ -33,12 +39,18 @@ en:
     created_at: Created at
     description_en: Description english
     description_fr: Description french
+    information_en: Additional information english
+    information_fr: Additional information french
     email: Email
     id: Id
     name: Name
     name_en: Name english
     name_fr: Name french
     square_id: Square ID
+    sku: Sku
+    color: Color
+    size: Size
+    Price: Price
     updated_at: Updated at
     version: Square version
   will_paginate:

@@ -10,7 +10,6 @@ class CatalogItemVariationsController < ApplicationController
     @catalog_item_variations = policy_scope(CatalogItemVariation).order(:name_fr)
   end
 
-
   def show
   end
 

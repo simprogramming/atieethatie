@@ -16,6 +16,9 @@ fr:
       catalog_item:
         one: Produit
         other: Produits
+      catalog_item_variation:
+        one: Variante de produit
+        other: Variantes de produit
       category:
         one: Catégorie
         other: Catégories
@@ -36,12 +39,18 @@ fr:
     created_at: Créé le
     description_en: Description anglais
     description_fr: Description français
+    information_en: Information additionnelle anglais
+    information_fr: Information additionnelle français
     email: Courriel
     id: Identifiant
     name: Nom
     name_en: Nom anglais
     name_fr: Nom français
     square_id: ID Square
+    sku: Sku
+    color: Couleur
+    size: Format
+    price: Prix
     updated_at: Modifié le
     version: Version Square
   will_paginate:

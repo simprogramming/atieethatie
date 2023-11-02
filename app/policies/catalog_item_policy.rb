@@ -6,6 +6,7 @@ class CatalogItemPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    %i[name_fr name_en description_fr description_en square_id version category_id]
+    [:name_fr, :name_en, :description_fr, :description_en, :square_id, :version, :category_id, :images,
+     { catalog_item_variations_attributes: %i[name_fr name_en inventory price color size] }]
   end
 end

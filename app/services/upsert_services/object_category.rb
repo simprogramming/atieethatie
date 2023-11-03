@@ -13,7 +13,7 @@ module UpsertServices
 
     private
 
-    attr_reader :category, :params
+    attr_accessor :category, :params
 
     def upsert_catalog_object
       client.catalog.upsert_catalog_object(

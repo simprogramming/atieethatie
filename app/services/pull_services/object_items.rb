@@ -36,7 +36,7 @@ module PullServices
         description_fr: catalog_item.description_fr.presence || square_catalog_item[:item_data][:description],
         description_en: square_catalog_item[:item_data][:description],
         category: Category.find_by(square_id: square_catalog_item[:item_data][:category_id]),
-        image_urls: [image_url(square_catalog_item[:item_data][:image_ids]&.first)]
+        image_urls: [image_url(square_catalog_item[:item_data][:image_ids]&.first)] # to improve
       )
       catalog_item.save!
     end
@@ -49,10 +49,10 @@ module PullServices
     def image_url(id)
       return nil if id.blank?
 
-      image = client.catalog.retrieve_catalog_object(
+      item = client.catalog.retrieve_catalog_object(
         object_id: id
       )
-      image.data["object"][:image_data][:url] if image.present?
+      item.data["object"][:image_data][:url] if item.present?
     end
   end
 end

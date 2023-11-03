@@ -14,10 +14,13 @@ class CatalogItemVariation < ApplicationRecord
 
   private
 
-  def generate_sku
-    uuid_prefix = SecureRandom.uuid[0..2].upcase
-    timestamp = Time.now.to_i.to_s
-    self.sku = "#{uuid_prefix}-#{timestamp}"
+  def self.generate_sku
+    loop do
+      uuid_prefix = SecureRandom.uuid[0..2].upcase
+      timestamp = Time.now.to_i.to_s
+      sku = "#{uuid_prefix}-#{timestamp}"
+      break sku unless exists?(sku: sku)
+    end
   end
 
 end

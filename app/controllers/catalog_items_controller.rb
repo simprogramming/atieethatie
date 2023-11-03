@@ -1,6 +1,7 @@
 class CatalogItemsController < ApplicationController
   include AdminSideHelper
   before_action :set_catalog_item, only: %i[edit update show destroy]
+  before_action :sync_item, only: %i[edit]
   before_action -> { authorize @catalog_item || CatalogItem }
 
   decorates_assigned :catalog_item, :catalog_items
@@ -23,10 +24,12 @@ class CatalogItemsController < ApplicationController
 
   def create
     @catalog_item = CatalogItem.new(permitted_attributes(CatalogItem).except("images"))
-    if @catalog_item.save
-      UpsertServices::ObjectItem.new(item: @catalog_item).run!
-      UpsertServices::ObjectImage.new(item: @catalog_item.catalog_item_variations.first,
-                                      images: params[:catalog_item][:images].compact_blank).run!
+    if @catalog_item.valid?
+      @catalog_item.catalog_item_variations.each do |variation|
+        variation.sku = CatalogItemVariation.generate_sku
+      end
+      UpsertServices::ObjectItem.new(item: @catalog_item, images: params[:catalog_item][:images].compact_blank).run!
+      @catalog_item.save
       redirect_to @catalog_item, notice: create_successful_notice
     else
       render :new, status: :unprocessable_entity
@@ -35,8 +38,9 @@ class CatalogItemsController < ApplicationController
 
   def update
     @catalog_item.update(permitted_attributes(catalog_item))
-    if @catalog_item.save
-      UpsertServices::ObjectItem.new(item: @catalog_item).run!
+    if @catalog_item.valid?
+      UpsertServices::ObjectItem.new(item: @catalog_item, images: nil).run!
+      @catalog_item.save
       redirect_to catalog_items_path, notice: update_successful_notice
     else
       render :edit, status: :unprocessable_entity
@@ -44,7 +48,15 @@ class CatalogItemsController < ApplicationController
   end
 
   def destroy
-    # DeleteServices::CatalogItem.new(@catalog_item.square_id).run!
+    @catalog_item.catalog_item_variations.each do |variation|
+      next if variation.image_ids.blank?
+
+      variation.image_ids.each do |image|
+        DeleteServices::ObjectItem.new(image).run!
+      end
+    end
+    
+    DeleteServices::ObjectItem.new(@catalog_item.square_id).run!
     @catalog_item.destroy
     redirect_to catalog_items_path, notice: destroy_successful_notice
   end
@@ -59,5 +71,9 @@ class CatalogItemsController < ApplicationController
 
   def set_catalog_item
     @catalog_item = policy_scope(CatalogItem).find(params[:id])
+  end
+
+  def sync_item
+    SyncVersionServices::ObjectItem.new(item: @catalog_item).run!
   end
 end

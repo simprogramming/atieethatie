@@ -7,6 +7,7 @@ class CatalogItem < ApplicationRecord
   has_rich_text :description_en
 
   belongs_to :category
+  belongs_to :fragrance
 
   has_many :catalog_item_variations, dependent: :destroy
   accepts_nested_attributes_for :catalog_item_variations

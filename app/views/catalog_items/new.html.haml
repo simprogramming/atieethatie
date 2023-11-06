@@ -1,6 +1,6 @@
 - model_class = CatalogItem
 
 - content_for :title do
-  %h1= t '.title', :default => [:'helpers.titles.newf', 'New %{model}'], :model => model_class.model_name.human.downcase
+  %h1= t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.downcase
 
 = render :partial => "form"

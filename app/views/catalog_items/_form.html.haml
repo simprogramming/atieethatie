@@ -1,7 +1,9 @@
 = simple_form_for @catalog_item do |f|
   .row
-    .col-md-12.py-2
+    .col-md-6
       = f.association :category, collection: policy_scope(Category).order(:name_fr).map { |category| [category.name_fr, category.id] }
+    .col-md-6
+      = f.association :fragrance, as: :select, collection: policy_scope(Fragrance).order(:name_fr).collect{ |e| [e.name , e.id] }, label: Fragrance.model_name.human(count: 2)
     .col-md-6
       = f.input :name_fr
     .col-md-6
@@ -20,21 +22,32 @@
 
     - unless @catalog_item.persisted?
       %h2.my-3= "Créer une première variante du produit"
+      .col-md-6.my-4
+        = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
       = f.simple_fields_for :catalog_item_variations do |ff|
         .col-md-6
-          = ff.input :name_fr
+          = ff.input :price, input_html: {value: 12 }
         .col-md-6
-          = ff.input :name_en
+          = ff.input :name_fr, input_html: {value: "4oz blanc"}
         .col-md-6
-          = ff.input :price
+          = ff.input :name_en, input_html: {value: "4oz white"}
         .col-md-6
-          = ff.input :inventory
+          = ff.input :size, collection: CatalogItemVariation::SIZE_OPTIONS, selected: "4oz"
         .col-md-6
-          = ff.input :color
-        .col-md-6
-          = ff.input :size
-      .col-md-4.my-4
-        = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
+          = ff.input :color, collection: CatalogItemVariation.translated_colors, selected: :white, input_html: { autocomplete: "off", selected: :white }
+        .col-md-6.py-2
+          = ff.label :information_fr
+          = ff.rich_text_area :information_fr
+        .col-md-6.py-2
+          = ff.label :information_en
+          = ff.rich_text_area :information_en
+        .col-md-6.py-2
+          = ff.label :instruction_fr
+          = ff.rich_text_area :instruction_fr
+        .col-md-6.py-2
+          = ff.label :instruction_en
+          = ff.rich_text_area :instruction_en
 
-  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary my-3"
+
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success my-3"
   = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_items_url, class: "btn btn-outline-secondary"

@@ -38,9 +38,9 @@ module UpsertServices
     # Builds the item data portion of the payload.
     def build_item_data
       {
-        name: item.name_en,
+        name: item.name_fr,
         category_id: Category.find(item.category_id).square_id,
-        description: item.description_en.to_plain_text,
+        description: item.description_fr.to_plain_text,
         product_type: "REGULAR",
         variations: insert_variations
       }
@@ -63,7 +63,7 @@ module UpsertServices
       {
         sku: variation.sku,
         item_id: item.square_id.presence || "#item",
-        name: variation.name_en,
+        name: variation.name_fr,
         pricing_type: "FIXED_PRICING",
         price_money: {
           amount: (variation.price.to_i * 100),
@@ -98,7 +98,7 @@ module UpsertServices
 
         item_variation.square_id = variation[:id]
         item_variation.version = variation[:version]
-        if images.present? && item_variation.square_id.present? && item_variation.version.present?
+        if images.present? && item_variation.square_id.present?
           UpsertServices::ObjectImage.new(item: item_variation, images: images).run!
         end
       end

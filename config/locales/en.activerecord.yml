@@ -12,6 +12,11 @@ en:
         role_list:
           admin: Admin
           client: Client
+      catalog_item_variation:
+        color_list:
+          white: White
+          black: Black
+          gray: Gray
     models:
       catalog_item:
         one: Product
@@ -41,6 +46,8 @@ en:
     description_fr: Description french
     information_en: Additional information english
     information_fr: Additional information french
+    instruction_en: Instruction english
+    instruction_fr: Instruction french
     email: Email
     id: Id
     name: Name

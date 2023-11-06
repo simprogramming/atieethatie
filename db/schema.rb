@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_01_030034) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_06_224027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -81,7 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_030034) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "fragrance_id", null: false
     t.index ["category_id"], name: "index_catalog_items_on_category_id"
+    t.index ["fragrance_id"], name: "index_catalog_items_on_fragrance_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -128,5 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_030034) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "catalog_item_variations", "catalog_items"
   add_foreign_key "catalog_items", "categories"
+  add_foreign_key "catalog_items", "fragrances"
   add_foreign_key "fragrances", "fragrance_profiles"
 end

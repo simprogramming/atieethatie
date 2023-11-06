@@ -13,5 +13,5 @@
     .col-md-6
       = f.input :password_confirmation, input_html: { autocomplete: "off" }
 
-  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary"
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success"
   = link_to t('.cancel', default: t("helpers.links.cancel")), users_path, class: "btn btn-outline-secondary"

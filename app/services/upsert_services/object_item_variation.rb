@@ -40,7 +40,7 @@ module UpsertServices
       {
         sku: item_variation.sku,
         item_id: item_variation.catalog_item.square_id,
-        name: item_variation.name_en,
+        name: item_variation.name_fr,
         pricing_type: "FIXED_PRICING",
         price_money: {
           amount: (item_variation.price.to_i * 100),

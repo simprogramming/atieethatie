@@ -7,8 +7,8 @@ module SquareClient
   def client
     @client ||= Square::Client.new(
       access_token: ENV.fetch('SQUARE_ACCESS_TOKEN'),
-      environment: 'sandbox',
-      timeout: 1
+      environment: 'production',
+      timeout: 30
     )
   end
 end

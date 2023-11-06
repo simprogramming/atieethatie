@@ -1,29 +1,36 @@
 = simple_form_for [@catalog_item, @catalog_item_variation] do |f|
   .row
     .col-md-6
-      = f.input :name_fr
+      = f.input :name_fr, placeholder: "4oz blanc"
     .col-md-6
-      = f.input :name_en
+      = f.input :name_en, placeholder: "4oz white"
+    .col-md-6
+      = f.input :color, collection: CatalogItemVariation.translated_colors, input_html: { autocomplete: "off" }
+    .col-md-6
+      = f.input :size, collection: CatalogItemVariation::SIZE_OPTIONS, as: :select
+    .col-md-6
+      = f.input :price
+    .col-md-6
+      = f.input :sku, disabled: true if f.object.persisted?
     .col-md-6.py-2
       = f.label :information_fr
       = f.rich_text_area :information_fr
     .col-md-6.py-2
       = f.label :information_en
       = f.rich_text_area :information_en
-    .col-md-6
-      = f.input :price
-    .col-md-6
-      = f.input :color
-    .col-md-6
-      = f.input :size
-    .col-md-6
-      = f.input :sku, disabled: true
-    .col-md-6
-      = f.input :square_id, disabled: true
-    .col-md-6
-      = f.input :version, disabled: true
+    .col-md-6.py-2
+      = f.label :instruction_fr
+      = f.rich_text_area :instruction_fr
+    .col-md-6.py-2
+      = f.label :instruction_en
+      = f.rich_text_area :instruction_en
+    - if f.object.persisted?
+      .col-md-6
+        = f.input :square_id, disabled: true
+      .col-md-6
+        = f.input :version, disabled: true
     .col-md-4.my-4
       = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
 
-  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary my-3"
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success my-3"
   = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_item_catalog_item_variations_path(@catalog_item), class: "btn btn-outline-secondary"

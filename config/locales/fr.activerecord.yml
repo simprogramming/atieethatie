@@ -12,13 +12,18 @@ fr:
         role_list:
           admin: Administrateur
           client: Client
+      catalog_item_variation:
+        color_list:
+          white: Blanc
+          black: Noir
+          gray: Gris
     models:
       catalog_item:
         one: Produit
         other: Produits
       catalog_item_variation:
-        one: Variante de produit
-        other: Variantes de produit
+        one: Variante du produit
+        other: Variantes du produit
       category:
         one: Catégorie
         other: Catégories
@@ -41,6 +46,8 @@ fr:
     description_fr: Description français
     information_en: Information additionnelle anglais
     information_fr: Information additionnelle français
+    instruction_en: Instruction anglais
+    instruction_fr: Instruction français
     email: Courriel
     id: Identifiant
     name: Nom

@@ -29,7 +29,7 @@ module UpsertServices
           id: category.square_id.presence || "#123",
           version: category.version.presence || nil,
           category_data: {
-            name: params[:name_en]
+            name: params[:name_fr]
           }
         }
       }

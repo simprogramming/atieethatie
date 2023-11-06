@@ -8,6 +8,7 @@ class CreateCatalogItemVariations < ActiveRecord::Migration[7.0]
       t.float :price
       t.string :square_id
       t.bigint :version
+      t.string :image_ids, array: true, default: []
       t.string :image_urls, array: true, default: []
       t.string :color
       t.string :size

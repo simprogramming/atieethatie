@@ -8,8 +8,6 @@ class CatalogItemVariation < ApplicationRecord
 
   belongs_to :catalog_item
 
-  before_create :generate_sku
-
   validates :name_fr, :name_en, :price, presence: true
 
   private
@@ -22,5 +20,4 @@ class CatalogItemVariation < ApplicationRecord
       break sku unless exists?(sku: sku)
     end
   end
-
 end

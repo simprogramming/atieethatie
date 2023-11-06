@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_030034) do
     t.float "price"
     t.string "square_id"
     t.bigint "version"
+    t.string "image_ids", default: [], array: true
     t.string "image_urls", default: [], array: true
     t.string "color"
     t.string "size"

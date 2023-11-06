@@ -1,7 +1,7 @@
 class CatalogItemsController < ApplicationController
   include AdminSideHelper
   before_action :set_catalog_item, only: %i[edit update show destroy]
-  before_action :sync_item, only: %i[edit]
+  before_action :sync_items, only: %i[edit]
   before_action -> { authorize @catalog_item || CatalogItem }
 
   decorates_assigned :catalog_item, :catalog_items
@@ -52,11 +52,11 @@ class CatalogItemsController < ApplicationController
       next if variation.image_ids.blank?
 
       variation.image_ids.each do |image|
-        DeleteServices::ObjectItem.new(image).run!
+        DeleteServices::CatalogObject.new(image).run!
       end
     end
     
-    DeleteServices::ObjectItem.new(@catalog_item.square_id).run!
+    DeleteServices::CatalogObject.new(@catalog_item.square_id).run!
     @catalog_item.destroy
     redirect_to catalog_items_path, notice: destroy_successful_notice
   end
@@ -73,7 +73,7 @@ class CatalogItemsController < ApplicationController
     @catalog_item = policy_scope(CatalogItem).find(params[:id])
   end
 
-  def sync_item
+  def sync_items
     SyncVersionServices::ObjectItem.new(item: @catalog_item).run!
   end
 end

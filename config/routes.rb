@@ -8,8 +8,8 @@ Rails.application.routes.draw do
       get "sync"
     end
   end
-  resources :catalog_item_variations
   resources :catalog_items do
+    resources :catalog_item_variations
     collection do
       get "sync"
     end

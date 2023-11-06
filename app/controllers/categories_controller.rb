@@ -42,7 +42,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    DeleteServices::ObjectCategory.new(@category.square_id).run!
+    DeleteServices::CatalogObject.new(@category.square_id).run!
     @category.destroy
     redirect_to categories_path, notice: destroy_successful_notice
   end

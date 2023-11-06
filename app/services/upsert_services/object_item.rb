@@ -86,11 +86,11 @@ module UpsertServices
     def assign_id_version_item(data)
       item.version = data[:version]
       item.square_id = data[:id]
-      assign_id_version_to_variations(data[:item_data][:variations])
+      assign_id_version_to(data[:item_data][:variations])
     end
 
     # Updates each variation of the item.
-    def assign_id_version_to_variations(variations)
+    def assign_id_version_to(variations)
       variations.each do |variation|
         item_variation = item.catalog_item_variations.detect do |item_variation|
           item_variation.sku == variation[:item_variation_data][:sku]

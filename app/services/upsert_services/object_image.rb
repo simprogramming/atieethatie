@@ -56,8 +56,7 @@ module UpsertServices
     def update_item_variation_missing_fields(data)
       item.image_urls << data[:image_data][:url]
       item.image_ids << data[:id]
-      item.version = client.catalog.retrieve_catalog_object(object_id: item.square_id).data.first[:version]
-      item.catalog_item.version = client.catalog.retrieve_catalog_object(object_id: item.square_id).data.first[:version]
+      SyncVersionServices::ObjectItem.new(item: item.catalog_item).run!
     end
   end
 end

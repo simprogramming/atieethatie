@@ -3,10 +3,10 @@
   %h1= model_class.model_name.human count: 2
 
 - content_for :title_actions do
-  - if policy(Category).sync?
-    = link_to sync_categories_path, class: "btn btn-outline-secondary mx-2" do
-      %i.fa-solid.fa-rotate
-      = "Sync with Square"
+  -# - if policy(Category).sync?
+  -#   = link_to sync_categories_path, class: "btn btn-outline-secondary mx-2" do
+  -#     %i.fa-solid.fa-rotate
+  -#     = "Sync with Square"
   - if policy(Category).new?
     = link_to new_category_url, class: "btn btn-outline-secondary" do
       %i.fa-solid.fa-plus

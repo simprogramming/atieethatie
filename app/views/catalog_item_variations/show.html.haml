@@ -5,8 +5,8 @@
 
 .row.m-5
   .col-md-3.col-12.text-center
-    - if catalog_item_variation.image_url.present?
-      %img.my-4{ src: catalog_item_variation.image_url, alt: "#{catalog_item_variation.name_fr} image" }
+    - if catalog_item_variation.image_urls.present?
+      %img.my-4{ src: catalog_item_variation.image_urls.first, alt: "#{catalog_item_variation.name_fr} image" }
     %dt.col-12= CatalogItem.model_name.human
     %dd.col-12= catalog_item_variation.catalog_item.name_fr
 
@@ -33,11 +33,11 @@
 
 
 - if policy(catalog_item_variation).index?
-  = link_to catalog_item_variations_path, class: "btn btn-outline-secondary mx-1" do
+  = link_to catalog_item_catalog_item_variations_path(catalog_item_variation.catalog_item), class: "btn btn-outline-secondary mx-1" do
     %i.fa-solid.fa-chevron-left
     = t('.back', :default => t("helpers.links.back"))
 
 - if policy(catalog_item_variation).edit?
-  = link_to edit_catalog_item_variation_url(@catalog_item_variation), class: "btn btn-primary mx-1" do
+  = link_to edit_catalog_item_catalog_item_variation_path(catalog_item_variation.catalog_item, catalog_item_variation), class: "btn btn-primary mx-1" do
     %i.fa-solid.fa-edit
     = t('.edit', :default => t("helpers.links.edit"))

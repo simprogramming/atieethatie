@@ -1,7 +1,5 @@
-= simple_form_for @catalog_item_variation do |f|
+= simple_form_for [@catalog_item, @catalog_item_variation] do |f|
   .row
-    .col-md-12.py-2
-      = f.association :catalog_item, collection: policy_scope(CatalogItem).order(:name_fr).map { |catalog_item| [catalog_item.name_fr, catalog_item.id] }
     .col-md-6
       = f.input :name_fr
     .col-md-6
@@ -14,18 +12,18 @@
       = f.rich_text_area :information_en
     .col-md-6
       = f.input :price
-    -# .col-md-6
-    -#   = f.input :image_url
     .col-md-6
       = f.input :color
     .col-md-6
       = f.input :size
     .col-md-6
-      = f.input :sku
+      = f.input :sku, disabled: true
     .col-md-6
       = f.input :square_id, disabled: true
     .col-md-6
       = f.input :version, disabled: true
+    .col-md-4.my-4
+      = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
 
   = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-primary my-3"
-  = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_item_variations_url, class: "btn btn-outline-secondary"
+  = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_item_catalog_item_variations_path(@catalog_item), class: "btn btn-outline-secondary"

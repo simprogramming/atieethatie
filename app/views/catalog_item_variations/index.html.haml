@@ -8,7 +8,7 @@
   -#     %i.fa-solid.fa-rotate
   -#     = "Sync with Square"
   - if policy(CatalogItemVariation).new?
-    = link_to new_catalog_item_variation_url, class: "btn btn-outline-secondary" do
+    = link_to new_catalog_item_catalog_item_variation_path(@catalog_item), class: "btn btn-outline-secondary" do
       %i.fa-solid.fa-plus
       = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
 
@@ -25,17 +25,17 @@
   %tbody
     - catalog_item_variations.each do |catalog_item_variation|
       %tr
-        %td= link_to catalog_item_variation.name_fr, catalog_item_variation_url(catalog_item_variation)
+        %td= link_to catalog_item_variation.name_fr, catalog_item_catalog_item_variation_path(catalog_item_variation.catalog_item, catalog_item_variation)
         %td= catalog_item_variation.name_en
         %td= catalog_item_variation.catalog_item.name_fr
 
 
         %td.text-nowrap
           - if policy(catalog_item_variation).edit?
-            = link_to edit_catalog_item_variation_url(catalog_item_variation), class: "btn btn-primary btn-sm mx-1" do
+            = link_to edit_catalog_item_catalog_item_variation_path(catalog_item_variation.catalog_item, catalog_item_variation), class: "btn btn-primary btn-sm mx-1" do
               %i.fa-solid.fa-pen
           - if policy(catalog_item_variation).destroy?
-            = link_to catalog_item_variation, class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do
+            = link_to catalog_item_catalog_item_variation_path(catalog_item_variation.catalog_item, catalog_item_variation), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do
               %i.fa-solid.fa-trash
 
 

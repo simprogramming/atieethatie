@@ -15,7 +15,7 @@ module UpsertServices
 
     private
 
-    attr_reader :images, :item
+    attr_accessor :images, :item
 
     # Upsert catalog image to Square API
     def upsert_catalog_image(image)
@@ -45,17 +45,18 @@ module UpsertServices
     # Handles the result of the upsert catalog image API call
     def handle_upsert_result_image(result)
       if result.success?
-        update_item_variation_image_url(result.data.first)
+        update_item_variation_missing_fields(result.data.first)
       elsif result.error?
         warn result.errors
+        redirect_to catalog_items_path, notice: "check logs"
       end
     end
 
     # Updates the item variation image URL if the upsert was successful
-    def update_item_variation_image_url(data)
-      new_image_url = data[:image_data][:url]
-      item.image_urls << new_image_url
-      item.save!
+    def update_item_variation_missing_fields(data)
+      item.image_urls << data[:image_data][:url]
+      item.image_ids << data[:id]
+      SyncVersionServices::ObjectItem.new(item: item.catalog_item).run!
     end
   end
 end

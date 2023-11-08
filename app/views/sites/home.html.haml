@@ -1,2 +1,19 @@
-.div
-  .btn.btn-primary= "hell0"
+= image_tag "banner1.png", class: 'banner-image'
+%div.mx-5.cards-container
+  %div.grid
+    - 5.times do
+      .grid-item.text-center
+        %p.product-title Product Title
+        = image_tag "original.jpeg", class: 'img-fluid px-3'
+        %p.product-description Fragrance Profile
+        %p.product-description Product name
+        %button.btn.btn--primary.mb-3 Learn more
+
+%section.stores-section
+  %div.container
+    %h2.title Boutiques Partenaires
+    %div.logos-container
+      %div.logo-item
+        = image_tag "logo1.png", alt: "Logo Boutique 1"
+      %div.logo-item
+        = image_tag "logo2.png", alt: "Logo Boutique 2"

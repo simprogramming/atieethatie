@@ -1,0 +1,24 @@
+.filters.mx-4
+  = simple_form_for :product_filters, method: :get do |f|
+    %h3.text-center= t(".search")
+    .div.my-4
+      = f.input :search,
+          wrapper: false,
+          input_html: { name: :search, autocomplete: "off", class: " p-2", value: params[:search], style: "outline: none;"},
+          label: false, label_html: { class: "filter-label"},  required: false
+    #accordionStore.accordion
+      .accordion-item{style: "box-shadow: none; border: none;"}
+        %h2#headingOne.accordion-header{style: "background-color: transparent; border: none;"}
+          %button.accordion-button{"aria-controls" => "collapseOne", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:sizes].present?)}
+            = CatalogItemVariation.human_attribute_name :size
+        #collapseOne.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:sizes].present?)}
+          .accordion-body
+            #size-filter
+              - CatalogItemVariation::SIZE_OPTIONS.each do |size|
+                .form-check
+                  %label.form-check-label
+                    %input.form-check-input{ type: "checkbox", name: "sizes[]", value: size, checked: params[:sizes]&.include?(size) }
+                    = size
+
+    .filtered-products-count.my-3
+      -# = t(".total_products", products: @products.count.to_s)

@@ -18,7 +18,7 @@
 
   // Three different text colors
   --color-text-header: hsl(0, 1%, 16%);
-  --color-text-body:   hsl(0, 5%, 25%);
+  --color-text-body:   rgb(46,37,28);
   --color-text-muted:  hsl(0, 1%, 44%);
 
   // Classical and robust spacing system
@@ -34,9 +34,9 @@
   --space-xxxxl: 4rem;   // 64px
 
   // Application colors
-  --color-primary:          hsl(350, 67%, 50%);
+  --color-primary:          rgb(224,221,212);
   --color-primary-rotate:   hsl(10, 73%, 54%);
-  --color-primary-bg:       hsl(0, 85%, 96%);
+  --color-primary-bg:       rgb(224,221,212);
   --color-secondary:        hsl(101, 45%, 56%);
   --color-secondary-rotate: hsl(120, 45%, 56%);
   --color-tertiary:         hsl(49, 89%, 64%);

@@ -1,0 +1,105 @@
+
+.banner-image {
+  width: 100%;
+  height: auto; /* S'assure que la hauteur soit proportionnelle à la largeur */
+  max-height: 450px; /* La hauteur maximale que vous souhaitez pour votre bannière */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée légère pour donner du relief */
+  border-radius: 8px; /* Bords arrondis pour un look moderne */
+}
+
+.cards-container {
+  background-color: transparent;
+  padding: 1rem; // Adjust as necessary
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); // Creates exactly 5 columns per row
+    justify-items: center; // This centers the items along the inline (row) axis
+  }
+
+  .grid-item {
+    background: transparent;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
+    }
+
+    img {
+      width: 100%; // Assures that the image covers the full width of the card
+      height: auto; // Assures that the image maintains its aspect ratio
+      object-fit: cover; // Ensures the image covers its dedicated space without distortion
+    }
+
+    .product-title {
+      margin: 0.5rem; // Spacing around the title
+      text-transform: uppercase;
+    }
+
+    .product-description {
+      font-size: 0.8rem; // Slightly smaller font size for description
+      color: #666; // Discreet color for text
+      margin: 0.5rem;
+    }
+
+    .btn--primary {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.3rem 1.5rem;
+      align-self: center; // Centers the button horizontally
+      margin: 1rem 0; // Spacing above and below the button
+      cursor: pointer;
+    }
+  }
+}
+
+.stores-section {
+  background-color: rgb(157,180,188);
+  padding: 2rem 0; /* Espacement vertical pour la section */
+  text-align: center; /* Centre le titre et les logos */
+}
+
+.stores-section .container {
+  max-width: 1200px; /* Largeur maximale du conteneur */
+  margin: auto; /* Centre le conteneur */
+}
+
+.stores-section .title {
+  font-size: 2rem; /* Taille de la police pour le titre */
+  color: #333; /* Couleur du texte pour le titre */
+  margin-bottom: 1.5rem; /* Espacement en dessous du titre */
+}
+
+.stores-section .logos-container {
+  display: flex; /* Utilisation de Flexbox pour aligner les logos */
+  justify-content: center; /* Centre les logos horizontalement */
+  gap: 2rem; /* Espacement entre les logos */
+}
+
+.stores-section .logo-item {
+  display: flex; /* Active Flexbox pour le conteneur de logo */
+  flex-direction: column; /* Organise les éléments du conteneur en colonne */
+  justify-content: center; /* Centre les éléments verticalement */
+  align-items: center; /* Centre les éléments horizontalement */
+  flex: 1; /* Distribue l'espace également entre les logos */
+  max-width: 300px; /* Largeur maximale pour les logos */
+  padding: 1rem; /* Espacement autour des logos */
+  background: #ffffff; /* Fond blanc pour les éléments de logo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour donner du relief */
+  border-radius: 8px; /* Bords arrondis pour les éléments de logo */
+  transition: transform 0.3s ease-in-out; /* Transition douce pour l'effet au survol */
+}
+
+.stores-section .logo-item:hover {
+  transform: scale(1.05); /* Légère augmentation de taille au survol */
+}
+
+.stores-section img {
+  max-width: 100%; /* Les images ne dépassent pas leur conteneur */
+  height: auto; /* Garde le ratio de l'image */
+}

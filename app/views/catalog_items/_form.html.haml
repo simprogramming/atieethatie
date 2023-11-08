@@ -10,10 +10,10 @@
       = f.input :name_en
     .col-md-6.py-2
       = f.label :description_fr
-      = f.rich_text_area :description_fr
+      = f.rich_text_area :description_fr, required: true
     .col-md-6.py-2
       = f.label :description_en
-      = f.rich_text_area :description_en
+      = f.rich_text_area :description_en, required: true
     .col-md-6
       = f.input :square_id, disabled: true
     .col-md-6

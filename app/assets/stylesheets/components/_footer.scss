@@ -1,0 +1,38 @@
+.footer-section {
+  background-color: #2c3e50; /* Un peu plus foncé que la section des magasins pour une séparation claire */
+  color: #ffffff; /* Texte blanc pour contraste */
+  padding: 1.5rem 0; /* Espacement vertical pour le pied de page */
+  text-align: center; /* Centre le texte */
+}
+
+.footer-section .container {
+  max-width: 1200px; /* Largeur maximale du conteneur */
+  margin: auto; /* Centre le conteneur */
+  padding: 0 15px; /* Padding pour le contenu */
+}
+
+.footer-section .footer-text {
+  font-size: 1.2rem; /* Taille de la police pour le texte du pied de page */
+  margin-bottom: 1rem; /* Espacement en dessous du texte */
+}
+
+.footer-section .social-icons {
+  margin-bottom: 1rem; /* Espacement en dessous des icônes sociales */
+}
+
+.footer-section .social-icons a {
+  color: #ffffff; /* Couleur des icônes sociales */
+  margin: 0 0.5rem; /* Espacement autour des icônes */
+  font-size: 1.4rem; /* Taille des icônes */
+  display: inline-block; /* Affichage en ligne pour aligner les icônes */
+  transition: color 0.3s ease-in-out; /* Transition douce pour le changement de couleur */
+}
+
+.footer-section .social-icons a:hover {
+  color: #e0eaff; /* Changement de couleur au survol */
+}
+
+.footer-section .copy-text {
+  font-size: 0.9rem; /* Taille de la police plus petite pour le texte de copyright */
+  margin-top: 1rem; /* Espacement au-dessus du texte */
+}

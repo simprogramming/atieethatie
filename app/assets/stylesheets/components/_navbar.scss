@@ -1,0 +1,9 @@
+.nav-link{
+  color: rgb(46,37,28);
+}
+
+.navbar-brand img {
+  height: auto; /* Permet de maintenir le ratio de l'image */
+  width: auto; /* Vous pouvez spécifier une largeur si nécessaire, ex. 100px */
+  max-height: 75px; /* Ajustez la hauteur maximale pour l'aligner avec votre texte de la barre de navigation */
+}

@@ -1,9 +1,90 @@
-.nav-link{
-  color: rgb(46,37,28);
-}
+.navbar {
+  transition: background-color .7s; /* Smooth transition for the color change */
+  &.navbar-white {
+    background-color: #fff; /* Set the background color to white */
 
-.navbar-brand img {
-  height: auto; /* Permet de maintenir le ratio de l'image */
-  width: auto; /* Vous pouvez spécifier une largeur si nécessaire, ex. 100px */
-  max-height: 75px; /* Ajustez la hauteur maximale pour l'aligner avec votre texte de la barre de navigation */
+    .nav-link {
+      color: #333; /* Change the text color for better contrast */
+      &:hover {
+        color: #1a1a1a; /* Darker shade on hover for better visibility */
+      }
+    }
+  }
+  .nav-link{
+    color: rgb(46,37,28);
+    text-transform: uppercase;
+  }
+
+  .navbar-brand img {
+    height: auto; /* Permet de maintenir le ratio de l'image */
+    width: auto; /* Vous pouvez spécifier une largeur si nécessaire, ex. 100px */
+    max-height: 75px; /* Ajustez la hauteur maximale pour l'aligner avec votre texte de la barre de navigation */
+  }
+
+  /* Style the dropdown itself */
+  .nav-item.dropdown {
+    position: relative;
+  }
+
+  /* Style the dropdown menu */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,.175);
+  }
+
+  /* Style the dropdown items */
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+  }
+
+  /* Remove the blue outline on focus for dropdown links */
+  .dropdown-menu a:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  /* Optional: Add a hover effect for dropdown items */
+  .dropdown-item:hover, .dropdown-item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+  }
+
+  /* Show the dropdown menu on hover of the dropdown item */
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  /* Style changes for when the dropdown is clicked (Bootstrap may handle this with JS) */
+  .nav-item.dropdown:active .dropdown-menu,
+  .nav-item.dropdown.show .dropdown-menu {
+    display: block;
+  }
+
 }

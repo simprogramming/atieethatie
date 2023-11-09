@@ -56,7 +56,9 @@ fr:
     square_id: ID Square
     sku: Sku
     color: Couleur
+    colors: Couleurs
     size: Format
+    sizes: Formats
     price: Prix
     updated_at: Modifié le
     version: Version Square

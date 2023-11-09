@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   controller :sites do
     get :products, action: :products, as: :products
-    get "product", action: :product, as: :product
+    get "product/:id", action: :product, as: :product
   end
   root "sites#home"
 end

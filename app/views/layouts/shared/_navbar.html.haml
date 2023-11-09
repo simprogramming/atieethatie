@@ -1,17 +1,25 @@
-%nav.navbar.navbar-expand-lg.px-4
-  %a.navbar-brand.ps-md-5.ms-md-5{href: "#"}= image_tag "LogoAtie_Hatie_transparent_bg.png"
+%nav.navbar.navbar-expand-lg.px-4.fixed-top
+  = link_to root_path do
+    .navbar-brand.ps-md-5.ms-md-5= image_tag "LogoAtie_Hatie_transparent_bg.png"
   %button.navbar-toggler{type: "button", 'data-bs-toggle': "collapse", 'data-bs-target': "#navbarNav", 'aria-controls': "navbarNav", 'aria-expanded': "false", 'aria-label': "Toggle navigation"}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse{id: "navbarNav"}
     %ul.navbar-nav.ms-auto
-      %li.nav-item.px-md-3
-        %a.nav-link{href: "#", 'aria-current': "page"} NOUVEAUTÉS
-      %li.nav-item.px-md-3
-        %a.nav-link{href: "#"} OFFRES
-      %li.nav-item.px-md-3
-        %a.nav-link{href: "#"} CATÉGORIES
-      %li.nav-item.px-md-3
-        %a.nav-link{href: "#"} À PROPOS
+      = link_to products_path, class: "text-decoration-none" do
+        %li.nav-item.px-md-3
+          .nav-link= t(".our_catalog")
+      %li.nav-item.dropdown.px-md-3
+        %a.nav-link.dropdown-toggle{href: "#", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded': "false"}
+          = Category.model_name.human count: 2
+        %ul.dropdown-menu
+          - Category.all.each do |category|
+            %li
+              = link_to products_path(category_ids: category.id), class: 'dropdown-item' do
+                = category.name
+
+      = link_to change_locale_path, data: { "turbo-method": "put" }, class: "text-decoration-none" do
+        %li.nav-item.px-md-3
+          .nav-link= t("layouts.shared.sidebar.change_language")
       %li.nav-item.px-md-3
         %a.nav-link{href: "#"}
           %i.fas.fa-shopping-cart

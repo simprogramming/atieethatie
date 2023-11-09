@@ -4,6 +4,7 @@
   .gradient {
     position: relative;
     z-index: 1;
+    margin-top: 100px;
   }
 
   .gradient::before {
@@ -64,18 +65,20 @@
     display: flex;
     justify-content: space-between;
     margin-top: 5rem;
-    padding: 0;
-    list-style: none;
+    align-items: stretch; /* Align items in a way that they stretch to match the tallest one */
   }
 
   .colors, .format {
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    border: 1px solid #ccc; /* subtle border */
-    border-radius: 5px; /* Rounded corners */
+    flex: 1; /* Allows each box to grow and take up equal space */
+    display: flex; /* Apply flexbox layout to these containers as well */
+    flex-direction: column; /* Stack the children (p and ul) vertically */
+    justify-content: space-between; /* Distribute space between p and ul */
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 5px;
     padding: 1rem;
-    width: 45%; /* Adjust width as needed to fit the content */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Consistent with the product image shadow */
-    text-align: center; /* Center the text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
 
   .colors p, .format p {
@@ -87,19 +90,31 @@
 
   .colors ul, .format ul {
     padding: 0; /* Remove default padding */
+    display: flex; /* Apply flex layout to ul */
+    flex-wrap: wrap; /* Allow list items to wrap */
+    justify-content: center; /* Center the list items horizontally */
+    list-style: none;
   }
 
   .colors li, .format li {
-    display: inline; /* Display list items inline for a clean look */
-    margin: 0 10px; /* Space out the list items */
-    cursor: pointer; /* Suggests to the user that the items are interactive */
-    transition: color 0.3s ease; /* Smooth transition for hover effects */
+    margin: 5px; /* Add some space around the list items */
+    padding: 0.5rem 1rem; /* Add padding to the list items to ensure they have a block presence */
+    border-radius: 4px; /* Rounded corners for list items */
+    cursor: pointer;
+    transition: color 0.3s ease;
   }
 
   .colors li:hover, .format li:hover {
     color: rgb(149, 132, 120); /* A fresh, vibrant color for hover state */
   }
 
+  li.disabled {
+    /* Styles to indicate the current page's color */
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+  }
   #accordionDisplayProduct.accordion {
     display: flex; /* Use flexbox to align children side by side */
     justify-content: space-between; /* Space out accordion items evenly */
@@ -122,11 +137,11 @@
   }
 
   .accordion-header {
-    padding: 1rem; /* Consistent spacing around the header */
+    padding: 1.1rem; /* Consistent spacing around the header */
   }
 
   .accordion-button {
-    font-size: 1.25rem; /* Larger font-size for readability */
+    font-size: 1.0rem; /* Larger font-size for readability */
     color: #333; /* Dark text for contrast */
     background-color: transparent;
     border: none;

@@ -1,24 +1,59 @@
 .filters.mx-4
-  = simple_form_for :product_filters, method: :get do |f|
+  = simple_form_for :product_filters, method: :get, data: { turbo_frame: "products" } do |f|
     %h3.text-center= t(".search")
-    .div.my-4
-      = f.input :search,
-          wrapper: false,
-          input_html: { name: :search, autocomplete: "off", class: " p-2", value: params[:search], style: "outline: none;"},
-          label: false, label_html: { class: "filter-label"},  required: false
-    #accordionStore.accordion
+    #accordionStore.accordion.my-3
       .accordion-item{style: "box-shadow: none; border: none;"}
         %h2#headingOne.accordion-header{style: "background-color: transparent; border: none;"}
-          %button.accordion-button{"aria-controls" => "collapseOne", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:sizes].present?)}
-            = CatalogItemVariation.human_attribute_name :size
-        #collapseOne.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:sizes].present?)}
+          %button.accordion-button{"aria-controls" => "collapseOne", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:category_ids].present?)}
+            = Category.model_name.human(count: 2)
+        #collapseOne.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:category_ids].present?)}
+          .accordion-body
+            #category-filter
+              - Category.all.each do |category|
+                .form-check
+                  %label.form-check-label
+                    %input.form-check-input{ type: "checkbox", name: "category_ids[]", value: category.id, checked: params[:category_ids]&.include?(category.id.to_s), onchange: "this.form.requestSubmit()" }
+                    = category.name
+      .accordion-item{style: "box-shadow: none; border: none;"}
+        %h2#headingTwo.accordion-header{style: "background-color: transparent; border: none;"}
+          %button.accordion-button{"aria-controls" => "collapseTwo", "data-bs-target" => "#collapseTwo", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:colors].present?)}
+            = t("attributes.colors")
+        #collapseTwo.accordion-collapse.collapse{"aria-labelledby" => "headingTwo", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:colors].present?)}
+          .accordion-body
+            #color-filter
+              - CatalogItemVariation.colors.keys.each do |color_key|
+                .form-check
+                  %label.form-check-label
+                    %input.form-check-input{ type: "checkbox", name: "colors[]", value: color_key, checked: params[:colors]&.include?(color_key) || false, onchange: "this.form.requestSubmit()" }
+                    = t("activerecord.attributes.catalog_item_variation.color_list.#{color_key}")
+
+      .accordion-item{style: "box-shadow: none; border: none;"}
+        %h2#headingThree.accordion-header{style: "background-color: transparent; border: none;"}
+          %button.accordion-button{"aria-controls" => "collapseThree", "data-bs-target" => "#collapseThree", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:sizes].present?)}
+            = t("attributes.sizes")
+        #collapseThree.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:sizes].present?)}
           .accordion-body
             #size-filter
               - CatalogItemVariation::SIZE_OPTIONS.each do |size|
                 .form-check
                   %label.form-check-label
-                    %input.form-check-input{ type: "checkbox", name: "sizes[]", value: size, checked: params[:sizes]&.include?(size) }
+                    %input.form-check-input{ type: "checkbox", name: "sizes[]", value: size, checked: params[:sizes]&.include?(size), onchange: "this.form.requestSubmit()" }
                     = size
+      .accordion-item{style: "box-shadow: none; border: none;"}
+        %h2#headingFour.accordion-header{style: "background-color: transparent; border: none;"}
+          %button.accordion-button{"aria-controls" => "collapseFour", "data-bs-target" => "#collapseFour", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:fragrance_profile_ids].present?)}
+            = FragranceProfile.model_name.human count: 2
+        #collapseFour.accordion-collapse.collapse{"aria-labelledby" => "headingTwo", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:fragrance_profile_ids].present?)}
+          .accordion-body
+            #fragrance-filter
+              - FragranceProfile.joins(:catalog_items).distinct.each do |fragrance_profile|
+                .form-check
+                  %label.form-check-label
+                    %input.form-check-input{ type: "checkbox", name: "fragrance_profile_ids[]", value: fragrance_profile.id, checked: params[:fragrance_profile_ids]&.include?(fragrance_profile.id.to_s) || false, onchange: "this.form.requestSubmit()" }
+                    = fragrance_profile.name
+
+      = link_to t('.cancel', default: t("helpers.links.reset")), products_url, class: "reset-link"
+
 
     .filtered-products-count.my-3
-      -# = t(".total_products", products: @products.count.to_s)
+      = t(".total_products", products: @catalog_item_variations.count.to_s)

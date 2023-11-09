@@ -56,7 +56,9 @@ en:
     square_id: Square ID
     sku: Sku
     color: Color
+    colors: Colors
     size: Size
+    sizes: Sizes
     Price: Price
     updated_at: Updated at
     version: Square version

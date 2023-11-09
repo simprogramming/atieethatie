@@ -1,10 +1,28 @@
 
 .banner-image {
+  margin-top: 100px;
   width: 100%;
   height: auto; /* S'assure que la hauteur soit proportionnelle à la largeur */
   max-height: 450px; /* La hauteur maximale que vous souhaitez pour votre bannière */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée légère pour donner du relief */
   border-radius: 8px; /* Bords arrondis pour un look moderne */
+}
+
+.logo-image {
+  max-width: 90px; /* Adjust the width of the logo */
+  margin: 0 1rem; /* Space around the logo */
+  display: inline-block; /* Align images inline with text */
+}
+
+.sub_banner {
+  font-size: 1rem; /* Adjust font size as necessary */
+  margin: 0.5rem 1rem; /* Top and bottom margin reduced, left and right increased for space between text and images */
+  display: inline-block; /* Ensures that the element is in line with images */
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1rem 1rem;
+  max-width: 60%;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cards-container {

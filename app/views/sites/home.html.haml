@@ -1,24 +1,24 @@
 = image_tag "banner1.png", class: 'banner-image'
 
-.container-fluid.d-flex.justify-content-center.align-items-center.text-center.me-auto.mt-5
-  = image_tag 'LogoAtie_Hatie_transparent_bg.png', width: 90, alt: '', class: "img-fluid"
-  %div
-    %h1.mx-4.sub_banner= t(".natural_scent")
-  = image_tag 'LogoAtie_Hatie_transparent_bg.png', width: 90, alt: '', class: "img-fluid"
+.container-fluid.d-flex.justify-content-center.align-items-center.text-center.my-5
+  = image_tag 'LogoAtie_Hatie_transparent_bg.png', alt: '', class: "img-fluid logo-image"
+  %h4.sub_banner= t(".convince_them")
+  = image_tag 'LogoAtie_Hatie_transparent_bg.png', alt: '', class: "img-fluid logo-image"
 
-%div.mx-5.cards-container.my-5
+%div.mx-5.cards-container.mb-5
   %div.grid
-    - 5.times do
+    - @catalog_item_variations.each do |item|
       .grid-item.text-center
-        %p.product-title Product Title
+        %p.product-title= item.catalog_item.name
         = image_tag "original.jpeg", class: 'img-fluid px-3'
-        %p.product-description Fragrance Profile
-        %p.product-description Product name
-        %button.btn.btn--primary.mb-3 Learn more
+        %p.product-description= item.catalog_item.fragrance.fragrance_profile.name
+        %p.product-description= item.name
+        = link_to product_path(item) do
+          %button.btn.btn--primary.mb-3= t("helpers.links.learn_more")
 
 %section.stores-section.py-3
   %div.container.py-5
-    %h2.title.pb-5 Boutiques Partenaires
+    %h2.title.pb-5= t(".our_partners")
     %div.logos-container.pb-3
       %div.logo-item
         = image_tag "logo1.png", alt: "Logo Boutique 1"

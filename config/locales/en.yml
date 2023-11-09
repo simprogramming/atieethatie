@@ -51,6 +51,7 @@ en:
       reset: Reset filters
       search: Search
       sign_out: Sign out
+      learn_more: "Learn more"
     submit:
       create: Create
       filter: Filter
@@ -62,10 +63,29 @@ en:
       newf: New %{model}
       newm: New %{model}
     format:
-      money: "$%{val} CAD"
+      money: "$%{val}"
   layouts:
     shared:
       sidebar:
         administration: "Administration"
         categorizations: "Categorizations"
         change_language: "FR"
+      footer:
+        follow_us_footer: "Join our community and be the first to discover our new products, stories, and exclusive offers. Follow us and let's illuminate every moment of our daily life together."
+        copyright: "© 2023 Atie et Hatie. All rights reserved."
+      navbar:
+        our_catalog: "Our Catalog"
+  sites:
+    components:
+      store_filter:
+        total_products: "Total products: %{products}"
+        search: "Browse"
+    products:
+      convince_them: "Explore a world where tradition meets innovation. Each creation embodies a commitment to quality, crafted for the discerning and passionate. Embark on a journey of sensory discovery, where every item holds the promise of a transformed atmosphere and a touch of serenity. Join us in the pursuit of refined elegance"
+    product:
+      back_to_store: "Back to Shop"
+      instruction: "Instructions for use"
+      information: "Additional info"
+    home:
+      our_partners: "Our Partners"
+      convince_them: "Illuminate every moment. Create an atmosphere of serenity and escape, inviting the discovery of scents that awaken the senses and enhance your daily life."

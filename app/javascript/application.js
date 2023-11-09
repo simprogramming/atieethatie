@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import './components/sidebar';
+import './components/navbar';
 import "trix"
 import "@rails/actiontext"
 

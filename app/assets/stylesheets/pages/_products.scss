@@ -1,12 +1,10 @@
 #products_page {
   background: linear-gradient(to right, rgb(245,233,225), rgb(215,202,192));
-  position: relative;
 
 
   #carouselExampleSlidesOnly {
     width: 100%;
     height: auto; /* ou une hauteur fixe si nécessaire */
-    position: absolute; /* ou 'fixed' si la barre de navigation doit rester visible lors du défilement */
     max-height: 600px;
     top: 0;
     left: 0;
@@ -24,14 +22,129 @@
 
   .cards-section {
     padding: 2rem 0;
-    margin-top: 500px;
 
 
     .filters {
       position: sticky;
-      top: 0; /* Distance from the top of the viewport */
-      padding-top: 1rem; /* Optional: space above the filter */
+      top: 25px; /* Distance from the top of the viewport */
+      background: rgba(255, 255, 255, 0.9); /* Léger fond transparent pour un effet moderne */
+      border-radius: 8px; /* Bords arrondis pour un look doux */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile pour un effet de profondeur */
+      padding: 20px; /* Espace interne pour ne pas coller au bord de l'écran */
+      margin-bottom: 2rem; /* Espace en dessous du filtre pour la séparation */
+      z-index: 10;
     }
+
+    .accordion-button {
+      background-color: #f8f9fa; /* Couleur de fond pour les boutons d'accordéon */
+      color: #495057; /* Couleur du texte pour les boutons */
+      padding: .5rem 1rem; /* Espace interne pour les boutons */
+      border-radius: 5px; /* Bords arrondis pour les boutons */
+      text-align: left; /* Alignement du texte à gauche */
+      font-size: 1rem; /* Taille de police appropriée pour la lisibilité */
+      font-weight: 600; /* Police un peu plus épaisse pour se démarquer */
+      box-shadow: none; /* Pas d'ombre pour un look épuré */
+      border: none; /* Pas de bordure pour un look épuré */
+    }
+
+    .accordion-button.collapsed {
+      background-color: #e9ecef; /* Changement de couleur de fond pour l'état replié */
+      color: #6c757d; /* Changement de couleur du texte pour l'état replié */
+    }
+
+    .accordion-body {
+      padding: 0; /* Retirer le padding par défaut */
+    }
+
+    .form-check {
+      padding: .25rem 1rem; /* Espace interne pour chaque option de filtre */
+    }
+
+    .form-check-input {
+      margin-left: .5rem; /* Espace entre la case à cocher et le label */
+      margin-right: .5rem; /* Espace entre la case à cocher et le label */
+    }
+
+    .form-check-label {
+      font-size: .9rem; /* Taille de police pour les labels des filtres */
+      color: #495057; /* Couleur du texte pour les labels */
+    }
+
+    /* Style pour l'input coché */
+    .form-check-input:checked {
+      background-color: #dac2b7; /* Couleur plus foncée pour l'input coché */
+      border-color: #dac2b7; /* Bordure de la même couleur pour fusionner */
+    }
+
+    /* Style pour le label lorsque l'input est coché */
+    .form-check-input:checked + .form-check-label {
+      color: #495057; /* Couleur du texte pour le label quand l'input est coché */
+      font-weight: bold; /* Police un peu plus épaisse pour se démarquer */
+      background-color: #f3e8e5; /* Couleur de fond claire pour le label */
+      border-radius: 4px; /* Bords arrondis pour le label */
+      padding: .25rem 1rem; /* Espace interne pour le label */
+      margin-left: -0.5rem; /* Ajuster l'espace à gauche du label */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile pour un effet de profondeur */
+    }
+
+    /* Style pour augmenter la visibilité de l'input lors du survol */
+    .form-check-input:not(:checked):hover {
+      border-color: #dac2b7; /* Bordure d'une couleur plus visible lors du survol */
+    }
+
+    /* Style pour le label lors du survol de l'input */
+    .form-check-input:not(:checked):hover + .form-check-label {
+      color: #495057; /* Couleur du texte pour le label lors du survol */
+      background-color: #faf8f6; /* Couleur de fond légère pour le label lors du survol */
+    }
+
+    .form-check-input:focus {
+      outline: none; /* Supprime la bordure de focus par défaut */
+      box-shadow: 0 0 0 0.2rem rgba(245, 233, 225, 0.5); /* Ombre de focus personnalisée */
+      border-color: #dac2b7; /* Couleur de bordure personnalisée lors du focus */
+    }
+
+    /* Vous pouvez également vouloir personnaliser l'ombre de focus pour les autres éléments de formulaire */
+    input[type="text"]:focus, input[type="search"]:focus {
+      outline: none; /* Supprime la bordure de focus par défaut */
+      box-shadow: 0 0 0 0.2rem rgba(245, 233, 225, 0.5); /* Ombre de focus personnalisée */
+      border-color: #dac2b7; /* Couleur de bordure personnalisée lors du focus */
+    }
+
+    .filtered-products-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 3rem 0;
+      font-size: 1.1rem;
+      color: #333;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .reset-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #fff;
+      background-color: #495057;
+      border-radius: 15px;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      width: 100%;
+    }
+
+    .reset-link:hover {
+      background-color: #333;
+      text-decoration: none;
+      color: #fff;
+    }
+
 
     .logo {
       display: flex; /* Utilise Flexbox pour aligner les éléments enfants */
@@ -40,13 +153,20 @@
     }
 
     .logo p {
-      margin-left: 10px; /* Ajoutez un espace entre le logo et le texte, ajustez selon vos besoins */
-      /* Ajoutez d'autres styles pour 'p' si nécessaire, comme la taille de police, la couleur, etc. */
+      font-family: cursive;
+      margin-left: 10px; /* Adjust space as needed */
+      font-size: 1.2em; /* Larger font size for visibility */
+      color: #333; /* A modern, neutral color */
+      font-weight: 500; /* Medium weight for readability */
+      line-height: 1.6; /* Improve readability */
+      max-width: 80%; /* Ensures text doesn't spread too wide */
+      text-align: justify; /* Ensures the text is evenly distributed */
+      text-justify: inter-word;
     }
     .logo img {
       height: auto; /* Permet de maintenir le ratio de l'image */
       width: auto; /* Vous pouvez spécifier une largeur si nécessaire, ex. 100px */
-      max-height: 125px; /* Ajustez la hauteur maximale pour l'aligner avec votre texte de la barre de navigation */
+      max-height: 135px; /* Ajustez la hauteur maximale pour l'aligner avec votre texte de la barre de navigation */
     }
 
     .container {

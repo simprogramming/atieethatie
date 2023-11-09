@@ -1,49 +1,69 @@
 %body#product-show-page
   .gradient
     .container.me-5.mt-3
-      .fa-solid.fa-arrow-left
-      Retour à la boutique
+      = link_to products_path, class: "text-black text-decoration-none" do
+        .fa-solid.fa-arrow-left
+        = t(".back_to_store")
     .container-show-page
-      %p.mt-3 Chandelle
-      %h1.mt-2.text-uppercase Nom de la bougie
+      %p.mt-3= @catalog_item_variation.catalog_item.category.name
+      %h1.mt-2.text-uppercase= @catalog_item_variation.catalog_item.name
       .product-information
-        %p.mt-3 12$ - 4oz white - Floral
+        %p.mt-3= "#{t("helpers.format.money", val: number_with_precision(@catalog_item_variation.price, precision: 2))} - #{@catalog_item_variation.name} - #{@catalog_item_variation.catalog_item.fragrance.fragrance_profile.name}"
       %div.product-image.mt-5
         = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "product-show-img"
       .product-details
-        %p.description Description détaillée du produit. Parfait pour créer une ambiance chaleureuse et accueillante.
-        %button.btn.btn--outline.p-3 Ajouter au panier
+        %p.description= @catalog_item_variation.catalog_item.description
+        %button.btn.btn--outline.p-3= t("helpers.links.add_to_cart")
 
       .variations.mt-5
-        .colors.text-center.p-4
-          %p.text-uppercase.text-decoration-underline colors
+        .colors.text-center.p-4.me-3
+          %p.text-uppercase.text-decoration-underline= t("attributes.colors")
           %ul
-            %li gray
-            %li white
-            %li black
+            - current_size = @catalog_item_variation.size
+            - color_variations_for_size = @catalog_item_variation.catalog_item.catalog_item_variations.where(size: current_size).pluck(:color).uniq
+            - color_variations_for_size.each do |color|
+              - if color == @catalog_item_variation.color
+                %li.disabled= color
+              - else
+                - # Find a variation with the same size and color to link to
+                - same_size_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(size: current_size, color: color)
+                - if same_size_variation.present?
+                  = link_to product_path(same_size_variation) do
+                    %li= color
+
+
 
         .format.text-center.p-4
-          %p.text-uppercase.text-decoration-underline formats
+          %p.text-uppercase.text-decoration-underline= t("attributes.sizes")
           %ul
-            %li 4oz
-            %li 8oz
+            - current_color = @catalog_item_variation.color
+            - size_variations_for_color = @catalog_item_variation.catalog_item.catalog_item_variations.where(color: current_color).pluck(:size).uniq
+            - size_variations_for_color.each do |size|
+              - if size == @catalog_item_variation.size
+                %li.disabled= size
+              - else
+                - # Find a variation with the same color and size to link to
+                - same_color_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(color: current_color, size: size)
+                - if same_color_variation.present?
+                  = link_to product_path(same_color_variation) do
+                    %li= size
 
 
     #accordionDisplayProduct.accordion.mb-3
       .accordion-item.my-3{style: "box-shadow: none; border: none;"}
         %h2#headingOne.accordion-header{style: "background-color: transparent; border: none;"}
           %button.accordion-button.collapsed.ps-0{"aria-controls" => "collapseOne", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;"}
-            %strong.ms-2= t(".instruction")
+            %strong.ms-2.text-uppercase= t(".instruction")
         #collapseOne.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "box-shadow: none; border: none;"}
           .accordion-body
             #category-filter
-              %p instruction
+              %p= @catalog_item_variation.instruction
 
       .accordion-item.my-3{style: "box-shadow: none; border: none;"}
         %h2#headingTwo.accordion-header{style: "background-color: transparent; border: none;"}
           %button.accordion-button.collapsed.ps-0{"aria-controls" => "collapseTwo", "data-bs-target" => "#collapseTwo", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;"}
-            %strong.ms-2= t(".information")
+            %strong.ms-2.text-uppercase= t(".information")
         #collapseTwo.accordion-collapse.collapse{"aria-labelledby" => "headingTwo", "data-bs-parent" =>  "#accordionExample", style: "box-shadow: none; border: none;"}
           .accordion-body
             #additional-information
-              %p information
+              %p= @catalog_item_variation.information

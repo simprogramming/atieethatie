@@ -16,23 +16,26 @@
 
 
   %section.cards-section
-    .row.products-container
-      .col-xl-3.col-12
-        = render "sites/components/store_filter"
+    = turbo_frame_tag "products" do
+      .row.products-container.mt-3
+        .col-xl-3.col-12
+          = render "sites/components/store_filter"
 
-      .col-xl-8.col-12
-        .d-flex.px-3.mb-5.logo
-          = image_tag "LogoAtie_Hatie_transparent_bg.png"
-          %p Text
-        
-        .container
-          .row
-            - 9.times do
-              .col-md-4.card-container
-                .card
-                  = image_tag "original.jpeg", class: "card-img-top"
-                  .card-body
-                    %h5.card-title Nom du produit
-                    .d-flex
-                      %a{href: "#"} En savoir plus
-                      %p 12$
+        .col-xl-8.col-12
+          .d-flex.px-3.mb-5.logo
+            = image_tag "LogoAtie_Hatie_transparent_bg.png"
+            %p= t(".convince_them")
+
+
+          .container
+            .row
+              - @catalog_item_variations.each do |product|
+                .col-md-4.card-container
+                  .card
+                    = image_tag "original.jpeg", class: "card-img-top"
+                    .card-body
+                      %h5.card-title= product.catalog_item.name
+                      .d-flex
+                        = link_to product_path(product.id), data: { turbo_frame: "_top" } do
+                          = t("helpers.links.learn_more")
+                        %p= t("helpers.format.money", val: number_with_precision(product.price, precision: 2))

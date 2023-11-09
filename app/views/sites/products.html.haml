@@ -2,33 +2,29 @@
   #carouselExampleSlidesOnly.carousel.slide{"data-bs-ride" => "carousel"}
     .carousel-inner
       .carousel-item.active{"data-bs-interval" => "12000"}
-        = image_tag "banner9.jpg", class: 'banner-image2 d-block w-100'
+        = image_tag "banner9.jpg", class: 'd-block w-100'
       .carousel-item{"data-bs-interval" => "12000"}
-        = image_tag "banner10.jpg", class: 'banner-image2 d-block w-100'
+        = image_tag "banner10.jpg", class: 'd-block w-100'
       .carousel-item{"data-bs-interval" => "10000"}
-        = image_tag "banner6.jpg", class: 'banner-image2 d-block w-100'
+        = image_tag "banner6.jpg", class: 'd-block w-100'
       .carousel-item{"data-bs-interval" => "10000"}
-        = image_tag "banner5.jpg", class: 'banner-image2 d-block w-100'
+        = image_tag "banner5.jpg", class: 'd-block w-100'
       .carousel-item{"data-bs-interval" => "7000"}
-        = image_tag "banner11.jpg", class: 'banner-image2 d-block w-100'
+        = image_tag "banner11.jpg", class: 'd-block w-100'
       .carousel-item{"data-bs-interval" => "7000"}
-        = image_tag "banner12.jpg", class: 'banner-image2 d-block w-100'
+        = image_tag "banner12.jpg", class: 'd-block w-100'
 
 
   %section.cards-section
-    .row.py-3.products-container
-      .store-filter.col-xl-3.col-12
+    .row.products-container
+      .col-xl-3.col-12
         = render "sites/components/store_filter"
 
-
-
       .col-xl-8.col-12
-        .row.mx-auto.container.mt-md-4
-          .col-12
-            %nav{ aria: { label: "breadcrumb" } }
-              %ol.breadcrumb
-                %li.breadcrumb-item.active{ "aria-current" => "page" }
-                  = t(".store")
+        .d-flex.px-3.mb-5.logo
+          = image_tag "LogoAtie_Hatie_transparent_bg.png"
+          %p Text
+        
         .container
           .row
             - 9.times do

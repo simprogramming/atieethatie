@@ -1,5 +1,5 @@
 #products_page {
-  background: linear-gradient(to right, rgb(194, 195, 201), rgb(255, 255, 255));
+  background: linear-gradient(to right, rgb(245,233,225), rgb(215,202,192));
   position: relative;
 
 
@@ -31,6 +31,22 @@
       position: sticky;
       top: 0; /* Distance from the top of the viewport */
       padding-top: 1rem; /* Optional: space above the filter */
+    }
+
+    .logo {
+      display: flex; /* Utilise Flexbox pour aligner les éléments enfants */
+      align-items: center; /* Centre verticalement les éléments enfants */
+      justify-content: flex-start; /* Aligner les enfants à gauche; remplacez par 'center' si vous voulez centrer horizontalement */
+    }
+
+    .logo p {
+      margin-left: 10px; /* Ajoutez un espace entre le logo et le texte, ajustez selon vos besoins */
+      /* Ajoutez d'autres styles pour 'p' si nécessaire, comme la taille de police, la couleur, etc. */
+    }
+    .logo img {
+      height: auto; /* Permet de maintenir le ratio de l'image */
+      width: auto; /* Vous pouvez spécifier une largeur si nécessaire, ex. 100px */
+      max-height: 125px; /* Ajustez la hauteur maximale pour l'aligner avec votre texte de la barre de navigation */
     }
 
     .container {

@@ -146,7 +146,7 @@
   }
 
   .accordion-button:not(.collapsed)::after {
-    filter: invert(35%) sepia(85%) saturate(1352%) hue-rotate(88deg) brightness(90%) contrast(88%);
+    color: rgb(149, 132, 120);
     /* Adjust the icon color to match when the accordion is open */
   }
 

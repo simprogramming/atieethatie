@@ -1,0 +1,165 @@
+#product-show-page {
+  background: rgb(246,250,254);
+
+  .gradient {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gradient::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 60%; /* Le dégradé couvrira 50% de la hauteur totale du parent */
+    background: linear-gradient(to bottom, rgb(247,250,254) 0%,rgb(149, 132, 120) 100%);
+    z-index: -1;
+  }
+
+  .container-show-page {
+    padding: 0px 50px 50px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .product-show-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .product-details {
+    margin-top: 20px;
+  }
+
+  .description {
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: #666;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+
+  .variations {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .colors, .format {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border: 1px solid #ccc; /* subtle border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 1rem;
+    width: 45%; /* Adjust width as needed to fit the content */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Consistent with the product image shadow */
+    text-align: center; /* Center the text */
+  }
+
+  .colors p, .format p {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-decoration: underline;
+  }
+
+  .colors ul, .format ul {
+    padding: 0; /* Remove default padding */
+  }
+
+  .colors li, .format li {
+    display: inline; /* Display list items inline for a clean look */
+    margin: 0 10px; /* Space out the list items */
+    cursor: pointer; /* Suggests to the user that the items are interactive */
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+  }
+
+  .colors li:hover, .format li:hover {
+    color: rgb(149, 132, 120); /* A fresh, vibrant color for hover state */
+  }
+
+  #accordionDisplayProduct.accordion {
+    display: flex; /* Use flexbox to align children side by side */
+    justify-content: space-between; /* Space out accordion items evenly */
+    flex-wrap: wrap; /* Allow items to wrap into a column on smaller screens */
+    align-items: flex-start; /* Align items to the start of the cross axis */
+    gap: 1rem; /* Provide some space between items */
+    width: 70%; /* Set the width of the accordion container to 70% */
+    margin: 0 auto; /* Center the container on the page */
+  }
+
+  .accordion-item {
+    flex: 0 0 calc(50% - 0.5rem); /* Do not grow, do not shrink, initial width */
+    max-width: calc(50% - 0.5rem); /* Set maximum width to half of the container minus gap */
+    background-color: rgba(235, 235, 235, 0.95);;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+    padding: 1rem; /* Add padding to avoid content touching the borders */
+  }
+
+  .accordion-header {
+    padding: 1rem; /* Consistent spacing around the header */
+  }
+
+  .accordion-button {
+    font-size: 1.25rem; /* Larger font-size for readability */
+    color: #333; /* Dark text for contrast */
+    background-color: transparent;
+    border: none;
+    text-align: left; /* Align text to the left */
+    padding-left: 0; /* Remove default padding */
+    box-shadow: none; /* No shadow for a clean look */
+    font-weight: bold;
+  }
+
+  .accordion-button::after {
+    filter: invert(50%) sepia(20%) saturate(1342%) hue-rotate(2deg) brightness(91%) contrast(88%);
+    /* Adjust the color of the icon to match the design */
+  }
+
+  .accordion-button:not(.collapsed) {
+    color: rgb(149, 132, 120); /* Highlight color when the accordion is open */
+  }
+
+  .accordion-button:not(.collapsed)::after {
+    filter: invert(35%) sepia(85%) saturate(1352%) hue-rotate(88deg) brightness(90%) contrast(88%);
+    /* Adjust the icon color to match when the accordion is open */
+  }
+
+  .accordion-collapse {
+    border: none; /* Remove any default borders */
+  }
+
+  .accordion-body {
+    font-size: 1rem; /* Standard font-size for body content */
+    color: #666; /* Lighter text color for the body */
+    padding: 1rem; /* Consistent padding around the content */
+    text-align: left; /* Align text to the left for readability */
+    background-color: #f8f9fa; /* Slightly different background to distinguish from the header */
+    border-top: 1px solid #e7e7e7; /* Subtle separation from the header */
+  }
+}

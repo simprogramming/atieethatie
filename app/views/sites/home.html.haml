@@ -1,5 +1,12 @@
 = image_tag "banner1.png", class: 'banner-image'
-%div.mx-5.cards-container
+
+.container-fluid.d-flex.justify-content-center.align-items-center.text-center.me-auto.mt-5
+  = image_tag 'LogoAtie_Hatie_transparent_bg.png', width: 90, alt: '', class: "img-fluid"
+  %div
+    %h1.mx-4.sub_banner= t(".natural_scent")
+  = image_tag 'LogoAtie_Hatie_transparent_bg.png', width: 90, alt: '', class: "img-fluid"
+
+%div.mx-5.cards-container.my-5
   %div.grid
     - 5.times do
       .grid-item.text-center
@@ -9,9 +16,9 @@
         %p.product-description Product name
         %button.btn.btn--primary.mb-3 Learn more
 
-%section.stores-section
-  %div.container
-    %h2.title Boutiques Partenaires
+%section.stores-section.py-3
+  %div.container.py-5
+    %h2.title.pb-5 Boutiques Partenaires
     %div.logos-container
       %div.logo-item
         = image_tag "logo1.png", alt: "Logo Boutique 1"

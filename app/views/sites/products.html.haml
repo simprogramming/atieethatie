@@ -16,19 +16,19 @@
 
 
   %section.cards-section
-    .row.mx-auto.container.mt-4
-      .col-12
-        %nav{ aria: { label: "breadcrumb" } }
-          %ol.breadcrumb
-            %li.breadcrumb-item.active{ "aria-current" => "page" }
-              = t(".store")
-
     .row.py-3.products-container
-      .col-xl-3.col-12
+      .store-filter.col-xl-3.col-12
         = render "sites/components/store_filter"
 
 
+
       .col-xl-8.col-12
+        .row.mx-auto.container.mt-md-4
+          .col-12
+            %nav{ aria: { label: "breadcrumb" } }
+              %ol.breadcrumb
+                %li.breadcrumb-item.active{ "aria-current" => "page" }
+                  = t(".store")
         .container
           .row
             - 9.times do

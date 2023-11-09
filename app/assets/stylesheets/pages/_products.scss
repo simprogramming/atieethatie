@@ -1,81 +1,88 @@
 #products_page {
-  background: linear-gradient(to right, rgb(194,195,201), rgb(255,255,255));
+  background: linear-gradient(to right, rgb(194, 195, 201), rgb(255, 255, 255));
   position: relative;
-}
 
-#carouselExampleSlidesOnly {
-  width: 100%;
-  height: auto; /* ou une hauteur fixe si nécessaire */
-  position: absolute; /* ou 'fixed' si la barre de navigation doit rester visible lors du défilement */
-  max-height: 600px;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  overflow: hidden; /* Cela empêchera toute partie de l'image qui dépasse la hauteur maximale de s'afficher */
-}
 
-#carouselExampleSlidesOnly .carousel-inner .carousel-item > img {
-  object-fit: fill;
-  width: auto;
-  max-height: 600px; /* Cela applique la hauteur maximale à chaque image */
-  margin: 0 auto; /* Centrer les images si elles sont plus étroites que le conteneur */
-}
+  #carouselExampleSlidesOnly {
+    width: 100%;
+    height: auto; /* ou une hauteur fixe si nécessaire */
+    position: absolute; /* ou 'fixed' si la barre de navigation doit rester visible lors du défilement */
+    max-height: 600px;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden; /* Cela empêchera toute partie de l'image qui dépasse la hauteur maximale de s'afficher */
+  }
 
-.cards-section {
-  padding: 2rem 0;
-  margin-top: 500px;
+  #carouselExampleSlidesOnly .carousel-inner .carousel-item > img {
+    object-fit: fill;
+    width: auto;
+    max-height: 600px; /* Cela applique la hauteur maximale à chaque image */
+    margin: 0 auto; /* Centrer les images si elles sont plus étroites que le conteneur */
+  }
 
-  .container {
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin-right: -15px;
-      margin-left: -15px;
-      max-height: 100vh;
-      overflow-y: auto;
 
+  .cards-section {
+    padding: 2rem 0;
+    margin-top: 500px;
+
+
+    .filters {
+      position: sticky;
+      top: 0; /* Distance from the top of the viewport */
+      padding-top: 1rem; /* Optional: space above the filter */
     }
 
-    .card-container {
-      padding: 0 15px;
-      margin-bottom: 2rem;
+    .container {
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+      }
 
-      .card {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease-in-out;
+      .card-container {
+        padding: 0 15px;
+        margin-bottom: 2rem;
 
-        &:hover {
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+        .card {
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          transition: box-shadow 0.3s ease-in-out;
 
-        .card-img-top {
-          width: 100%;
-          object-fit: cover;
-        }
-
-        .card-body {
-          padding: 1rem;
-          background: linear-gradient(to right, rgb(203,206,212), rgb(220,219,225));
-          h5 {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem;
-            color: #333;
-            font-weight: lighter;
+          &:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
           }
 
-          a {
-            text-decoration: none;
-            color: rgb(82,88,88);
-            font-weight: bolder;
-            font-size: .85rem;
-            padding-right: .5rem;
+          .card-img-top {
+            width: 100%;
+            object-fit: cover;
           }
 
-          p {
-            color: rgb(82,88,88);
-            font-weight: lighter;
-            font-size: .85rem;
+          .card-body {
+            padding: 1rem;
+            background: #fff;
+
+            h5 {
+              margin-top: 0.5rem;
+              margin-bottom: 0.5rem;
+              font-size: 1.25rem;
+              color: #333;
+              font-weight: lighter;
+            }
+
+            a {
+              text-decoration: none;
+              color: rgb(82, 88, 88);
+              font-weight: bolder;
+              font-size: .85rem;
+              padding-right: .5rem;
+            }
+
+            p {
+              color: rgb(82, 88, 88);
+              font-weight: lighter;
+              font-size: .85rem;
+            }
           }
         }
       }

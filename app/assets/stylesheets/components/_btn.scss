@@ -17,6 +17,7 @@
     &--primary {
       color: black;
       background-color: rgb(223,220,212);
+      transition: background-color 0.3s, color 0.3s;
 
       &:hover,
       &:focus,
@@ -29,8 +30,8 @@
       border: none;
       border-radius: 0px;
       background-color: #0056b3;
-      border-color: #0056b3;
       color: #ffffff;
+      transition: background-color 0.3s, color 0.3s;
 
       &:hover,
       &:focus,
@@ -39,6 +40,22 @@
         color: #ffffff;
         background-color: #004494;
         border-color: #003575;
+      }
+    }
+    &--outline {
+      font-size: 1em;
+      border: 2px solid black;
+      background-color: rgb(53,51,40);
+      color: rgb(255,254,243);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:active {
+        color: rgb(53,51,40);
+        background-color: rgb(255,254,243);
       }
     }
   }

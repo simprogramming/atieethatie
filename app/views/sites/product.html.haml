@@ -1,0 +1,49 @@
+%body#product-show-page
+  .gradient
+    .container.me-5.mt-3
+      .fa-solid.fa-arrow-left
+      Retour à la boutique
+    .container-show-page
+      %p.mt-3 Chandelle
+      %h1.mt-2.text-uppercase Nom de la bougie
+      .product-information
+        %p.mt-3 12$ - 4oz white - Floral
+      %div.product-image.mt-5
+        = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "product-show-img"
+      .product-details
+        %p.description Description détaillée du produit. Parfait pour créer une ambiance chaleureuse et accueillante.
+        %button.btn.btn--outline.p-3 Ajouter au panier
+
+      .variations.mt-5
+        .colors.text-center.p-4
+          %p.text-uppercase.text-decoration-underline colors
+          %ul
+            %li gray
+            %li white
+            %li black
+
+        .format.text-center.p-4
+          %p.text-uppercase.text-decoration-underline formats
+          %ul
+            %li 4oz
+            %li 8oz
+
+
+    #accordionDisplayProduct.accordion.mb-3
+      .accordion-item.my-3{style: "box-shadow: none; border: none;"}
+        %h2#headingOne.accordion-header{style: "background-color: transparent; border: none;"}
+          %button.accordion-button.collapsed.ps-0{"aria-controls" => "collapseOne", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;"}
+            %strong.ms-2= t(".instruction")
+        #collapseOne.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "box-shadow: none; border: none;"}
+          .accordion-body
+            #category-filter
+              %p instruction
+
+      .accordion-item.my-3{style: "box-shadow: none; border: none;"}
+        %h2#headingTwo.accordion-header{style: "background-color: transparent; border: none;"}
+          %button.accordion-button.collapsed.ps-0{"aria-controls" => "collapseTwo", "data-bs-target" => "#collapseTwo", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;"}
+            %strong.ms-2= t(".information")
+        #collapseTwo.accordion-collapse.collapse{"aria-labelledby" => "headingTwo", "data-bs-parent" =>  "#accordionExample", style: "box-shadow: none; border: none;"}
+          .accordion-body
+            #additional-information
+              %p information

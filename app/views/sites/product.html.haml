@@ -28,7 +28,7 @@
                 - # Find a variation with the same size and color to link to
                 - same_size_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(size: current_size, color: color)
                 - if same_size_variation.present?
-                  = link_to product_path(same_size_variation) do
+                  = link_to product_path(same_size_variation), class: "text-decoration-none text-black" do
                     %li= color
 
 
@@ -45,7 +45,7 @@
                 - # Find a variation with the same color and size to link to
                 - same_color_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(color: current_color, size: size)
                 - if same_color_variation.present?
-                  = link_to product_path(same_color_variation) do
+                  = link_to product_path(same_color_variation), class: "text-decoration-none text-black" do
                     %li= size
 
 

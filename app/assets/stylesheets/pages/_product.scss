@@ -1,3 +1,133 @@
+// Mixin pour gérer les requêtes médias
+@mixin media($query) {
+  @if $query == tabletAndUp {
+    @media (min-width: 50rem) { @content; }
+  }
+  @else if $query == mobile {
+    @media (max-width: 50rem) { @content; }
+  }
+}
+
+@include media(mobile) {
+  #product-show-page {
+
+    .gradient::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 65%; /* Le dégradé couvrira 50% de la hauteur totale du parent */
+      background: linear-gradient(to bottom, rgb(247,250,254) 0%,rgb(149, 132, 120) 100%);
+      z-index: -1;
+    }
+    .container-show-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .product-image {
+      width: 80%;
+      height: auto;
+      display: block;
+      margin-bottom: 30px;
+    }
+
+
+    .product-details {
+      margin-top: 5px;
+    }
+
+    #accordionDisplayProduct.accordion {
+      display: block; /* Stacking items on top of each other */
+      width: 90%; /* Taking up 90% width */
+      margin: 1rem auto 2rem; /* Centering horizontally with margin top and bottom */
+    }
+
+    .accordion-item {
+      flex: 0 0 100%; /* Make accordion items take full width */
+      max-width: 100%; /* Ensure the max width is also full */
+      background-color: rgba(235, 235, 235, 0.95);;
+      border: 1px solid #e7e7e7;
+      border-radius: 5px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      // No need to set padding as it's already been set above
+    }
+  }
+}
+@include media(tabletAndUp) {
+  #product-show-page {
+    .gradient::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 60%; /* Le dégradé couvrira 50% de la hauteur totale du parent */
+      background: linear-gradient(to bottom, rgb(247,250,254) 0%,rgb(149, 132, 120) 100%);
+      z-index: -1;
+    }
+    .container-show-page {
+      padding: 0px 50px 50px 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 40%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 30px;
+    }
+
+    .product-details {
+      margin-top: 20px;
+    }
+
+    #accordionDisplayProduct.accordion {
+      display: flex; /* Use flexbox to align children side by side */
+      justify-content: space-between; /* Space out accordion items evenly */
+      flex-wrap: wrap; /* Allow items to wrap into a column on smaller screens */
+      align-items: flex-start; /* Align items to the start of the cross axis */
+      width: 70%; /* Set the width of the accordion container to 70% */
+      margin: 0 auto; /* Center the container on the page */
+    }
+
+    .accordion-item {
+      flex: 0 0 calc(50% - 0.5rem); /* Do not grow, do not shrink, initial width */
+      max-width: calc(50% - 0.5rem); /* Set maximum width to half of the container minus gap */
+      background-color: rgba(235, 235, 235, 0.95);;
+      border: 1px solid #e7e7e7;
+      border-radius: 5px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      padding: 1rem; /* Add padding to avoid content touching the borders */
+    }
+  }
+}
+
+
 #product-show-page {
   background: rgb(246,250,254);
 
@@ -7,50 +137,12 @@
     margin-top: 100px;
   }
 
-  .gradient::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 60%; /* Le dégradé couvrira 50% de la hauteur totale du parent */
-    background: linear-gradient(to bottom, rgb(247,250,254) 0%,rgb(149, 132, 120) 100%);
-    z-index: -1;
-  }
-
-  .container-show-page {
-    padding: 0px 50px 50px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 40%;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 3em;
-    color: #333;
-    margin-bottom: 10px;
-  }
-
-  .product-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 30px;
-  }
 
   .product-show-img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-
-  .product-details {
-    margin-top: 20px;
   }
 
   .description {
@@ -114,26 +206,6 @@
     pointer-events: none;
     cursor: default;
     text-decoration: none;
-  }
-  #accordionDisplayProduct.accordion {
-    display: flex; /* Use flexbox to align children side by side */
-    justify-content: space-between; /* Space out accordion items evenly */
-    flex-wrap: wrap; /* Allow items to wrap into a column on smaller screens */
-    align-items: flex-start; /* Align items to the start of the cross axis */
-    gap: 1rem; /* Provide some space between items */
-    width: 70%; /* Set the width of the accordion container to 70% */
-    margin: 0 auto; /* Center the container on the page */
-  }
-
-  .accordion-item {
-    flex: 0 0 calc(50% - 0.5rem); /* Do not grow, do not shrink, initial width */
-    max-width: calc(50% - 0.5rem); /* Set maximum width to half of the container minus gap */
-    background-color: rgba(235, 235, 235, 0.95);;
-    border: 1px solid #e7e7e7;
-    border-radius: 5px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    margin-bottom: 1rem;
-    padding: 1rem; /* Add padding to avoid content touching the borders */
   }
 
   .accordion-header {

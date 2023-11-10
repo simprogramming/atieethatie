@@ -75,6 +75,7 @@ fr:
         copyright: "© 2023 Atie et Hatie. Tous droits réservés."
       navbar:
         our_catalog: "Notre Catalogue"
+        admin: "Admin"
   sites:
     components:
       store_filter:

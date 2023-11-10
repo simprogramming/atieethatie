@@ -17,12 +17,12 @@
 
   %section.cards-section
     = turbo_frame_tag "products" do
-      .row.products-container.mt-3
-        .col-xl-3.col-12
+      .row.justify-content-center.products-container.mt-3
+        .col-12.col-sm-8.col-md-6.col-lg-4.col-xl-3.mx-auto
           = render "sites/components/store_filter"
 
-        .col-xl-8.col-12
-          .d-flex.px-3.mb-5.logo
+        .col-12.col-sm-10.col-md-12.col-lg-8
+          .d-flex.px-3.mb-5.logo.d-none.d-md-flex
             = image_tag "LogoAtie_Hatie_transparent_bg.png"
             %p= t(".convince_them")
 

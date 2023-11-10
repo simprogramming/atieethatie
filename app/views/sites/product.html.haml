@@ -50,7 +50,7 @@
 
 
     #accordionDisplayProduct.accordion.mb-3
-      .accordion-item.my-3{style: "box-shadow: none; border: none;"}
+      .accordion-item.mb-4{style: "box-shadow: none; border: none;"}
         %h2#headingOne.accordion-header{style: "background-color: transparent; border: none;"}
           %button.accordion-button.collapsed.ps-0{"aria-controls" => "collapseOne", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;"}
             %strong.ms-2.text-uppercase= t(".instruction")
@@ -59,7 +59,7 @@
             #category-filter
               %p= @catalog_item_variation.instruction
 
-      .accordion-item.my-3{style: "box-shadow: none; border: none;"}
+      .accordion-item.mb-5{style: "box-shadow: none; border: none;"}
         %h2#headingTwo.accordion-header{style: "background-color: transparent; border: none;"}
           %button.accordion-button.collapsed.ps-0{"aria-controls" => "collapseTwo", "data-bs-target" => "#collapseTwo", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;"}
             %strong.ms-2.text-uppercase= t(".information")

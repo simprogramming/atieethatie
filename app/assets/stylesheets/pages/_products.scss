@@ -1,3 +1,37 @@
+// Mixin pour gérer les requêtes médias
+@mixin media($query) {
+  @if $query == tabletAndUp {
+    @media (min-width: 50rem) { @content; }
+  }
+  @else if $query == mobile {
+    @media (max-width: 50rem) { @content; }
+  }
+}
+@include media(mobile) {
+  #products_page {
+
+    #carouselExampleSlidesOnly .carousel-inner .carousel-item img {
+      object-fit: cover;
+      width: auto;
+      min-height: 350px; /* Cela applique la hauteur maximale à chaque image */
+      max-height: 350px; /* Cela applique la hauteur maximale à chaque image */
+      margin: 0 auto; /* Centrer les images si elles sont plus étroites que le conteneur */
+    }
+  }
+}
+
+@include media(tabletAndUp) {
+  #products_page {
+    #carouselExampleSlidesOnly .carousel-inner .carousel-item > img {
+      object-fit: cover;
+      width: auto;
+      min-height: 600px; /* Cela applique la hauteur maximale à chaque image */
+      max-height: 600px; /* Cela applique la hauteur maximale à chaque image */
+      margin: 0 auto; /* Centrer les images si elles sont plus étroites que le conteneur */
+    }
+  }
+}
+
 #products_page {
   background: linear-gradient(to right, rgb(245,233,225), rgb(215,202,192));
 
@@ -10,13 +44,6 @@
     left: 0;
     z-index: -1;
     overflow: hidden; /* Cela empêchera toute partie de l'image qui dépasse la hauteur maximale de s'afficher */
-  }
-
-  #carouselExampleSlidesOnly .carousel-inner .carousel-item > img {
-    object-fit: fill;
-    width: auto;
-    max-height: 600px; /* Cela applique la hauteur maximale à chaque image */
-    margin: 0 auto; /* Centrer les images si elles sont plus étroites que le conteneur */
   }
 
 

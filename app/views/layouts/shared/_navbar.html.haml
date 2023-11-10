@@ -20,6 +20,11 @@
       = link_to change_locale_path, data: { "turbo-method": "put" }, class: "text-decoration-none" do
         %li.nav-item.px-md-3
           .nav-link= t("layouts.shared.sidebar.change_language")
+
+      = link_to admin_path, class: "text-decoration-none" do
+        %li.nav-item.px-md-3
+          .nav-link= t(".admin")
+
       %li.nav-item.px-md-3
         %a.nav-link{href: "#"}
           %i.fas.fa-shopping-cart

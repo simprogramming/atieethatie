@@ -26,43 +26,6 @@
     position: relative;
   }
 
-  /* Style the dropdown menu */
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 10rem;
-    padding: .5rem 0;
-    margin: .125rem 0 0;
-    font-size: 1rem;
-    color: #212529;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: .25rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,.175);
-  }
-
-  /* Style the dropdown items */
-  .dropdown-item {
-    display: block;
-    width: 100%;
-    padding: .25rem 1.5rem;
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: inherit;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-    text-decoration: none;
-  }
-
   /* Remove the blue outline on focus for dropdown links */
   .dropdown-menu a:focus {
     outline: none;

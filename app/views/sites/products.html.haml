@@ -30,12 +30,13 @@
           .container
             .row
               - @catalog_item_variations.each do |product|
-                .col-md-4.card-container
-                  .card
-                    = image_tag product.image_urls.first, class: "card-img-top"
-                    .card-body
-                      %h5.card-title= product.catalog_item.name
-                      .d-flex
-                        = link_to product_path(product.id), data: { turbo_frame: "_top" } do
-                          = t("helpers.links.learn_more")
-                        %p= t("helpers.format.money", val: number_with_precision(product.price, precision: 2))
+                - next unless product.image_urls.first.present?
+                  .col-md-4.card-container
+                    .card
+                      = image_tag product.image_urls.first, class: "card-img-top"
+                      .card-body
+                        %h5.card-title= product.catalog_item.name
+                        .d-flex
+                          = link_to product_path(product.id), data: { turbo_frame: "_top" } do
+                            = t("helpers.links.learn_more")
+                          %p= t("helpers.format.money", val: number_with_precision(product.price, precision: 2))

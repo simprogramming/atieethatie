@@ -197,6 +197,7 @@
     }
 
     .container {
+      padding-right: 30px;
       .row {
         display: flex;
         flex-wrap: wrap;
@@ -218,6 +219,7 @@
 
           .card-img-top {
             width: 100%;
+            max-height: 260px;
             object-fit: cover;
           }
 

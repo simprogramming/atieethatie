@@ -202,7 +202,7 @@
 
       img {
         width: 100%; // Assures that the image covers the full width of the card
-        height: auto; // Assures that the image maintains its aspect ratio
+        height: 200px; // Assures that the image maintains its aspect ratio
         object-fit: cover; // Ensures the image covers its dedicated space without distortion
       }
 

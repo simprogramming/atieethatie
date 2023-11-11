@@ -32,7 +32,7 @@
               - @catalog_item_variations.each do |product|
                 .col-md-4.card-container
                   .card
-                    = image_tag item.image_urls.first, class: "card-img-top"
+                    = image_tag product.image_urls.first, class: "card-img-top"
                     .card-body
                       %h5.card-title= product.catalog_item.name
                       .d-flex

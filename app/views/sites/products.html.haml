@@ -30,7 +30,7 @@
           .container
             .row
               - @catalog_item_variations.each do |product|
-                - next unless product.image_urls.first.present?
+                - if product.image_urls.first.present?
                   .col-md-4.card-container
                     .card
                       = image_tag product.image_urls.first, class: "card-img-top"

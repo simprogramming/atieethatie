@@ -8,7 +8,7 @@
 %div.mx-md-5.cards-container.mb-5
   %div.grid
     - @catalog_item_variations.each do |item|
-      - next unless item.image_urls.first.present?
+      - if item.image_urls.first.present?
         .grid-item.text-center
           %p.product-title= item.catalog_item.name
           = image_tag item.image_urls.first, class: 'img-fluid px-3'

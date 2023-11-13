@@ -30,11 +30,11 @@
           .container
             .row
               - @catalog_item_variations.each do |product|
-                -# - if product.image_urls.first.present?
+                - if product.image_urls.first.present?
                 .col-md-4.card-container
                   .card
-                    = image_tag "original.jpeg", class: "card-img-top"
-                    -# = image_tag product.image_urls.first, class: "card-img-top"
+                    -# = image_tag "original.jpeg", class: "card-img-top"
+                    = image_tag product.image_urls.first, class: "card-img-top"
                     .card-body
                       .d-flex.align-items-center
                         %h5.card-title= product.catalog_item.name

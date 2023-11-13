@@ -21,6 +21,7 @@ class CatalogItemVariation < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0, message: "must be a positive number" }
 
   scope :with_image, -> { where.not(image_urls: nil) }
+  scope :available, -> { where(available: true)}
 
   private
 

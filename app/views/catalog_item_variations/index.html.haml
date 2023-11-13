@@ -20,6 +20,7 @@
       %th= sortable_header :name_fr, model_class.human_attribute_name(:name_fr)
       %th= sortable_header :name_en, model_class.human_attribute_name(:name_en)
       %th= sortable_header :catalog_item_id, CatalogItem.model_name.human
+      %th= sortable_header :available, model_class.human_attribute_name(:available)
       %th
 
   %tbody
@@ -28,6 +29,7 @@
         %td= link_to catalog_item_variation.name_fr, catalog_item_catalog_item_variation_path(catalog_item_variation.catalog_item, catalog_item_variation)
         %td= catalog_item_variation.name_en
         %td= catalog_item_variation.catalog_item.name_fr
+        %td= bool_to_text(catalog_item_variation.available)
 
 
         %td.text-nowrap

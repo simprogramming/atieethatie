@@ -24,9 +24,12 @@
       %h2.my-3= "Créer une première variante du produit"
       .col-md-6.my-4
         = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
+      .col-md-6.my-4
       = f.simple_fields_for :catalog_item_variations do |ff|
         .col-md-6
           = ff.input :price, input_html: {value: 12 }
+        .col-md-6.my-4
+          = ff.input :available
         .col-md-6
           = ff.input :name_fr, input_html: {value: "4oz blanc"}
         .col-md-6

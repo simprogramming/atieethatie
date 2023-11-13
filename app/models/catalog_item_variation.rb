@@ -8,7 +8,7 @@ class CatalogItemVariation < ApplicationRecord
   has_rich_text :instruction_fr
   has_rich_text :instruction_en
 
-  enum color: { white: "white", black: "black", gray: "gray" }
+  enum color: { white: "white", black: "black", gray: "gray", transparent: "transparent" }
   translate_enum :color
 
   belongs_to :catalog_item
@@ -16,7 +16,7 @@ class CatalogItemVariation < ApplicationRecord
 
   validates :name_fr, :name_en, :price, :color, :size, presence: true
 
-  SIZE_OPTIONS = %w[4oz 8oz].freeze
+  SIZE_OPTIONS = %w[aucun 4oz 8oz].freeze
 
   validates :price, numericality: { greater_than_or_equal_to: 0, message: "must be a positive number" }
 

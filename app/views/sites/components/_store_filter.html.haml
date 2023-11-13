@@ -21,7 +21,7 @@
         #collapseTwo.accordion-collapse.collapse{"aria-labelledby" => "headingTwo", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:colors].present?)}
           .accordion-body
             #color-filter
-              - CatalogItemVariation.colors.keys.each do |color_key|
+              - CatalogItemVariation.colors.except(:transparent).keys.each do |color_key|
                 .form-check
                   %label.form-check-label
                     %input.form-check-input{ type: "checkbox", name: "colors[]", value: color_key, checked: params[:colors]&.include?(color_key) || false, onchange: "this.form.requestSubmit()" }
@@ -34,7 +34,7 @@
         #collapseThree.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:sizes].present?)}
           .accordion-body
             #size-filter
-              - CatalogItemVariation::SIZE_OPTIONS.each do |size|
+              - CatalogItemVariation::SIZE_OPTIONS.reject { |size| size == 'aucun' }.each do |size|
                 .form-check
                   %label.form-check-label
                     %input.form-check-input{ type: "checkbox", name: "sizes[]", value: size, checked: params[:sizes]&.include?(size), onchange: "this.form.requestSubmit()" }

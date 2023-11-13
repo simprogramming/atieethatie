@@ -1,5 +1,9 @@
 = simple_form_for [@catalog_item, @catalog_item_variation] do |f|
   .row
+    .col-md-6.my-4
+      = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
+    .col-md-6.my-4
+      = f.input :available
     .col-md-6
       = f.input :name_fr, placeholder: "4oz blanc"
     .col-md-6
@@ -29,8 +33,6 @@
         = f.input :square_id, disabled: true
       .col-md-6
         = f.input :version, disabled: true
-    .col-md-4.my-4
-      = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
 
   = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success my-3"
   = link_to t('.cancel', default: t("helpers.links.cancel")), catalog_item_catalog_item_variations_path(@catalog_item), class: "btn btn-outline-secondary"

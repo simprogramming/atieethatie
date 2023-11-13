@@ -13,10 +13,12 @@ fr:
           admin: Administrateur
           client: Client
       catalog_item_variation:
+        available: Disponible à vendre
         color_list:
           white: Blanc
           black: Noir
           gray: Gris
+          transparent: Aucune couleur
     models:
       catalog_item:
         one: Produit

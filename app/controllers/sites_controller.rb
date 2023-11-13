@@ -4,7 +4,7 @@ class SitesController < ApplicationController
 
   add_controller_helpers :catalog_item_variations, only: :products
   def home
-    @catalog_item_variations = CatalogItemVariation.with_image.sample(5)
+    @catalog_item_variations = CatalogItemVariation.available.sample(5)
   end
 
   def products
@@ -23,7 +23,7 @@ class SitesController < ApplicationController
   end
 
   def products_in_store
-    @catalog_item_variations = CatalogItemVariation.with_image
+    @catalog_item_variations = CatalogItemVariation.available
     if params[:category_ids].present?
       category_ids = params[:category_ids].split(",")
       @catalog_item_variations = @catalog_item_variations.joins(:catalog_item).where(catalog_items: { category_id: category_ids })

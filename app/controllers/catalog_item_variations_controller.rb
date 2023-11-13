@@ -9,7 +9,8 @@ class CatalogItemVariationsController < ApplicationController
   add_controller_helpers :catalog_item_variations, only: :index
 
   def index
-    @catalog_item_variations = policy_scope(CatalogItemVariation).where(catalog_item_id: @catalog_item.id).order(:name_fr)
+    @catalog_item_variations = policy_scope(CatalogItemVariation).where(catalog_item_id: @catalog_item.id)
+                                                                 .order(available: :desc)
   end
 
   def show

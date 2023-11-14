@@ -15,7 +15,7 @@
         %a.nav-link.dropdown-toggle{href: "#", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded': "false"}
           = Fragrance.model_name.human count: 2
         %ul.dropdown-menu
-          - FragranceProfile.all.each do |fragrance|
+          - FragranceProfile.joins(:catalog_items).distinct.each do |fragrance|
             %li
               = link_to products_path(fragrance_profile_ids: fragrance.id), class: 'dropdown-item' do
                 = fragrance.name

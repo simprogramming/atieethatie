@@ -30,7 +30,6 @@ class CatalogItemVariationsController < ApplicationController
     if @catalog_item_variation.valid?
       UpsertServices::ObjectItemVariation.new(item_variation: @catalog_item_variation,
                                               images: params[:catalog_item_variation][:images].compact_blank).run!
-      @catalog_item_variation.save
       redirect_to [@catalog_item, @catalog_item_variation], notice: create_successful_notice
     else
       render :new, status: :unprocessable_entity
@@ -42,7 +41,6 @@ class CatalogItemVariationsController < ApplicationController
     if @catalog_item_variation.valid?
       UpsertServices::ObjectItemVariation.new(item_variation: @catalog_item_variation,
                                               images: params[:catalog_item_variation][:images].compact_blank).run!
-      @catalog_item_variation.save
       redirect_to [@catalog_item, @catalog_item_variation], notice: update_successful_notice
     else
       render :edit, status: :unprocessable_entity
@@ -55,7 +53,7 @@ class CatalogItemVariationsController < ApplicationController
     end
     DeleteServices::CatalogObject.new(@catalog_item_variation.square_id).run!
     @catalog_item_variation.destroy
-    redirect_to [@catalog_item, @catalog_item_variation], notice: destroy_successful_notice
+    redirect_to @catalog_item, notice: destroy_successful_notice
   end
 
   private

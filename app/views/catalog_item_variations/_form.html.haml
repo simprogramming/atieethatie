@@ -1,8 +1,17 @@
 = simple_form_for [@catalog_item, @catalog_item_variation] do |f|
   .row
     .col-md-6.my-4
+      - if @catalog_item_variation.images.any?
+        .d-flex
+          - @catalog_item_variation.images.each do |image|
+            .position-relative{id: dom_id(image)}
+              = link_to image_path(image), data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  }, class: "btn btn-danger btn-sm position-absolute", style: "top: 0; left: 0; z-index: 100;" do
+                %i.fa.fa-times
+              = image_tag image.image_url, style: 'width: 100px;', class: "img-thumbnail mb-2 align-top"
+
+
       = f.input :images, as: :file, input_html: { multiple: true }, label: false, required: true
-    .col-md-6.my-4
+    .col-md-6.my-5
       = f.input :available
     .col-md-6
       = f.input :name_fr, placeholder: "4oz blanc"

@@ -3,10 +3,13 @@
   %h1= t '.title', :default => model_class.model_name.human
 
 
+.container.my-3.mx-5
+  - if @catalog_item_variation.images.any?
+    .d-flex
+      - @catalog_item_variation.images.each do |image|
+        = image_tag image.image_url, style: 'width: 300px;', class: "img-thumbnail mb-2 align-top"
 .row.m-5
   .col-md-3.col-12.text-center
-    - if catalog_item_variation.image_urls.present?
-      %img.my-4{ src: catalog_item_variation.image_urls.first, alt: "#{catalog_item_variation.name_fr} image" }
     %dt.col-12= CatalogItem.model_name.human
     %dd.col-12= catalog_item_variation.catalog_item.name_fr
 

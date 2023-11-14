@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   resources :fragrance_profiles
   resources :fragrances
+  resources :images, only: :destroy
   resources :users
 
   put :change_locale, controller: "application"

@@ -54,8 +54,9 @@ module UpsertServices
 
     # Updates the item variation image URL if the upsert was successful
     def update_item_variation_missing_fields(data)
-      item.image_urls << data[:image_data][:url]
-      item.image_ids << data[:id]
+      new_image = Image.new(image_url: data[:image_data][:url], square_id: data[:id])
+      new_image.imageable = item
+      new_image.save! if item.persisted?
       SyncVersionServices::ObjectItem.new(item: item.catalog_item).run!
     end
   end

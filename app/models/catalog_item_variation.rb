@@ -12,7 +12,10 @@ class CatalogItemVariation < ApplicationRecord
   translate_enum :color
 
   belongs_to :catalog_item
+
   has_one :category, through: :catalog_item
+  has_many :images, as: :imageable, dependent: :destroy
+
 
   validates :name_fr, :name_en, :price, :color, :size, presence: true
 

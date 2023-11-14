@@ -18,8 +18,8 @@ module SyncVersionServices
       result = client.catalog.retrieve_catalog_object(object_id: item.square_id)
       if result.success?
         item.version = result.data.first[:version]
+        item.save! if item.persisted?
         update_version_variations(item.catalog_item_variations)
-        item.save!
       elsif result.error?
         warn result.errors
       end
@@ -31,7 +31,7 @@ module SyncVersionServices
         result = client.catalog.retrieve_catalog_object(object_id: variation.square_id)
         if result.success?
           variation.version = result.data.first[:version]
-          variation.save!
+          variation.save! if variation.persisted?
         elsif result.error?
           warn result.errors
         end

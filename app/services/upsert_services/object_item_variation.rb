@@ -3,7 +3,7 @@ module UpsertServices
   class ObjectItemVariation
     include SquareClient
 
-    def initialize(item_variation:, images:)
+    def initialize(item_variation:, images: nil)
       @item_variation = item_variation
       @images = images
     end
@@ -38,6 +38,7 @@ module UpsertServices
     # Builds the data for an item variation.
     def build_item_variation_data
       {
+        image_ids: item_variation.images.pluck(:square_id).presence || nil,
         sku: item_variation.sku,
         item_id: item_variation.catalog_item.square_id,
         name: item_variation.name_fr,
@@ -60,13 +61,15 @@ module UpsertServices
 
     # Updates the item and its variations if the upsert was successful.
     def assign_id_version_item_variation(data)
-      item_variation.version = data[:version]
-      item_variation.square_id = data[:id]
+      item_variation.assign_attributes(
+        square_id: data[:id],
+        version: data[:version]
+      )
+      item_variation.save!
       SyncVersionServices::ObjectItem.new(item: item_variation.catalog_item).run! if images.blank?
       return unless images.present? && item_variation.square_id.present? && item_variation.version.present?
 
       UpsertServices::ObjectImage.new(item: item_variation, images: images).run!
-      
     end
   end
 end

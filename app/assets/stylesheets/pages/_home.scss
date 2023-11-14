@@ -70,6 +70,12 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Ombre plus marquée au survol pour un effet "soulevé"
       }
 
+      img {
+        width: 100%;
+        height: 110px;
+        object-fit: fill;
+      }
+      
       .product-title {
         margin: 0.5rem; // Espace autour du titre
         text-transform: uppercase;

@@ -17,7 +17,7 @@
         %ul.dropdown-menu
           - FragranceProfile.all.each do |fragrance|
             %li
-              = link_to products_path(fragrance_profile: fragrance.id), class: 'dropdown-item' do
+              = link_to products_path(fragrance_profile_ids: fragrance.id), class: 'dropdown-item' do
                 = fragrance.name
 
       = link_to change_locale_path, data: { "turbo-method": "put" }, class: "text-decoration-none" do

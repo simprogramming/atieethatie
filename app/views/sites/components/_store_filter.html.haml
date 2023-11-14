@@ -9,7 +9,7 @@
         #collapseOne.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:category_ids].present?)}
           .accordion-body
             #category-filter
-              - Category.all.each do |category|
+              - Category.joins(catalog_items: :catalog_item_variations).where(catalog_item_variations: { available: true }).distinct.each do |category|
                 .form-check
                   %label.form-check-label
                     %input.form-check-input{ type: "checkbox", name: "category_ids[]", value: category.id, checked: params[:category_ids]&.include?(category.id.to_s), onchange: "this.form.requestSubmit()" }
@@ -46,7 +46,7 @@
         #collapseFour.accordion-collapse.collapse{"aria-labelledby" => "headingTwo", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:fragrance_profile_ids].present?)}
           .accordion-body
             #fragrance-filter
-              - FragranceProfile.joins(:catalog_items).distinct.each do |fragrance_profile|
+              - FragranceProfile.joins(catalog_items: :catalog_item_variations).where(catalog_item_variations: { available: true }).distinct.each do |fragrance_profile|
                 .form-check
                   %label.form-check-label
                     %input.form-check-input{ type: "checkbox", name: "fragrance_profile_ids[]", value: fragrance_profile.id, checked: params[:fragrance_profile_ids]&.include?(fragrance_profile.id.to_s) || false, onchange: "this.form.requestSubmit()" }

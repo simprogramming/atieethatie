@@ -69,7 +69,7 @@ module UpsertServices
           amount: (variation.price.to_i * 100),
           currency: "CAD"
         },
-        image_ids: variation.image_ids.presence || nil
+        image_ids: variation.images.pluck(:square_id).presence || nil
       }
     end
 
@@ -84,22 +84,35 @@ module UpsertServices
 
     # Updates the item and its variations if the upsert was successful.
     def assign_id_version_item(data)
-      item.version = data[:version]
-      item.square_id = data[:id]
-      assign_id_version_to(data[:item_data][:variations])
+      item.assign_attributes(square_id: data[:id], version: data[:version])
+
+      ActiveRecord::Base.transaction do
+        item.save!
+        assign_id_version_to(data[:item_data][:variations])
+      end
     end
 
     # Updates each variation of the item.
     def assign_id_version_to(variations)
-      variations.each do |variation|
-        item_variation = item.catalog_item_variations.detect do |item_variation|
-          item_variation.sku == variation[:item_variation_data][:sku]
-        end
+      ActiveRecord::Base.transaction do
+        variations.each do |variation_data|
+          item_variation = item.catalog_item_variations.detect do |iv|
+            iv.sku == variation_data[:item_variation_data][:sku]
+          end
 
-        item_variation.square_id = variation[:id]
-        item_variation.version = variation[:version]
-        if images.present? && item_variation.square_id.present?
-          UpsertServices::ObjectImage.new(item: item_variation, images: images).run!
+          next unless item_variation
+
+          item_variation.assign_attributes(
+            square_id: variation_data[:id],
+            version: variation_data[:version]
+          )
+
+          # Sauvegarde de item_variation pour obtenir un ID
+          item_variation.save!
+          if images.present?
+            # Exécution du service ObjectImage seulement si item_variation est sauvegardé
+            UpsertServices::ObjectImage.new(item: item_variation, images: images).run!
+          end
         end
       end
     end

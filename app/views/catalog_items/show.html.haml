@@ -5,10 +5,8 @@
 
 .row.m-5
   .col-md-3.col-12.text-center
-    %img{ src: catalog_item.catalog_item_variations.first&.image_urls.first, alt: "#{catalog_item.name_fr} image" }
-    .my-4
-      %dt.col-12= Category.model_name.human
-      %dd.col-12.my-2= catalog_item.category.name_fr
+    %dt.col-12= Category.model_name.human
+    %dd.col-12.my-2= catalog_item.category.name_fr
 
   .col-md-9.col-12
     .row

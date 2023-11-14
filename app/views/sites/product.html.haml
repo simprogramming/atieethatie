@@ -12,7 +12,7 @@
       - if @catalog_item_variation.image_urls.first.present?
       %div.product-image.mt-5
         -# = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "product-show-img"
-        = image_tag @catalog_item_variation.image_urls.first, alt: "Bougie de haute qualité", class: "product-show-img"
+        = image_tag @catalog_item_variation.images.first.image_url, alt: "Bougie de haute qualité", class: "product-show-img"
       .product-details
         .description
           %p=@catalog_item_variation.catalog_item.description

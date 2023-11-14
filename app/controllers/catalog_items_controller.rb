@@ -29,8 +29,7 @@ class CatalogItemsController < ApplicationController
         variation.sku = CatalogItemVariation.generate_sku
       end
       UpsertServices::ObjectItem.new(item: @catalog_item, images: params[:catalog_item][:images].compact_blank).run!
-      @catalog_item.save
-      redirect_to @catalog_item, notice: create_successful_notice
+      redirect_to catalog_items_path, notice: create_successful_notice
     else
       render :new, status: :unprocessable_entity
     end

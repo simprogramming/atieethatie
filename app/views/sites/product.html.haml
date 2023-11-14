@@ -25,14 +25,17 @@
             - current_size = @catalog_item_variation.size
             - color_variations_for_size = @catalog_item_variation.catalog_item.catalog_item_variations.where(size: current_size).pluck(:color).uniq
             - color_variations_for_size.each do |color|
+              - next if color == "transparent"
+              - translated_color = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(color: color).translated_color
               - if color == @catalog_item_variation.color
-                %li.disabled= color
+                %li.disabled= translated_color
               - else
-                - # Find a variation with the same size and color to link to
+                - # Trouver une variation avec la même taille et couleur pour créer un lien
                 - same_size_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(size: current_size, color: color)
                 - if same_size_variation.present?
                   = link_to product_path(same_size_variation), class: "text-decoration-none text-black" do
-                    %li= color
+                    %li= translated_color
+
 
 
 
@@ -42,6 +45,7 @@
             - current_color = @catalog_item_variation.color
             - size_variations_for_color = @catalog_item_variation.catalog_item.catalog_item_variations.where(color: current_color).pluck(:size).uniq
             - size_variations_for_color.each do |size|
+              - next if size == "aucun"
               - if size == @catalog_item_variation.size
                 %li.disabled= size
               - else

@@ -19,7 +19,7 @@ class SitesController < ApplicationController
   private
 
   def set_product
-    @catalog_item_variation = policy_scope(CatalogItemVariation).find(params[:id])
+    @catalog_item_variation = CatalogItemVariation.find(params[:id])
     return if @catalog_item_variation&.available?
 
     redirect_to root_path, alert: "Cette variante de produit n'est pas disponible."

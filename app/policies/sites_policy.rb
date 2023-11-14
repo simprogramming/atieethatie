@@ -6,6 +6,7 @@ class SitesPolicy < ApplicationPolicy
   def products?
     true
   end
+
   def product?
     true
   end

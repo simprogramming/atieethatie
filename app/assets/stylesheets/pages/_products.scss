@@ -17,6 +17,18 @@
       max-height: 350px; /* Cela applique la hauteur maximale à chaque image */
       margin: 0 auto; /* Centrer les images si elles sont plus étroites que le conteneur */
     }
+
+    .logo p {
+      font-family: cursive;
+      margin-left: 10px; /* Adjust space as needed */
+      font-size: 1.2em; /* Larger font size for visibility */
+      color: #333; /* A modern, neutral color */
+      font-weight: 500; /* Medium weight for readability */
+      line-height: 1.6; /* Improve readability */
+      max-width: 100%; /* Ensures text doesn't spread too wide */
+      text-align: justify; /* Ensures the text is evenly distributed */
+      text-justify: inter-word;
+    }
   }
 }
 
@@ -28,6 +40,18 @@
       min-height: 600px; /* Cela applique la hauteur maximale à chaque image */
       max-height: 600px; /* Cela applique la hauteur maximale à chaque image */
       margin: 0 auto; /* Centrer les images si elles sont plus étroites que le conteneur */
+    }
+
+    .logo p {
+      font-family: cursive;
+      margin-left: 10px; /* Adjust space as needed */
+      font-size: 1.2em; /* Larger font size for visibility */
+      color: #333; /* A modern, neutral color */
+      font-weight: 500; /* Medium weight for readability */
+      line-height: 1.6; /* Improve readability */
+      max-width: 80%; /* Ensures text doesn't spread too wide */
+      text-align: justify; /* Ensures the text is evenly distributed */
+      text-justify: inter-word;
     }
   }
 }
@@ -179,17 +203,6 @@
       justify-content: flex-start; /* Aligner les enfants à gauche; remplacez par 'center' si vous voulez centrer horizontalement */
     }
 
-    .logo p {
-      font-family: cursive;
-      margin-left: 10px; /* Adjust space as needed */
-      font-size: 1.2em; /* Larger font size for visibility */
-      color: #333; /* A modern, neutral color */
-      font-weight: 500; /* Medium weight for readability */
-      line-height: 1.6; /* Improve readability */
-      max-width: 80%; /* Ensures text doesn't spread too wide */
-      text-align: justify; /* Ensures the text is evenly distributed */
-      text-justify: inter-word;
-    }
     .logo img {
       height: auto; /* Permet de maintenir le ratio de l'image */
       width: auto; /* Vous pouvez spécifier une largeur si nécessaire, ex. 100px */

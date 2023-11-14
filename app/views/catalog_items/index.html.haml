@@ -18,6 +18,7 @@
   %thead
     %tr
       %th= sortable_header :name_fr, model_class.human_attribute_name(:name_fr)
+      %th= sortable_header :name_en, model_class.human_attribute_name(:name_en)
       %th= sortable_header :square_id, model_class.human_attribute_name(:square_id)
       %th= sortable_header :category_id, Category.model_name.human
       %th= CatalogItemVariation.model_name.human count: 2
@@ -27,6 +28,7 @@
     - catalog_items.each do |catalog_item|
       %tr
         %td= link_to catalog_item.name_fr, catalog_item_url(catalog_item)
+        %td= catalog_item.name_en
         %td= catalog_item.square_id
         %td= catalog_item.category.name_fr
         %td=  link_to catalog_item.catalog_item_variations.count, catalog_item_catalog_item_variations_path(catalog_item)

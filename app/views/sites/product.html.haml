@@ -23,34 +23,32 @@
           %p.text-uppercase.text-decoration-underline= t("attributes.colors")
           %ul
             - current_size = @catalog_item_variation.size
-            - color_variations_for_size = @catalog_item_variation.catalog_item.catalog_item_variations.where(size: current_size).pluck(:color).uniq
+            - color_variations_for_size = @catalog_item_variation.catalog_item.catalog_item_variations.where(size: current_size, available: true).pluck(:color).uniq
             - color_variations_for_size.each do |color|
               - next if color == "transparent"
-              - translated_color = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(color: color).translated_color
+              - same_size_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(size: current_size, color: color, available: true)
+              - next unless same_size_variation.present?
+              - translated_color = same_size_variation.translated_color
               - if color == @catalog_item_variation.color
                 %li.disabled= translated_color
               - else
-                - # Trouver une variation avec la même taille et couleur pour créer un lien
-                - same_size_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(size: current_size, color: color)
-                - if same_size_variation.present?
-                  = link_to product_path(same_size_variation), class: "text-decoration-none text-black" do
-                    %li= translated_color
+                = link_to product_path(same_size_variation), class: "text-decoration-none text-black" do
+                  %li= translated_color
 
         .format.text-center.p-4
           %p.text-uppercase.text-decoration-underline= t("attributes.sizes")
           %ul
             - current_color = @catalog_item_variation.color
-            - size_variations_for_color = @catalog_item_variation.catalog_item.catalog_item_variations.where(color: current_color).pluck(:size).uniq
+            - size_variations_for_color = @catalog_item_variation.catalog_item.catalog_item_variations.where(color: current_color, available: true).pluck(:size).uniq
             - size_variations_for_color.each do |size|
               - next if size == "aucun"
+              - same_color_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(color: current_color, size: size, available: true)
+              - next unless same_color_variation.present?
               - if size == @catalog_item_variation.size
                 %li.disabled= size
               - else
-                - # Find a variation with the same color and size to link to
-                - same_color_variation = @catalog_item_variation.catalog_item.catalog_item_variations.find_by(color: current_color, size: size)
-                - if same_color_variation.present?
-                  = link_to product_path(same_color_variation), class: "text-decoration-none text-black" do
-                    %li= size
+                = link_to product_path(same_color_variation), class: "text-decoration-none text-black w-100" do
+                  %li= size
 
 
     #accordionDisplayProduct.accordion.mb-3

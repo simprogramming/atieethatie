@@ -5,7 +5,7 @@
   %h4.sub_banner= t(".convince_them").html_safe
   = image_tag 'LogoAtie_Hatie_transparent_bg.png', alt: '', class: "img-fluid logo-image"
 
-%div.mx-md-5.cards-container.mb-5
+%div.mx-md-5.cards-container.mb-5.text-center
   %div.grid
     - @catalog_item_variations.each do |item|
       - if item.images.first.present?
@@ -16,6 +16,9 @@
           %p.product-description= item.name
           = link_to product_path(item) do
             %button.btn.btn--primary.mb-3= t("helpers.links.learn_more")
+  = link_to products_path, class: "text-decoration-none" do
+    %button.btn.btn--outline.p-3= t("helpers.links.see_our_catalog")
+
 
 %section.stores-section.py-3
   %div.container.py-5

@@ -76,6 +76,7 @@ fr:
       navbar:
         our_catalog: "Notre Catalogue"
         admin: "Admin"
+        home: "Accueil"
   sites:
     components:
       store_filter:

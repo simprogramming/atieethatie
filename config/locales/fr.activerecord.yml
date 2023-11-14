@@ -32,6 +32,9 @@ fr:
       user:
         one: Utilisateur
         other: Utilisateurs
+      fragrance:
+        one: Fragrance
+        other: Fragrances
       fragrance_profile:
         one: Profile de fragrance
         other: Profiles de fragrance

@@ -32,6 +32,9 @@ en:
       user:
         one: User
         other: Users
+      fragrance:
+        one: Fragrance
+        other: Fragrances
       fragrance_profile:
         one: Fragrance profile
         other: Fragrances profile

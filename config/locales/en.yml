@@ -76,6 +76,7 @@ en:
       navbar:
         our_catalog: "Our Catalog"
         admin: "Admin"
+        home: "Home"
   sites:
     components:
       store_filter:

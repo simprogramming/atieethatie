@@ -164,7 +164,6 @@
     flex: 1; /* Allows each box to grow and take up equal space */
     display: flex; /* Apply flexbox layout to these containers as well */
     flex-direction: column; /* Stack the children (p and ul) vertically */
-    justify-content: space-between; /* Distribute space between p and ul */
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid #ccc;
     border-radius: 5px;

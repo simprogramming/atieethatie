@@ -1,0 +1,25 @@
+- model_class = Order
+- content_for :title do
+  %h1= model_class.model_name.human count: 2
+    
+= render "shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :session_id, model_class.human_attribute_name(:session_id)
+      %th= sortable_header :square_id, model_class.human_attribute_name(:square_id)
+      %th= sortable_header :state, model_class.human_attribute_name(:state)
+      %th= sortable_header :paid_at, model_class.human_attribute_name(:paid_at)
+      %th
+
+  %tbody
+    - orders.each do |order|
+      %tr
+        %td= link_to order.session_id, order_url(order)
+        %td= order.square_id
+        %td= order.state
+        %td= order.paid_at
+
+
+= add_pagination @orders

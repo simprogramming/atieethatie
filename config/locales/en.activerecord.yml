@@ -2,6 +2,10 @@
 en:
   activerecord:
     attributes:
+      order:
+        session_id: Session id
+        state: Status
+        paid_at: Paid at
       user:
         first_name: First Name
         last_name: Last Name
@@ -29,6 +33,9 @@ en:
       category:
         one: Category
         other: Categories
+      order:
+        one: Cart order
+        other: Carts order
       user:
         one: User
         other: Users

@@ -2,6 +2,10 @@
 fr:
   activerecord:
     attributes:
+      order:
+        session_id: Session id
+        state: Statut
+        paid_at: Payé le
       user:
         first_name: Prénom
         last_name: Nom de famille
@@ -29,6 +33,9 @@ fr:
       category:
         one: Catégorie
         other: Catégories
+      order:
+        one: Panier de commandee
+        other: Paniers de commande
       user:
         one: Utilisateur
         other: Utilisateurs

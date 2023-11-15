@@ -22,6 +22,10 @@ Rails.application.routes.draw do
 
   put :change_locale, controller: "application"
 
+  controller :carts do
+    post :add_item
+  end
+
   controller :sites do
     get :products, action: :products, as: :products
     get "product/:id", action: :product, as: :product

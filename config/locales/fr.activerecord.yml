@@ -3,8 +3,8 @@ fr:
   activerecord:
     attributes:
       order:
-        session_id: Session id
-        state: Statut
+        session_id: Session ID
+        state: Square statut
         paid_at: Payé le
       user:
         first_name: Prénom
@@ -34,7 +34,7 @@ fr:
         one: Catégorie
         other: Catégories
       order:
-        one: Panier de commandee
+        one: Panier de commande
         other: Paniers de commande
       user:
         one: Utilisateur
@@ -65,7 +65,7 @@ fr:
     name: Nom
     name_en: Nom anglais
     name_fr: Nom français
-    square_id: ID Square
+    square_id: Square ID
     sku: Sku
     color: Couleur
     colors: Couleurs
@@ -73,7 +73,7 @@ fr:
     sizes: Formats
     price: Prix
     updated_at: Modifié le
-    version: Version Square
+    version: Square version
   will_paginate:
     page_entries_info:
       multi_page_html: Affichage de %{from} - %{to} sur %{count} %{model}

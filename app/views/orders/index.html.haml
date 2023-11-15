@@ -8,8 +8,9 @@
   %thead
     %tr
       %th= sortable_header :session_id, model_class.human_attribute_name(:session_id)
-      %th= sortable_header :square_id, model_class.human_attribute_name(:square_id)
+      %th= CatalogItem.model_name.human count: 2
       %th= sortable_header :state, model_class.human_attribute_name(:state)
+      %th= sortable_header :square_id, model_class.human_attribute_name(:square_id)
       %th= sortable_header :paid_at, model_class.human_attribute_name(:paid_at)
       %th
 
@@ -17,8 +18,13 @@
     - orders.each do |order|
       %tr
         %td= link_to order.session_id, order_url(order)
-        %td= order.square_id
+        %td
+          - if order.order_items.sum(&:quantity).positive?
+            = order.order_items.sum(&:quantity)
+          - else
+            = "empty"
         %td= order.state
+        %td= order.square_id
         %td= order.paid_at
 
 

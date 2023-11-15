@@ -37,6 +37,11 @@
           %li.nav-item.px-md-3
             .nav-link= t(".admin")
 
-      %li.nav-item.px-md-3
-        %a.nav-link{href: "#"}
-          %i.fas.fa-shopping-cart
+      - if defined?(@order)
+        %li.nav-item.px-md-3
+          %a.nav-link{href: "#"}
+            .d-flex
+              %div
+                %i.fas.fa-shopping-cart.pe-1.mb-0
+              - if @order.order_items.sum(&:quantity).positive?
+                %div= @order.order_items.sum(&:quantity)

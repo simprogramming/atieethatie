@@ -3,8 +3,8 @@ en:
   activerecord:
     attributes:
       order:
-        session_id: Session id
-        state: Status
+        session_id: Session ID
+        state: Square Status
         paid_at: Paid at
       user:
         first_name: First Name

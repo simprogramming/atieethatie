@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  include CartHelper
   before_action -> { authorize :sites }
   before_action :set_product, only: :product
 

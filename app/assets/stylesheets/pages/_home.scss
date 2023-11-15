@@ -28,26 +28,24 @@
     display: block; // Afficher le logo comme un bloc pour permettre le centrage avec 'margin: auto'
   }
 
+  .intro-section {
+    padding: 0 10px;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex; // Utilisation de flex pour aligner les éléments
+    flex-direction: column; // Empiler les éléments verticalement
+    align-items: center; // Centrer les éléments horizontalement
+    margin-bottom: 1rem;
+  }
+
   .sub_banner {
     display: block; // Afficher le texte comme un bloc pour permettre le centrage
-    background: rgba(255, 255, 255, 0.85);
     padding: 1rem;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1.2rem;
     margin: 1rem auto; // Centrage horizontal avec une marge automatique
     max-width: 90%;
     text-align: center; // Assure que le texte est centré à l'intérieur du bloc
   }
 
-  .intro-section {
-    padding: 0 10px;
-    display: flex; // Utilisation de flex pour aligner les éléments
-    flex-direction: column; // Empiler les éléments verticalement
-    align-items: center; // Centrer les éléments horizontalement
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
   .cards-container {
     padding: 2.5rem 0.5rem;
     background-color: #f7f7f7; // Couleur de fond douce pour le conteneur de cartes
@@ -145,19 +143,6 @@
 
 // Styles spécifiques pour tablette et desktop
 @include media(tabletAndUp) {
-  .intro-section {
-    width: 100%; /* pleine largeur */
-    padding-right: 15px;
-    padding-left: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 3rem auto;
-
-  }
-
   .banner-image {
     margin-top: 100px;
     width: 100%;
@@ -165,6 +150,19 @@
     max-height: 450px; /* La hauteur maximale que vous souhaitez pour votre bannière */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée légère pour donner du relief */
     border-radius: 8px; /* Bords arrondis pour un look moderne */
+  }
+
+  .intro-section {
+    background: rgba(255, 255, 255, 0.85);
+    width: 100%; /* pleine largeur */
+    padding: 50px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+
   }
 
   .logo-image {
@@ -177,11 +175,7 @@
     font-size: 1rem; /* Adjust font size as necessary */
     margin: 0.5rem 1rem; /* Top and bottom margin reduced, left and right increased for space between text and images */
     display: inline-block; /* Ensures that the element is in line with images */
-    background: rgba(255, 255, 255, 0.85);
-    padding: 1rem 1rem;
     max-width: 60%;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .cards-container {

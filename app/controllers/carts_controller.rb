@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
   include OrderHelper
   before_action { authorize @order || Order }
+  skip_before_action :verify_authenticity_token, only: [:checkout]
+
 
   def add_item
     @item = CatalogItemVariation.find(cart_item_params[:catalog_item_variation_id])
@@ -22,6 +24,13 @@ class CartsController < ApplicationController
   end
 
   def checkout
+    return unless request.post?
+
+    if true # Remplacez par la condition de succès de votre paiement
+      render json: { success: true, message: 'Payment processed successfully.' }, status: :ok
+    else
+      render json: { success: false, message: 'Payment failed.' }, status: :unprocessable_entity
+    end
   end
 
   private

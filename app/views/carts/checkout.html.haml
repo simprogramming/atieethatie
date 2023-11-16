@@ -1,26 +1,203 @@
-.container.py-5.mt-5.text-center
+.container-fluid.pt-5.mt-5
   .row
-    .col-12.col-md-6
-      %h2 delivery
-      .row{data: {controller: "places", action: "google-maps-callback@window->places#initAutocomplete"}}
-        .col-6
-          %input.form-control.mb-2{type: "text", placeholder: "First Name"}
-        .col-6
-          %input.form-control.mb-2{type: "text", placeholder: "Last Name"}
-        .col-12
-          %input.form-control.mb-2{type: "text", data: {places_target: "address"}, placeholder: "Address", required: true}
-        .col-12
-          %input.form-control.mb-2{type: "text", data: {places_target: "apartment"}, placeholder: "Apartment, suite, etc. (optional)"}
-        .col-12
-          %input.form-control.mb-2{type: "text", data: {places_target: "country"}, placeholder: "Country"}
-        .col-4
-          %input.form-control.mb-2{type: "text", data: {places_target: "city"}, placeholder: "City"}
-        .col-4
-          %input.form-control.mb-2{type: "text", data: {places_target: "province"}, placeholder: "Province"}
-        .col-4
-          %input.form-control.mb-2{type: "text", data: {places_target: "postalCode"}, placeholder: "Postal Code"}
-        .col-12
-          %input.form-control.mb-2{type: "text", placeholder: "Phone"}
+    .col-12.col-md-6.bg-white
+      .container.p-sm-5
+        .my-3
+          %h2.mt-5 Contact
+          .row.mt-3
+            .col-12
+              %input.form-control.mb-2{type: "text", placeholder: "Email"}
+        .my-3
+          %h2.mt-5 Delivery
+          .row.mt-3{data: {controller: "places", action: "google-maps-callback@window->places#initAutocomplete"}}
+            .col-6
+              %input.form-control.mb-2{type: "text", placeholder: "First Name"}
+            .col-6
+              %input.form-control.mb-2{type: "text", placeholder: "Last Name"}
+            .col-12
+              %input.form-control.mb-2{type: "text", data: {places_target: "address"}, placeholder: "Address"}
+            .col-12
+              %input.form-control.mb-2{type: "text", placeholder: "Company (optional)"}
+            .col-12
+              %input.form-control.mb-2{type: "text", data: {places_target: "apartment"}, placeholder: "Apartment, suite, etc. (optional)"}
+            .col-4
+              %input.form-control.mb-2{type: "text", data: {places_target: "city"}, placeholder: "City"}
+            .col-4
+              %input.form-control.mb-2{type: "text", data: {places_target: "province"}, placeholder: "Province"}
+            .col-4
+              %input.form-control.mb-2{type: "text", data: {places_target: "postalCode"}, placeholder: "Postal Code"}
+            .col-12
+              %input.form-control.mb-2{type: "text", data: {places_target: "country"}, placeholder: "Country"}
+            .col-12
+              %input.form-control.mb-2{type: "text", placeholder: "Phone"}
 
-    .col-12.col-md-6
-      hoka
+        .container.mt-5
+          %h2.mt-5 Payment
+          %form#payment-form.mt-3.text-center
+            #card-container
+            .form-check.text-start
+              %input#billing-checkbox.form-check-input{type: "checkbox", checked: true, 'data-bs-toggle': "collapse", 'data-bs-target': "#billing-address-form", 'aria-expanded': "false", 'aria-controls': "billing-address-form"}
+              %label.form-check-label{for: "billing-checkbox"}
+                Use same address for billing as shipping address
+            #billing-address-form.collapse
+              .row.mt-3
+                .col-6
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing First Name"}
+                .col-6
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing Last Name"}
+                .col-12
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing Address"}
+                .col-12
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing Company (optional)"}
+                .col-12
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing Apartment, suite, etc. (optional)"}
+                .col-4
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing City"}
+                .col-4
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing Province"}
+                .col-4
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing Postal Code"}
+                .col-12
+                  %input.form-control.mb-2{type: "text", placeholder: "Billing Country"}
+            %button#card-button.btn.my-3.px-5{type: "button"} Pay
+          #payment-status-container
+
+
+    .col-12.col-md-6.bg-light
+      .container.mt-5.p-5{style: "position: sticky; top: 90px;"}
+        - subtotal = 0
+        - @order.order_items.order(:created_at).each do |order_item|
+          - subtotal += order_item.quantity * order_item.catalog_item_variation.price
+          .row.d-flex.align-items-center.mb-3
+            .col-sm-8.col-12.text-start
+              %div
+                %h4= "#{order_item.catalog_item.name.upcase} - #{order_item.catalog_item_variation.name}"
+                %div= t("helpers.format.money", val: number_with_precision(order_item.catalog_item_variation.price, precision: 2))
+            .col-sm-2.col-6
+              %div
+                .mb-2= order_item.quantity
+            .col-sm-2.col-6.pb-2
+              .d-flex.mt-3.mt-sm-0
+                %div.text-end
+                  = t("helpers.format.money", val: number_with_precision(order_item.quantity * order_item.catalog_item_variation.price, precision: 2))
+        <hr>
+        .row.mt-2.pe-3
+          .col-12.text-center.text-sm-end
+            .d-flex.justify-content-between
+              %div Subtotal
+              %div= t("helpers.format.money", val: number_with_precision(subtotal, precision: 2))
+            .d-flex.justify-content-between
+              %div Shipping
+              %div= t("helpers.format.money", val: number_with_precision(12, precision: 2))
+            .d-flex.justify-content-between.mt-3
+              %h3 Total
+              %h3
+                = "CAD #{t("helpers.format.money", val: number_with_precision(subtotal + 12, precision: 2))}"
+
+
+
+:javascript
+  const appId = 'sandbox-sq0idb-c82Rx8uA5RNvDCMxGUKAsg';
+  const locationId = 'LJ8SPTZMQP6TS';
+  const idempotencyKey = '124124125153425351'
+  const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+  async function initializeCard(payments) {
+    const card = await payments.card();
+    await card.attach('#card-container');
+    return card;
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    if (!window.Square) {
+      throw new Error('Square.js failed to load properly');
+    }
+    const payments = window.Square.payments(appId, locationId);
+    let card;
+    try {
+      card = await initializeCard(payments);
+    } catch (e) {
+      console.error('Initializing Card failed', e);
+      return;
+    }
+
+    const cardButton = document.getElementById(
+      'card-button'
+    );
+    cardButton.addEventListener('click', async function (event) {
+      await handlePaymentMethodSubmission(event, card);
+    });
+
+    // Step 5.2: create card payment
+    async function handlePaymentMethodSubmission(event, paymentMethod) {
+      event.preventDefault();
+
+      try {
+        // disable the submit button as we await tokenization and make a
+        // payment request.
+        cardButton.disabled = true;
+        const token = await tokenize(paymentMethod);
+        const paymentResults = await createPayment(token);
+        console.debug('Payment Success', paymentResults);
+      } catch (e) {
+        cardButton.disabled = false;
+        displayPaymentResults('FAILURE');
+        console.error(e.message);
+      }
+    }
+
+  });
+
+  async function tokenize(paymentMethod) {
+    const tokenResult = await paymentMethod.tokenize();
+    if (tokenResult.status === 'OK') {
+      return tokenResult.token;
+    } else {
+      let errorMessage = `Tokenization failed-status: ${tokenResult.status}`;
+      if (tokenResult.errors) {
+        errorMessage += ` and errors: ${JSON.stringify(
+          tokenResult.errors
+        )}`;
+      }
+      throw new Error(errorMessage);
+    }
+  }
+
+  async function createPayment(token) {
+    const body = JSON.stringify({
+      locationId,
+      sourceId: token,
+      idempotencyKey,
+      csrfToken
+    });
+    const paymentResponse = await fetch('/checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      body,
+    });
+    if (paymentResponse.ok) {
+      displayPaymentResults('SUCCESS');
+      return paymentResponse.json();
+    }
+    const errorBody = await paymentResponse.text();
+    throw new Error(errorBody);
+  }
+
+
+  function displayPaymentResults(status) {
+    const statusContainer = document.getElementById(
+      'payment-status-container'
+    );
+    if (status === 'SUCCESS') {
+      statusContainer.classList.remove('is-failure');
+      statusContainer.classList.add('is-success');
+    } else {
+      statusContainer.classList.remove('is-success');
+      statusContainer.classList.add('is-failure');
+    }
+
+    statusContainer.style.visibility = 'visible';
+  }

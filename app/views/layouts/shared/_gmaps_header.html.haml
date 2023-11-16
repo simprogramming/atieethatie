@@ -1,0 +1,9 @@
+%script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9WtmQ4bRIvL42wcv7ntMPxZhva8fKvlo&libraries=places&callback=initAutocomplete",
+        async: true,
+        defer: true}
+
+:javascript
+  window.initAutocomplete = function () {
+    const event = new Event('google-maps-callback', { bubbles: true, cancelable: true })
+    document.dispatchEvent(event)
+  }

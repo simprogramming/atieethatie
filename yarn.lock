@@ -306,6 +306,11 @@ spark-md5@^3.0.1:
   resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
   integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
+stimulus-places-autocomplete@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/stimulus-places-autocomplete/-/stimulus-places-autocomplete-0.5.0.tgz#a18603ee629ec0944c4adae6b76b3fed515e1e1a"
+  integrity sha512-9cVHWDXlkewELruJlbkNjLm4izybkOnLKQLUX/5F18ht5Dev+4/p+venaTfcHOkX9lyVj1qDz/SAiAjZnLx7tQ==
+
 to-regex-range@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/to-regex-range/-/to-regex-range-5.0.1.tgz#1648c44aae7c8d988a326018ed72f5b4dd0392e4"

@@ -1,0 +1,26 @@
+.container.py-5.mt-5.text-center
+  .row
+    .col-12.col-md-6
+      %h2 delivery
+      .row{data: {controller: "places", action: "google-maps-callback@window->places#initAutocomplete"}}
+        .col-6
+          %input.form-control.mb-2{type: "text", placeholder: "First Name"}
+        .col-6
+          %input.form-control.mb-2{type: "text", placeholder: "Last Name"}
+        .col-12
+          %input.form-control.mb-2{type: "text", data: {places_target: "address"}, placeholder: "Address", required: true}
+        .col-12
+          %input.form-control.mb-2{type: "text", data: {places_target: "apartment"}, placeholder: "Apartment, suite, etc. (optional)"}
+        .col-12
+          %input.form-control.mb-2{type: "text", data: {places_target: "country"}, placeholder: "Country"}
+        .col-4
+          %input.form-control.mb-2{type: "text", data: {places_target: "city"}, placeholder: "City"}
+        .col-4
+          %input.form-control.mb-2{type: "text", data: {places_target: "province"}, placeholder: "Province"}
+        .col-4
+          %input.form-control.mb-2{type: "text", data: {places_target: "postalCode"}, placeholder: "Postal Code"}
+        .col-12
+          %input.form-control.mb-2{type: "text", placeholder: "Phone"}
+
+    .col-12.col-md-6
+      hoka

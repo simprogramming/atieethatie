@@ -8,7 +8,20 @@ class CartsController < ApplicationController
     @order_item.quantity = item_quantity
     @order_item.save!
 
-    redirect_back(fallback_location: @item)
+    redirect_back(fallback_location: @order)
+  end
+
+  def remove_item
+    @order_item = @order.order_items.find(params[:id])
+    @order_item.destroy!
+
+    redirect_back(fallback_location: @order)
+  end
+
+  def cart_page
+  end
+
+  def checkout
   end
 
   private

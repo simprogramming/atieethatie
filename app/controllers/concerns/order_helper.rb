@@ -9,7 +9,5 @@ module OrderHelper
 
   def set_order
     @order = Order.find_or_create_by(session_id: session[:session_id], paid_at: nil)
-    @order.state = @order.state.presence || "OPEN"
-    @order.save!
   end
 end

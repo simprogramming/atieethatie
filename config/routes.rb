@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
   controller :carts do
     post :add_item
+    delete "remove_item/:id", to: "carts#remove_item", as: :remove_item
+    get :cart_page
+    match :checkout, via: %i[get post]
   end
 
   controller :sites do

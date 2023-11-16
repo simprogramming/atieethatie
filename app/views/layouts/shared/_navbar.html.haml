@@ -19,7 +19,7 @@
             %li
               = link_to products_path(fragrance_profile_ids: fragrance.id), class: 'dropdown-item' do
                 = fragrance.name
-      %li.nav-item.dropdown.px-md-3
+      -# %li.nav-item.dropdown.px-md-3
         %a.nav-link.dropdown-toggle{href: "#", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded': "false"}
           = Category.model_name.human count: 2
         %ul.dropdown-menu
@@ -38,10 +38,11 @@
             .nav-link= t(".admin")
 
       - if defined?(@order)
-        %li.nav-item.px-md-3
-          %a.nav-link{href: "#"}
-            .d-flex
-              %div
-                %i.fas.fa-shopping-cart.pe-1.mb-0
-              - if @order.order_items.sum(&:quantity).positive?
-                %div= @order.order_items.sum(&:quantity)
+        = link_to cart_page_path, class: "text-decoration-none" do
+          %li.nav-item.px-md-3
+            .nav-link
+              .d-flex
+                %div
+                  %i.fas.fa-shopping-cart.pe-1.mb-0
+                - if @order.order_items.sum(&:quantity).positive?
+                  %div= @order.order_items.sum(&:quantity)

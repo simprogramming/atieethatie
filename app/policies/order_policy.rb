@@ -6,6 +6,18 @@ class OrderPolicy < ApplicationPolicy
     true
   end
 
+  def remove_item?
+    true
+  end
+
+  def cart_page?
+    true
+  end  
+
+  def checkout?
+    true
+  end
+
   def permitted_attributes
     %i[]
   end

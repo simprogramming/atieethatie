@@ -16,7 +16,10 @@
         .product-details
           .description
             %p=@catalog_item_variation.catalog_item.description
-          %button.btn.btn--outline.p-3= t("helpers.links.add_to_cart")
+          = simple_form_for OrderItem.new, url: add_item_path do |f|
+            = f.input :quantity, as: :hidden, type: :number, input_html: { value: 1 }
+            = f.input :catalog_item_variation_id, as: :hidden, input_html: { value: @catalog_item_variation.id }
+            = f.submit t("helpers.links.add_to_cart"), class: "btn btn--outline p-3"
 
       .variations.mt-5
         .colors.text-center.p-4.me-3

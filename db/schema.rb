@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_13_230238) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_210239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -119,6 +119,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_230238) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "catalog_item_variation_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["catalog_item_variation_id"], name: "index_order_items_on_catalog_item_variation_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "session_id"
+    t.datetime "paid_at"
+    t.integer "version"
+    t.string "square_id"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -140,4 +160,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_230238) do
   add_foreign_key "catalog_items", "categories"
   add_foreign_key "catalog_items", "fragrances"
   add_foreign_key "fragrances", "fragrance_profiles"
+  add_foreign_key "order_items", "catalog_item_variations"
+  add_foreign_key "order_items", "orders"
 end

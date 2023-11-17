@@ -9,6 +9,7 @@
     "bootstrap": "^5.3.2",
     "esbuild": "^0.19.5",
     "sass": "^1.69.4",
+    "stimulus-places-autocomplete": "^0.5.0",
     "trix": "^2.0.7"
   },
   "scripts": {

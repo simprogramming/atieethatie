@@ -1,0 +1,40 @@
+- model_class = Order
+- content_for :title do
+  %h1= t '.title', :default => model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :session_id
+  %dd.col-sm-9= order.session_id
+  %dt.col-sm-3= model_class.human_attribute_name :square_id
+  %dd.col-sm-9= order.square_id
+  %dt.col-sm-3= model_class.human_attribute_name :state
+  %dd.col-sm-9= order.state
+  %dt.col-sm-3= model_class.human_attribute_name :version
+  %dd.col-sm-9= order.version
+  %dt.col-sm-3= model_class.human_attribute_name :paid_at
+  %dd.col-sm-9= order.paid_at
+
+%b= model_class.model_name.human(count: 2)
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= CatalogItemVariation.human_attribute_name :sku
+      %th= CatalogItem.human_attribute_name :name
+      %th= CatalogItemVariation.model_name.human(count: 2)
+      %th= CatalogItemVariation.human_attribute_name :size
+      %th= CatalogItemVariation.human_attribute_name :color
+      %th= OrderItem.human_attribute_name :quantity
+  %tbody
+    - order.order_items.each do |order_item|
+      %tr
+        %td= order_item.catalog_item_variation.sku
+        %td= order_item.catalog_item_variation.catalog_item.name
+        %td= order_item.catalog_item_variation.name
+        %td= order_item.catalog_item_variation.size
+        %td= order_item.catalog_item_variation.translated_color
+        %td= order_item.quantity
+- if policy(order).index?
+  = link_to orders_url, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', :default => t("helpers.links.back"))

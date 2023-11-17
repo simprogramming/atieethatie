@@ -17,9 +17,17 @@ Rails.application.routes.draw do
   resources :fragrance_profiles
   resources :fragrances
   resources :images, only: :destroy
+  resources :orders
   resources :users
 
   put :change_locale, controller: "application"
+
+  controller :carts do
+    post :add_item
+    delete "remove_item/:id", to: "carts#remove_item", as: :remove_item
+    get :cart_page
+    match :checkout, via: %i[get post]
+  end
 
   controller :sites do
     get :products, action: :products, as: :products

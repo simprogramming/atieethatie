@@ -1,0 +1,3 @@
+%h1 Hello from receipt
+- order = Order.find_by(payment_id: params[:id])
+= order.session_id

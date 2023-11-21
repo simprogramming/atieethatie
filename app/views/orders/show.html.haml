@@ -9,10 +9,16 @@
   %dd.col-sm-9= order.square_id
   %dt.col-sm-3= model_class.human_attribute_name :state
   %dd.col-sm-9= order.state
-  %dt.col-sm-3= model_class.human_attribute_name :version
-  %dd.col-sm-9= order.version
   %dt.col-sm-3= model_class.human_attribute_name :paid_at
   %dd.col-sm-9= order.paid_at
+  %dt.col-sm-3= model_class.human_attribute_name :net_amount_due_money
+  %dd.col-sm-9= order.net_amount_due_money
+  %dt.col-sm-3= model_class.human_attribute_name :payment_id
+  %dd.col-sm-9= order.payment_id
+  %dt.col-sm-3= model_class.human_attribute_name :receipt_url
+  %dd.col-sm-9= order.receipt_url
+  %dt.col-sm-3= model_class.human_attribute_name :receipt_number
+  %dd.col-sm-9= order.receipt_number
 
 %b= model_class.model_name.human(count: 2)
 

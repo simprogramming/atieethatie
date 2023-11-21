@@ -6,6 +6,7 @@ en:
         session_id: Session ID
         state: Square Status
         paid_at: Paid at
+        net_amount_due_money: Total money
       user:
         first_name: First Name
         last_name: Last Name

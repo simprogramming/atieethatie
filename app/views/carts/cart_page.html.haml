@@ -44,6 +44,6 @@
       %h4= "#{t("helpers.format.money", val: number_with_precision(subtotal, precision: 2))} CAD"
       %p Taxes and shipping calculated at checkout
       - if @order.order_items.present?
-        = link_to checkout_path do
+        = link_to checkout_path, method: "post", data: { turbo: false } do
           .btn.btn--secondary.p-3
             Checkout

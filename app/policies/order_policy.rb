@@ -18,6 +18,14 @@ class OrderPolicy < ApplicationPolicy
     true
   end
 
+  def process_square_payment?
+    true
+  end
+
+  def receipt?
+    true
+  end
+
   def permitted_attributes
     %i[]
   end

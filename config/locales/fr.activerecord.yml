@@ -6,6 +6,7 @@ fr:
         session_id: Session ID
         state: Square statut
         paid_at: Payé le
+        net_amount_due_money: Total cash
       user:
         first_name: Prénom
         last_name: Nom de famille

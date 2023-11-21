@@ -24,10 +24,16 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    return unless request.post?
+  end
 
-    if true # Remplacez par la condition de succès de votre paiement
-      render json: { success: true, message: 'Payment processed successfully.' }, status: :ok
+  def receipt
+  end
+
+  def process_square_payment
+    CreateServices::ObjectOrder.new(order: @order, token: params[:sourceId]).run!
+
+    if @order.payment_id.present? # Remplacez par la condition de succès de votre paiement
+      render json: { success: true, message: 'Payment processed successfully.', payment_id: @order.payment_id }, status: :ok
     else
       render json: { success: false, message: 'Payment failed.' }, status: :unprocessable_entity
     end

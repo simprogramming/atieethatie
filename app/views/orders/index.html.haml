@@ -10,7 +10,7 @@
       %th= sortable_header :session_id, model_class.human_attribute_name(:session_id)
       %th= CatalogItem.model_name.human count: 2
       %th= sortable_header :state, model_class.human_attribute_name(:state)
-      %th= sortable_header :square_id, model_class.human_attribute_name(:square_id)
+      %th= sortable_header :net_amount_due_money, model_class.human_attribute_name(:net_amount_due_money)
       %th= sortable_header :paid_at, model_class.human_attribute_name(:paid_at)
       %th
 
@@ -24,7 +24,8 @@
           - else
             = "empty"
         %td= order.state
-        %td= order.square_id
+        -# %td= t("helpers.format.money", val: number_with_precision((order.net_amount_due_money / 100), precision: 2))
+        %td= order.net_amount_due_money
         %td= order.paid_at
 
 

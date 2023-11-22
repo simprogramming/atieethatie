@@ -33,18 +33,24 @@ class CartsController < ApplicationController
   end
 
   def process_square_payment
-    # debugger
-    # false
-    if @order.present? && params[:sourceId].present? && params[:shippingAddress].present?
-      CreateServices::ObjectOrder.new(order: @order, token: params[:sourceId], shipping_address: params[:shippingAddress],
-                                    billing_address: params[:billingAddress]).run!
+    address_serializer = PaymentForms::AddressBuilderSerializer.new(params, @order.id)
+    shipping_address = address_serializer.build_address("shipping")
+    billing_address = address_serializer.build_address("billing") unless params[:isBillingChecked]
+
+    if shipping_address.valid? && (params[:isBillingChecked] || billing_address.valid?)
+      CreateServices::ObjectOrder.new(order: @order, token: params[:sourceId],
+                                      shipping_address: params[:shippingAddress],
+                                      billing_address: params[:billingAddress]).run!
       if @order.payment_id.present?
-        render json: { success: true, message: 'Payment processed successfully.', payment_id: @order.payment_id }, status: :ok
+        render json: { success: true, message: "Payment processed successfully.", payment_id: @order.payment_id },
+               status: :ok
       else
-        render json: { success: false, message: 'Payment failed.' }, status: :unprocessable_entity
+        render json: { success: false, message: "Payment failed." }, status: :unprocessable_entity
       end
+    else
+      errors = PaymentForms::AddressErrorsSerializer.new(shipping_address, billing_address).serialize
+      render json: { success: false, message: "Please correct the errors.", errors: errors }, status: :unprocessable_entity
     end
-    render json: { success: false, message: 'Payment failed.' }, status: :unprocessable_entity
   end
 
   private

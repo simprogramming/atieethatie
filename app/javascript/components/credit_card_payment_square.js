@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         } catch (e) {
             cardButton.disabled = false;
-            displayPaymentResults('FAILURE');
             console.error(e.message);
         }
     }
@@ -68,16 +67,25 @@ async function tokenize(paymentMethod) {
 }
 
 async function createPayment(token) {
+    const email = document.getElementById('email').value;
+    if (!validateEmail(email)) {
+        displayEmailError("Please enter a valid email address. Veuillez entrer une adresse email valide.");
+
+        return;
+    }
+
     const shippingAddress = getShippingAddress();
     let billingAddress = {};
-    if (!document.getElementById('billing-checkbox').checked) {
+    const isBillingChecked = document.getElementById('billing-checkbox').checked;
+    if (!isBillingChecked) {
         billingAddress = getBillingAddress();
     }
 
     const body = JSON.stringify({
         sourceId: token,
         shippingAddress,
-        billingAddress
+        billingAddress,
+        isBillingChecked
     });
 
 
@@ -89,14 +97,33 @@ async function createPayment(token) {
         },
         body,
     });
+
     if (paymentResponse.ok) {
         displayPaymentResults('SUCCESS');
         return paymentResponse.json();
+    }  else {
+        const errorBody = await paymentResponse.json();
+        displayPaymentResults('FAILURE');
+        displayErrors(errorBody.errors);
+        throw new Error('Payment processing failed');
     }
-    const errorBody = await paymentResponse.text();
-    throw new Error(errorBody);
+
+    // const errorBody = await paymentResponse.text();
+    // throw new Error(errorBody);
 }
 
+function displayErrors(errors) {
+    // Clear existing errors
+    document.querySelectorAll('.text-danger').forEach(el => el.textContent = '');
+
+    // Display new errors
+    for (const key in errors) {
+        const errorElement = document.getElementById(`${key}-error`);
+        if (errorElement) {
+            errorElement.textContent = errors[key];
+        }
+    }
+}
 
 function displayPaymentResults(status) {
     const statusContainer = document.getElementById(
@@ -118,7 +145,7 @@ function getShippingAddress() {
         email: document.getElementById('email').value,
         firstName: document.getElementById('shipping-first-name').value,
         lastName: document.getElementById('shipping-last-name').value,
-        address: document.getElementById('shipping-address').value,
+        address: document.getElementById('shipping-address-line').value,
         company: document.getElementById('shipping-company').value,
         apartment: document.getElementById('shipping-apartment').value,
         city: document.getElementById('shipping-city').value,
@@ -133,7 +160,7 @@ function getBillingAddress() {
     return {
         firstName: document.getElementById('billing-first-name').value,
         lastName: document.getElementById('billing-last-name').value,
-        address: document.getElementById('billing-address').value,
+        address: document.getElementById('billing-address-line').value,
         company: document.getElementById('billing-company').value,
         apartment: document.getElementById('billing-apartment').value,
         city: document.getElementById('billing-city').value,
@@ -141,4 +168,16 @@ function getBillingAddress() {
         postalCode: document.getElementById('billing-postal-code').value,
         country: document.getElementById('billing-country').value,
     };
+}
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function displayEmailError(errorMessage) {
+    const errorElement = document.getElementById('shipping-email-error');
+    if (errorElement) {
+        errorElement.textContent = errorMessage;
+    }
 }

@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   add_controller_helpers :orders, only: :index
 
   def index
-    @orders = policy_scope(Order)
+    @orders = policy_scope(Order).order(created_at: :desc)
   end
 
   def show

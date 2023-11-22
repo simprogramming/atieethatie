@@ -4,13 +4,14 @@ import PlacesAutocomplete from "stimulus-places-autocomplete";
 export default class extends PlacesAutocomplete {
     connect() {
         super.connect();
+        this.countryValue = ["ca"];
         this.initShippingAutocomplete();
         this.initBillingAutocomplete();
     }
 
     initShippingAutocomplete() {
         this.shippingAutocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('shipping-address'),
+            document.getElementById('shipping-address-line'),
             {
                 types: ['geocode'],
                 componentRestrictions: { country: 'ca' }
@@ -25,7 +26,7 @@ export default class extends PlacesAutocomplete {
 
     initBillingAutocomplete() {
         this.billingAutocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('billing-address'),
+            document.getElementById('billing-address-line'),
             {
                 types: ['geocode'],
                 componentRestrictions: { country: 'ca' }
@@ -52,13 +53,13 @@ export default class extends PlacesAutocomplete {
     fillInAddress(place, type) {
         // Réinitialiser tous les champs concernés avant de les remplir
         if (type === "shipping") {
-            document.getElementById("shipping-address").value = "";
+            document.getElementById("shipping-address-line").value = "";
             document.getElementById("shipping-city").value = "";
             document.getElementById("shipping-province").value = "";
             document.getElementById("shipping-postal-code").value = "";
             document.getElementById("shipping-country").value = "";
         } else if (type === "billing") {
-            document.getElementById("billing-address").value = "";
+            document.getElementById("billing-address-line").value = "";
             document.getElementById("billing-city").value = "";
             document.getElementById("billing-province").value = "";
             document.getElementById("billing-postal-code").value = "";
@@ -72,12 +73,12 @@ export default class extends PlacesAutocomplete {
             switch(componentType) {
                 case "street_number": {
                     const streetNumber = component.long_name;
-                    document.getElementById(`${type}-address`).value += streetNumber + " ";
+                    document.getElementById(`${type}-address-line`).value += streetNumber + " ";
                     break;
                 }
                 case "route": {
                     const route = component.long_name;
-                    document.getElementById(`${type}-address`).value += route;
+                    document.getElementById(`${type}-address-line`).value += route;
                     break;
                 }
                 case "locality": {

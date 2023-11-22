@@ -16,8 +16,8 @@
         .col-sm-8.col-12.text-start
           .d-flex.align-items-center
             %div
-              -# = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "", style: "height: 125px; width: 100%, object-fit: cover;"
-              = image_tag order_item.catalog_item_variation.images.first.image_url, style: "height: 125px; width: 100%, object-fit: cover;" if order_item.catalog_item_variation.images.first.present?
+              = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "", style: "height: 125px; width: 100%, object-fit: cover;"
+              -# = image_tag order_item.catalog_item_variation.images.first.image_url, style: "height: 125px; width: 100%, object-fit: cover;" if order_item.catalog_item_variation.images.first.present?
             %div.p-3
               %h4= "#{order_item.catalog_item.name.upcase} - #{order_item.catalog_item_variation.name}"
               %div= t("helpers.format.money", val: number_with_precision(order_item.catalog_item_variation.price, precision: 2))

@@ -24,19 +24,27 @@ class CartsController < ApplicationController
   end
 
   def checkout
+    return if @order.order_items.present?
+
+    redirect_to cart_page_path, alert: "Vous ne pouvez pas faire cette action pour le moment"
   end
 
   def receipt
   end
 
   def process_square_payment
-    CreateServices::ObjectOrder.new(order: @order, token: params[:sourceId]).run!
-
-    if @order.payment_id.present? # Remplacez par la condition de succès de votre paiement
-      render json: { success: true, message: 'Payment processed successfully.', payment_id: @order.payment_id }, status: :ok
-    else
-      render json: { success: false, message: 'Payment failed.' }, status: :unprocessable_entity
+    # debugger
+    # false
+    if @order.present? && params[:sourceId].present? && params[:shippingAddress].present?
+      CreateServices::ObjectOrder.new(order: @order, token: params[:sourceId], shipping_address: params[:shippingAddress],
+                                    billing_address: params[:billingAddress]).run!
+      if @order.payment_id.present?
+        render json: { success: true, message: 'Payment processed successfully.', payment_id: @order.payment_id }, status: :ok
+      else
+        render json: { success: false, message: 'Payment failed.' }, status: :unprocessable_entity
+      end
     end
+    render json: { success: false, message: 'Payment failed.' }, status: :unprocessable_entity
   end
 
   private

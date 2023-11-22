@@ -2,9 +2,11 @@ module CreateServices
   class ObjectOrder
     include SquareClient
 
-    def initialize(order:, token:)
+    def initialize(order:, token:, shipping_address:, billing_address:)
       @order = order
       @token = token
+      @shipping_address = shipping_address
+      @billing_address = billing_address
     end
 
     def run!
@@ -13,7 +15,7 @@ module CreateServices
 
     private
 
-    attr_accessor :order, :token
+    attr_accessor :order, :token, :shipping_address, :billing_address
 
     def create_square_order
       client.orders.create_order(
@@ -29,11 +31,9 @@ module CreateServices
     end
 
     def handle_order_creation_response(result)
-      if result.success?
-        store_order_in_database(result.data[:order])
-      else
-        raise StandardError, result.errors
-      end
+      raise StandardError, result.errors unless result.success?
+
+      store_order_in_database(result.data[:order])
     end
 
     def build_line_items
@@ -72,7 +72,8 @@ module CreateServices
         net_amount_due_money: net_amount_due
       )
       @order.save!
-      CreateServices::ObjectPayment.new(order: @order, token: token).run!
+      CreateServices::ObjectPayment.new(order: @order, token: token, shipping_address: shipping_address,
+                                        billing_address: billing_address).run!
     end
   end
 end

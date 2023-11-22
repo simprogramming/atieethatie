@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         await handlePaymentMethodSubmission(event, card);
     });
 
-    // Step 5.2: create card payment
+    // Step: create card paymente
     async function handlePaymentMethodSubmission(event, paymentMethod) {
         event.preventDefault();
 
@@ -43,10 +43,9 @@ document.addEventListener('DOMContentLoaded', async function () {
             } else {
                 throw new Error('Payment processing failed');
             }
-            console.debug('Payment Success', paymentResults);
         } catch (e) {
             cardButton.disabled = false;
-            // displayPaymentResults('FAILURE');
+            displayPaymentResults('FAILURE');
             console.error(e.message);
         }
     }
@@ -69,9 +68,19 @@ async function tokenize(paymentMethod) {
 }
 
 async function createPayment(token) {
+    const shippingAddress = getShippingAddress();
+    let billingAddress = {};
+    if (!document.getElementById('billing-checkbox').checked) {
+        billingAddress = getBillingAddress();
+    }
+
     const body = JSON.stringify({
-        sourceId: token
+        sourceId: token,
+        shippingAddress,
+        billingAddress
     });
+
+
     const paymentResponse = await fetch('/process_square_payment', {
         method: 'POST',
         headers: {
@@ -81,7 +90,7 @@ async function createPayment(token) {
         body,
     });
     if (paymentResponse.ok) {
-        // displayPaymentResults('SUCCESS');
+        displayPaymentResults('SUCCESS');
         return paymentResponse.json();
     }
     const errorBody = await paymentResponse.text();
@@ -89,17 +98,47 @@ async function createPayment(token) {
 }
 
 
-// function displayPaymentResults(status) {
-//     const statusContainer = document.getElementById(
-//         'payment-status-container'
-//     );
-//     if (status === 'SUCCESS') {
-//         statusContainer.classList.remove('is-failure');
-//         statusContainer.classList.add('is-success');
-//     } else {
-//         statusContainer.classList.remove('is-success');
-//         statusContainer.classList.add('is-failure');
-//     }
-//
-//     statusContainer.style.visibility = 'visible';
-// }
+function displayPaymentResults(status) {
+    const statusContainer = document.getElementById(
+        'payment-status-container'
+    );
+    if (status === 'SUCCESS') {
+        statusContainer.classList.remove('is-failure');
+        statusContainer.classList.add('is-success');
+    } else {
+        statusContainer.classList.remove('is-success');
+        statusContainer.classList.add('is-failure');
+    }
+
+    statusContainer.style.visibility = 'visible';
+}
+
+function getShippingAddress() {
+    return {
+        email: document.getElementById('email').value,
+        firstName: document.getElementById('shipping-first-name').value,
+        lastName: document.getElementById('shipping-last-name').value,
+        address: document.getElementById('shipping-address').value,
+        company: document.getElementById('shipping-company').value,
+        apartment: document.getElementById('shipping-apartment').value,
+        city: document.getElementById('shipping-city').value,
+        province: document.getElementById('shipping-province').value,
+        postalCode: document.getElementById('shipping-postal-code').value,
+        country: document.getElementById('shipping-country').value,
+        phone: document.getElementById('shipping-phone').value
+    };
+}
+
+function getBillingAddress() {
+    return {
+        firstName: document.getElementById('billing-first-name').value,
+        lastName: document.getElementById('billing-last-name').value,
+        address: document.getElementById('billing-address').value,
+        company: document.getElementById('billing-company').value,
+        apartment: document.getElementById('billing-apartment').value,
+        city: document.getElementById('billing-city').value,
+        province: document.getElementById('billing-province').value,
+        postalCode: document.getElementById('billing-postal-code').value,
+        country: document.getElementById('billing-country').value,
+    };
+}

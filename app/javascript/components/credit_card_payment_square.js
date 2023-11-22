@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         'card-button'
     );
     cardButton.addEventListener('click', async function (event) {
-        await handlePaymentMethodSubmission(event, card);
+        await handlePaymentMethodSubmission(event, card, true);
     });
 
-    // Step: create card paymente
-    async function handlePaymentMethodSubmission(event, paymentMethod) {
+    // Step: create card payment
+    async function handlePaymentMethodSubmission(event, paymentMethod, shouldVerify = false ) {
         event.preventDefault();
 
         try {
@@ -37,7 +37,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             // payment request.
             cardButton.disabled = true;
             const token = await tokenize(paymentMethod);
-            const paymentResults = await createPayment(token);
+            let verificationToken;
+            if (shouldVerify) {
+                verificationToken = await verifyBuyer(
+                    payments,
+                    token
+                );
+            }
+            const paymentResults = await createPayment(token, verificationToken);
             if (paymentResults && paymentResults.success) {
                 window.location.href = `/receipt/${paymentResults.payment_id}`;
             } else {
@@ -66,7 +73,39 @@ async function tokenize(paymentMethod) {
     }
 }
 
-async function createPayment(token) {
+async function verifyBuyer(payments, token) {
+    const isBillingChecked = document.getElementById('billing-checkbox').checked;
+    let address = isBillingChecked ? getShippingAddress() : getBillingAddress();
+
+    // Get the total amount from the HTML
+    const totalElement = document.getElementById('total_money');
+    const totalText = totalElement.textContent || totalElement.innerText;
+    const totalAmount = parseFloat(totalText.replace(/[^0-9.,]/g, '').replace(',', '.'));
+    const amountString = totalAmount.toFixed(2).toString();
+
+    const verificationDetails = {
+        amount: amountString,
+        currencyCode: 'CAD',
+        intent: 'CHARGE',
+        billingContact: {
+            givenName: address.firstName,
+            familyName: address.lastName,
+            email: document.getElementById('email').value,
+            addressLines: [address.address, address.apartment],
+            city: address.city,
+            state: address.province,
+            countryCode: 'CA',
+            postalCode: address.postalCode
+        },
+    };
+
+    const verificationResults = await payments.verifyBuyer(token, verificationDetails);
+    return verificationResults.token;
+}
+
+
+
+async function createPayment(token, verificationToken) {
     const email = document.getElementById('email').value;
     if (!validateEmail(email)) {
         displayEmailError("Please enter a valid email address. Veuillez entrer une adresse email valide.");
@@ -83,6 +122,7 @@ async function createPayment(token) {
 
     const body = JSON.stringify({
         sourceId: token,
+        verificationToken,
         shippingAddress,
         billingAddress,
         isBillingChecked
@@ -107,9 +147,6 @@ async function createPayment(token) {
         displayErrors(errorBody.errors);
         throw new Error('Payment processing failed');
     }
-
-    // const errorBody = await paymentResponse.text();
-    // throw new Error(errorBody);
 }
 
 function displayErrors(errors) {
@@ -126,19 +163,21 @@ function displayErrors(errors) {
 }
 
 function displayPaymentResults(status) {
-    const statusContainer = document.getElementById(
-        'payment-status-container'
-    );
+    const statusContainer = document.getElementById('payment-status-container');
+    const statusMessageElement = document.getElementById('payment-status-message');
+
     if (status === 'SUCCESS') {
         statusContainer.classList.remove('is-failure');
         statusContainer.classList.add('is-success');
     } else {
         statusContainer.classList.remove('is-success');
         statusContainer.classList.add('is-failure');
+        statusMessageElement.textContent = "Payment failed. Please try again."; // Add a failure message
     }
 
     statusContainer.style.visibility = 'visible';
 }
+
 
 function getShippingAddress() {
     return {

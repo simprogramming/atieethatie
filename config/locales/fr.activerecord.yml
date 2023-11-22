@@ -2,11 +2,24 @@
 fr:
   activerecord:
     attributes:
+      addresses:
+        address_type: Type d'addresse
+        first_name: Prénom
+        last_name: Nom de famille
+        address_line: Addresse
+        company: Entreprise (optionnel)
+        apartment: Appartement, suite, etc. (optionnel)
+        city: Ville
+        province: Province
+        postal_code: Code postale
+        country: Pays
       order:
         session_id: Session ID
         state: Square statut
         paid_at: Payé le
         net_amount_due_money: Total cash
+        receipt_number: Numéro du reçu
+        receipt_url: Lien du reçu
       user:
         first_name: Prénom
         last_name: Nom de famille

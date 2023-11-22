@@ -2,9 +2,10 @@ module CreateServices
   class ObjectOrder
     include SquareClient
 
-    def initialize(order:, token:, shipping_address:, billing_address:)
+    def initialize(order:, token:, verification_token:, shipping_address:, billing_address:)
       @order = order
       @token = token
+      @verification_token = verification_token
       @shipping_address = shipping_address
       @billing_address = billing_address
     end
@@ -15,15 +16,15 @@ module CreateServices
 
     private
 
-    attr_accessor :order, :token, :shipping_address, :billing_address
+    attr_accessor :order, :token, :shipping_address, :billing_address, :verification_token
 
     def create_square_order
       client.orders.create_order(
         body: {
           order: {
             location_id: "LJ8SPTZMQP6TS",
-            line_items: build_line_items,
-            service_charges: [build_service_charge]
+            line_items: build_line_items
+            # service_charges: [build_service_charge]
           },
           idempotency_key: SecureRandom.uuid
         }
@@ -55,7 +56,7 @@ module CreateServices
       {
         name: "Shipping Fee",
         amount_money: {
-          amount: 1200, # 12$ en centimes
+          amount: 1, # 12$ en centimes -> 1200
           currency: "CAD"
         },
         calculation_phase: "SUBTOTAL_PHASE"
@@ -72,8 +73,8 @@ module CreateServices
         net_amount_due_money: net_amount_due
       )
       @order.save!
-      CreateServices::ObjectPayment.new(order: @order, token: token, shipping_address: shipping_address,
-                                        billing_address: billing_address).run!
+      CreateServices::ObjectPayment.new(order: @order, token: token, verification_token: verification_token,
+                                        shipping_address: shipping_address, billing_address: billing_address).run!
     end
   end
 end

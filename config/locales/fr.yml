@@ -92,3 +92,22 @@ fr:
     home:
       our_partners: "Nos Partenaires"
       convince_them: "<strong>Chandelles concoctées pour voyager dans vos bagages ou dans l’imaginaire!</strong> <br><br> Notre vision est de vous offrir un produit minimaliste, des chandelles naturelles abordables fabriquées avec des ingrédients provenant de sources durables, tout en minimisant notre impact sur l'environnement. <br><br> Laissez vous  transportez vers des destinations lointaines grâce à notre emballage unique en boîte de voyage. Nous nous efforçons d'inspirer l'envie de voyager et d'apporter une touche d'exotisme à votre quotidien."
+  carts:
+    checkout:
+      phone: "Téléphone (optionnel)"
+      contact: "Contact"
+      delivery: "Adresse de livraison"
+      payment: "Paiement"
+      secure_payment: "Toutes les transactions sont sécurisées et encryptées."
+      same_address: "Utiliser la même adresse de facturation que l'adresse de livraison"
+      pay: "Payer"
+      subtotal: "Sous-total"
+      shipping: "Livraison"
+      total: "Total"
+    cart_page:
+      your_cart: "Votre panier"
+      empty_cart: "Votre panier est vide"
+      product: "Produit"
+      quantity: "Quantité"
+      tax_shipping: "Les taxes et les frais de livraison sont calculés au moment du paiement."
+      checkout: "Checkout"

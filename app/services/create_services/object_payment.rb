@@ -2,9 +2,10 @@ module CreateServices
   class ObjectPayment
     include SquareClient
 
-    def initialize(order:, token:, shipping_address:, billing_address:)
+    def initialize(order:, token:, verification_token:, shipping_address:, billing_address:)
       @order = order
       @token = token
+      @verification_token = verification_token
       @shipping_address = shipping_address
       @billing_address = billing_address
     end
@@ -15,7 +16,7 @@ module CreateServices
 
     private
 
-    attr_accessor :order, :token, :shipping_address, :billing_address
+    attr_accessor :order, :token, :shipping_address, :billing_address, :verification_token
 
     def create_payment
       client.payments.create_payment(
@@ -33,6 +34,7 @@ module CreateServices
         },
         order_id: order.square_id,
         location_id: "LJ8SPTZMQP6TS",
+        verification_token: verification_token,
         buyer_email_address: shipping_address[:email],
         billing_address: same_address_checked? ? format_address(shipping_address) : format_address(billing_address),
         shipping_address: format_address(shipping_address)

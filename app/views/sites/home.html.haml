@@ -12,7 +12,7 @@
         .grid-item.text-center
           %p.product-title= item.catalog_item.name
           = image_tag item.images.first.image_url, class: 'img-fluid px-3'
-          %p.product-description= item.catalog_item.fragrance.fragrance_profile.name
+          %p.product-description= item.catalog_item.fragrance.fragrance_profile.name if item.catalog_item.fragrance.present?
           %p.product-description= item.name
           = link_to product_path(item) do
             %button.btn.btn--primary.mb-3= t("helpers.links.learn_more")

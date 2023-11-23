@@ -20,7 +20,7 @@
     .col-md-6
       = f.input :color, collection: CatalogItemVariation.translated_colors, input_html: { autocomplete: "off" }
     .col-md-6
-      = f.input :size, collection: CatalogItemVariation::SIZE_OPTIONS, as: :select
+      = f.input :size, placeholder: "4 oz / 115 mg"
     .col-md-6
       = f.input :price
     .col-md-6

@@ -19,7 +19,7 @@
         %dt.col-12= model_class.human_attribute_name :name_fr
         %dd.col-12.my-2= catalog_item_variation.name_fr
         %dt.col-12= model_class.human_attribute_name :price
-        %dd.col-12.my-2= catalog_item_variation.price
+        %dd.col-12.my-2= t("helpers.format.money", val: number_with_precision(catalog_item_variation.price, precision: 2))
         %dt.col-12= model_class.human_attribute_name :color
         %dd.col-12.my-2= catalog_item_variation.translated_color
         %dt.col-12= model_class.human_attribute_name :information_fr

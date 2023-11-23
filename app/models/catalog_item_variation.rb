@@ -16,10 +16,7 @@ class CatalogItemVariation < ApplicationRecord
   has_one :category, through: :catalog_item
   has_many :images, as: :imageable, dependent: :destroy
 
-
   validates :name_fr, :name_en, :price, :color, :size, presence: true
-
-  SIZE_OPTIONS = %w[aucun 4oz 8oz].freeze
 
   validates :price, numericality: { greater_than_or_equal_to: 0, message: "must be a positive number" }
 

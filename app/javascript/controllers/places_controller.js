@@ -3,63 +3,104 @@ import PlacesAutocomplete from "stimulus-places-autocomplete";
 
 export default class extends PlacesAutocomplete {
     connect() {
-        this.countryValue = ["ca"];
-        document.addEventListener("google-maps-callback", this.initAutocomplete.bind(this));
         super.connect();
+        this.countryValue = ["ca"];
+        this.initShippingAutocomplete();
+        this.initBillingAutocomplete();
     }
 
-    disconnect() {
-        document.removeEventListener("google-maps-callback", this.initAutocomplete.bind(this));
-        super.disconnect();
-    }
-
-    initAutocomplete() {
-        super.initAutocomplete();
-        this.autocomplete.addListener('place_changed', () => {
-            let place = this.autocomplete.getPlace();
-            this.fillInAddress(place);
+    initShippingAutocomplete() {
+        this.shippingAutocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('shipping-address-line'),
+            {
+                types: ['geocode'],
+                componentRestrictions: { country: 'ca' }
+            }
+        );
+        this.shippingAutocomplete.setFields(['address_component']);
+        this.shippingAutocomplete.addListener('place_changed', () => {
+            let place = this.shippingAutocomplete.getPlace();
+            this.fillInAddress(place, "shipping");
         });
     }
 
-    fillInAddress(place) {
-        // Réinitialiser tous les champs
-        this.targets.find("address").value = "";
-        this.targets.find("city").value = "";
-        this.targets.find("province").value = "";
-        this.targets.find("postalCode").value = "";
-        this.targets.find("country").value = "";
-        this.targets.find("apartment").value = "";
+    initBillingAutocomplete() {
+        this.billingAutocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('billing-address-line'),
+            {
+                types: ['geocode'],
+                componentRestrictions: { country: 'ca' }
+            }
+        );
+        this.billingAutocomplete.setFields(['address_component']);
+        this.billingAutocomplete.addListener('place_changed', () => {
+            let place = this.billingAutocomplete.getPlace();
+            this.fillInAddress(place, "billing");
+        });
+    }
 
-        // Parcourir tous les composants de l'adresse et les affecter aux champs
+    disconnect() {
+        // Détacher les écouteurs d'événements de l'autocomplétion pour les adresses de livraison et de facturation
+        if (this.shippingAutocomplete) {
+            google.maps.event.clearInstanceListeners(this.shippingAutocomplete);
+        }
+        if (this.billingAutocomplete) {
+            google.maps.event.clearInstanceListeners(this.billingAutocomplete);
+        }
+    }
+
+
+    fillInAddress(place, type) {
+        // Réinitialiser tous les champs concernés avant de les remplir
+        if (type === "shipping") {
+            document.getElementById("shipping-address-line").value = "";
+            document.getElementById("shipping-city").value = "";
+            document.getElementById("shipping-province").value = "";
+            document.getElementById("shipping-postal-code").value = "";
+            document.getElementById("shipping-country").value = "";
+        } else if (type === "billing") {
+            document.getElementById("billing-address-line").value = "";
+            document.getElementById("billing-city").value = "";
+            document.getElementById("billing-province").value = "";
+            document.getElementById("billing-postal-code").value = "";
+            document.getElementById("billing-country").value = "";
+        }
+
+        // Parcourir tous les composants de l'adresse et les affecter aux champs appropriés
         for (const component of place.address_components) {
             const componentType = component.types[0];
 
             switch(componentType) {
                 case "street_number": {
-                    this.targets.find("address").value += component.long_name + " ";
+                    const streetNumber = component.long_name;
+                    document.getElementById(`${type}-address-line`).value += streetNumber + " ";
                     break;
                 }
                 case "route": {
-                    this.targets.find("address").value += component.long_name;
+                    const route = component.long_name;
+                    document.getElementById(`${type}-address-line`).value += route;
                     break;
                 }
                 case "locality": {
-                    this.targets.find("city").value = component.long_name;
+                    const city = component.long_name;
+                    document.getElementById(`${type}-city`).value = city;
                     break;
                 }
                 case "administrative_area_level_1": {
-                    this.targets.find("province").value = component.short_name;
+                    const province = component.short_name;
+                    document.getElementById(`${type}-province`).value = province;
                     break;
                 }
                 case "postal_code": {
-                    this.targets.find("postalCode").value = component.long_name;
+                    const postalCode = component.long_name;
+                    document.getElementById(`${type}-postal-code`).value = postalCode;
                     break;
                 }
                 case "country": {
-                    this.targets.find("country").value = component.long_name;
+                    const country = component.long_name;
+                    document.getElementById(`${type}-country`).value = country;
                     break;
                 }
-                // Vous pouvez ajouter d'autres cas si nécessaire
             }
         }
     }

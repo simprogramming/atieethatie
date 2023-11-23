@@ -92,3 +92,33 @@ en:
     home:
       our_partners: "Our Partners"
       convince_them: "Illuminate every moment. Create an atmosphere of serenity and escape, inviting the discovery of scents that awaken the senses and enhance your daily life."
+  carts:
+    checkout:
+      phone: "Phone (optional)"
+      contact: "Contact"
+      delivery: "Delivery address"
+      payment: "Payment"
+      secure_payment: "All transactions are secure and encrypted."
+      same_address: "Use same address for billing as shipping address"
+      pay: "Pay"
+      subtotal: "Subtotal"
+      shipping: "Shipping"
+      total: "Total"
+    cart_page:
+      your_cart: "Your cart"
+      empty_cart: "Your cart is empty"
+      product: "Product"
+      quantity: "Quantity"
+      tax_shipping: "Taxes and shipping calculated at checkout"
+      checkout: "Checkout"
+  orders:
+    show:
+      shipping_address: "Shipping address"
+      billing_address: "Billing address"
+      same_address: "Same as shipping"
+  invoice_mailer:
+    invoice_email_admin:
+      subject: "New order!"
+    invoice_email_customer:
+      subject: "We are preparing your order!"
+      greeting: "Hello %{name},"

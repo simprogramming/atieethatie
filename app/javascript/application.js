@@ -3,6 +3,7 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import './components/sidebar';
 import './components/navbar';
+import './components/credit_card_payment_square';
 import "trix"
 import "@rails/actiontext"
 

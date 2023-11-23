@@ -2,10 +2,24 @@
 en:
   activerecord:
     attributes:
+      addresses:
+        address_type: Address type
+        first_name: First name
+        last_name: Last name
+        address_line: Address
+        company: Company (optional)
+        apartment: Apartment, suite, etc. (optional)
+        city: City
+        province: Province
+        postal_code: Postal code
+        country: Country
       order:
         session_id: Session ID
         state: Square Status
         paid_at: Paid at
+        net_amount_due_money: Total money
+        receipt_number: Receipt number
+        receipt_url: receipt link
       user:
         first_name: First Name
         last_name: Last Name

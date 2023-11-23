@@ -8,18 +8,26 @@
       %p.mt-3= @catalog_item_variation.catalog_item.category.name
       %h1.mt-2.text-uppercase= @catalog_item_variation.catalog_item.name
       .product-information
-        %p.mt-3= "#{t("helpers.format.money", val: number_with_precision(@catalog_item_variation.price, precision: 2))} - #{@catalog_item_variation.name} - #{@catalog_item_variation.catalog_item.fragrance.fragrance_profile.name}"
-      - if @catalog_item_variation.images.first.present?
-        %div.product-image.mt-5
-          -# = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "product-show-img"
-          = image_tag @catalog_item_variation.images.first.image_url, alt: "Bougie de haute qualité", class: "product-show-img"
-        .product-details
-          .description
-            %p=@catalog_item_variation.catalog_item.description
-          = simple_form_for OrderItem.new, url: add_item_path do |f|
-            = f.input :quantity, as: :hidden, type: :number, input_html: { value: 1 }
-            = f.input :catalog_item_variation_id, as: :hidden, input_html: { value: @catalog_item_variation.id }
-            = f.submit t("helpers.links.add_to_cart"), class: "btn btn--outline p-3"
+        %p.mt-3= "#{t("helpers.format.money", val: number_with_precision(@catalog_item_variation.price, precision: 2))} - #{@catalog_item_variation.name} #{"- " + @catalog_item_variation.catalog_item.fragrance.fragrance_profile.name if @catalog_item_variation.catalog_item.fragrance.present?}"
+      - if @catalog_item_variation.images.any?
+        #carouselExampleIndicators.carousel.slide.product-image.mt-5{ data: { bs_ride: "carousel" } }
+          .carousel-indicators
+            - @catalog_item_variation.images.each_with_index do |image, index|
+              %button{ type: "button", data: { bs_target: "#carouselExampleIndicators", bs_slide_to: index }, class: ('active' if index.zero?), aria_label: "Slide #{index + 1}" }
+
+          .carousel-inner
+            - @catalog_item_variation.images.each_with_index do |image, index|
+              .carousel-item{ class: ('active' if index.zero?) }
+                = image_tag image.image_url, alt: "Image #{index + 1}", class: "d-block w-100"
+
+          %a.carousel-control-prev{ href: "#carouselExampleIndicators", role: "button", data: { bs_slide: "prev" } }
+            %span.carousel-control-prev-icon{ aria_hidden: "true" }
+            %span.visually-hidden Previous
+
+          %a.carousel-control-next{ href: "#carouselExampleIndicators", role: "button", data: { bs_slide: "next" } }
+            %span.carousel-control-next-icon{ aria_hidden: "true" }
+            %span.visually-hidden Next
+
 
       .variations.mt-5
         .colors.text-center.p-4.me-3

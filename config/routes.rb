@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     post :add_item
     delete "remove_item/:id", to: "carts#remove_item", as: :remove_item
     get :cart_page
-    match :checkout, via: %i[get post]
+    get :checkout
+    get "receipt/:id", action: :receipt, as: :receipt
+    post :process_square_payment
   end
 
   controller :sites do
@@ -34,4 +36,6 @@ Rails.application.routes.draw do
     get "product/:id", action: :product, as: :product
   end
   root "sites#home"
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

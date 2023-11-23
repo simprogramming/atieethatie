@@ -38,11 +38,17 @@
             .nav-link= t(".admin")
 
       - if defined?(@order)
-        = link_to cart_page_path, class: "text-decoration-none" do
+        - if @order.order_items.sum(&:quantity).positive?
+          = link_to cart_page_path, class: "text-decoration-none" do
+            %li.nav-item.px-md-3
+              .nav-link
+                .d-flex
+                  %div
+                    %i.fas.fa-shopping-cart.pe-1.mb-0
+                  %div= @order.order_items.sum(&:quantity)
+        - else
           %li.nav-item.px-md-3
             .nav-link
               .d-flex
                 %div
                   %i.fas.fa-shopping-cart.pe-1.mb-0
-                - if @order.order_items.sum(&:quantity).positive?
-                  %div= @order.order_items.sum(&:quantity)

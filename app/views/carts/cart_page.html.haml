@@ -1,49 +1,50 @@
 .container.py-5.mt-5.text-center
-  %h1.my-5= @order.order_items.present? ? "Votre Panier" : "Votre panier est vide"
-  .row.d-none.d-sm-flex
-    .col-sm-8.text-start
-      Product
-    .col-sm-2.text-start
-      Quantity
-    .col-sm-2.text-start
-      Total
-  - subtotal = 0
+  %h1.my-5= @order.order_items.present? ? t(".your_cart") : t(".empty_cart")
+
   - if @order.order_items.present?
-    - @order.order_items.order(:created_at).each do |order_item|
-      - subtotal += order_item.quantity * order_item.catalog_item_variation.price
-      <hr>
-      .row.d-flex.align-items-center
-        .col-sm-8.col-12.text-start
-          .d-flex.align-items-center
-            %div
-              -# = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "", style: "height: 125px; width: 100%, object-fit: cover;"
-              = image_tag order_item.catalog_item_variation.images.first.image_url, style: "height: 125px; width: 100%, object-fit: cover;" if order_item.catalog_item_variation.images.first.present?
-            %div.p-3
-              %h4= "#{order_item.catalog_item.name.upcase} - #{order_item.catalog_item_variation.name}"
-              %div= t("helpers.format.money", val: number_with_precision(order_item.catalog_item_variation.price, precision: 2))
+    .row.d-none.d-sm-flex
+      .col-sm-8.text-start
+        = t(".product")
+      .col-sm-2.text-start
+        = t(".quantity")
+      .col-sm-2.text-start
+        = t("carts.checkout.total")
+    - subtotal = 0
+    - if @order.order_items.present?
+      - @order.order_items.order(:created_at).each do |order_item|
+        - subtotal += order_item.quantity * order_item.catalog_item_variation.price
+        <hr>
+        .row.d-flex.align-items-center
+          .col-sm-8.col-12.text-start
+            .d-flex.align-items-center
+              %div
+                -# = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "", style: "height: 125px; width: 100%, object-fit: cover;"
+                = image_tag order_item.catalog_item_variation.images.first.image_url, style: "height: 125px; width: 100%, object-fit: cover;" if order_item.catalog_item_variation.images.first.present?
+              %div.p-3
+                %h4= "#{order_item.catalog_item.name.upcase} - #{order_item.catalog_item_variation.name}"
+                %div= t("helpers.format.money", val: number_with_precision(order_item.catalog_item_variation.price, precision: 2))
 
-        .col-sm-2.col-6
-          %div.d-flex.justify-content-end.justify-content-sm-start.mt-3.mt-sm-0
-            = button_to add_item_path(order_item: { catalog_item_variation_id: order_item.catalog_item_variation.id, quantity: "-1" }), style: "border: none;background: transparent;svg{width: 9px;height: 17px;}" do
-              = image_tag 'fleche-qty.svg', alt: 'Bell', class: "me-3 pt-1 text-black"
-            .mb-2= order_item.quantity
-            = button_to add_item_path(order_item: { catalog_item_variation_id: order_item.catalog_item_variation.id, quantity: "1" }), style: "border: none;background: transparent;svg{width: 9px;height: 17px;}" do
-              = image_tag 'fleche-qty-d.svg', alt: 'Bell', class: "ms-3 pt-1"
-        .col-sm-2.col-6.pb-2
-          .d-flex.justify-content-between.mt-3.mt-sm-0
-            %div.text-start
-              = t("helpers.format.money", val: number_with_precision(order_item.quantity * order_item.catalog_item_variation.price, precision: 2))
-            %div
-              = link_to remove_item_path(order_item), data: { turbo_method: "delete" }, class: "text-decoration-none" do
-                %div{style: "cursor: pointer; font-weight: bold; color: gray"}
-                  %i.fa-solid.fa-trash
+          .col-sm-2.col-6
+            %div.d-flex.justify-content-end.justify-content-sm-start.mt-3.mt-sm-0
+              = button_to add_item_path(order_item: { catalog_item_variation_id: order_item.catalog_item_variation.id, quantity: "-1" }), style: "border: none;background: transparent;svg{width: 9px;height: 17px;}" do
+                = image_tag 'fleche-qty.svg', alt: 'Bell', class: "me-3 pt-1 text-black"
+              .mb-2= order_item.quantity
+              = button_to add_item_path(order_item: { catalog_item_variation_id: order_item.catalog_item_variation.id, quantity: "1" }), style: "border: none;background: transparent;svg{width: 9px;height: 17px;}" do
+                = image_tag 'fleche-qty-d.svg', alt: 'Bell', class: "ms-3 pt-1"
+          .col-sm-2.col-6.pb-2
+            .d-flex.justify-content-between.mt-3.mt-sm-0
+              %div.text-start
+                = t("helpers.format.money", val: number_with_precision(order_item.quantity * order_item.catalog_item_variation.price, precision: 2))
+              %div
+                = link_to remove_item_path(order_item), data: { turbo_method: "delete" }, class: "text-decoration-none" do
+                  %div{style: "cursor: pointer; font-weight: bold; color: gray"}
+                    %i.fa-solid.fa-trash
 
-  .row.mt-5.pe-3
-    .col-12.text-center.text-sm-end
-      %h2 Subtotal
-      %h4= "#{t("helpers.format.money", val: number_with_precision(subtotal, precision: 2))} CAD"
-      %p Taxes and shipping calculated at checkout
-      - if @order.order_items.present?
-        = link_to checkout_path do
+    .row.mt-5.pe-3
+      .col-12.text-center.text-sm-end
+        %h2= t("carts.checkout.subtotal")
+        %h4= "#{t("helpers.format.money", val: number_with_precision(subtotal, precision: 2))} CAD"
+        %p= t(".tax_shipping")
+        = link_to checkout_path, method: "post", data: { turbo: false } do
           .btn.btn--secondary.p-3
-            Checkout
+            = t(".checkout")

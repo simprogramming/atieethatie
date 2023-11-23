@@ -7,7 +7,7 @@ class CatalogItem < ApplicationRecord
   has_rich_text :description_en
 
   belongs_to :category
-  belongs_to :fragrance
+  belongs_to :fragrance, optional: true
 
   has_many :catalog_item_variations, dependent: :destroy
   has_many :images, as: :imageable, dependent: :destroy

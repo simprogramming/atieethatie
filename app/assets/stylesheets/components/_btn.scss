@@ -26,6 +26,20 @@
         background-color: darken(rgb(223,220,212), 15%); // Assombrit le fond un peu plus que pour le hover
       }
     }
+    &--success {
+      color: white;
+      background-color: green;
+      transition: background-color 0.3s, color 0.3s;
+      border: solid white 2px;
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:active {
+        color: white;
+        background-color: forestgreen;
+      }
+    }
     &--secondary {
       border: none;
       border-radius: 0px;

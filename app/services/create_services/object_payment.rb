@@ -33,7 +33,7 @@ module CreateServices
           currency: "CAD"
         },
         order_id: order.square_id,
-        location_id: "LJ8SPTZMQP6TS",
+        location_id: "LR7ZE2YVBA61J", # production id 
         verification_token: verification_token,
         buyer_email_address: shipping_address[:email].presence || "",
         billing_address: same_address_checked? ? format_address(shipping_address) : format_address(billing_address),

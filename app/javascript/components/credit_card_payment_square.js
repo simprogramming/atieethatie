@@ -1,5 +1,7 @@
-const appId = 'sandbox-sq0idb-c82Rx8uA5RNvDCMxGUKAsg';
-const locationId = 'LJ8SPTZMQP6TS';
+// const appId = 'sandbox-sq0idb-c82Rx8uA5RNvDCMxGUKAsg'; // sandbox
+const appId = 'sq0idp-tRPmjz_9gEGmASSfaa9IUw';  // production
+// const locationId = 'LJ8SPTZMQP6TS'; // sandbox
+const locationId = 'LR7ZE2YVBA61J'; // production
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
 async function initializeCard(payments) {

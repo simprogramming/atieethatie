@@ -22,7 +22,7 @@ module CreateServices
       client.orders.create_order(
         body: {
           order: {
-            location_id: "LJ8SPTZMQP6TS",
+            location_id: "LR7ZE2YVBA61J", # production id
             line_items: build_line_items
             # service_charges: [build_service_charge]
           },

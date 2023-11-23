@@ -26,6 +26,7 @@ class CartsController < ApplicationController
   end
 
   def receipt
+    @receipt = Order.find_by(payment_id: params[:id])
   end
 
   def process_square_payment

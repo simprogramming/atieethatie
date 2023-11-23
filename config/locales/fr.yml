@@ -111,6 +111,10 @@ fr:
       quantity: "Quantité"
       tax_shipping: "Les taxes et les frais de livraison sont calculés au moment du paiement."
       checkout: "Checkout"
+    receipt:
+      receipt: "Votre reçu"
+      successful_payment: "Votre paiement a été traité avec succès. Vous trouverez ci-dessous votre reçu."
+      return_home: "Retour à l'accueil"
   orders:
     show:
       shipping_address: "Adresse de livraison"

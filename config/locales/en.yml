@@ -111,6 +111,10 @@ en:
       quantity: "Quantity"
       tax_shipping: "Taxes and shipping calculated at checkout"
       checkout: "Checkout"
+    receipt:
+      receipt: "Receipt"
+      successful_payment: "Your payment has been successfully processed. Below is your receipt."
+      return_home: "Return to Home"
   orders:
     show:
       shipping_address: "Shipping address"

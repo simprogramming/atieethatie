@@ -77,8 +77,11 @@ module CreateServices
       result = client.orders.retrieve_order(order_id: order.square_id)
       raise StandardError, result.errors unless result.success?
 
+      closed_at_utc = result.data[:order][:closed_at]
+      closed_at_local = closed_at_utc.in_time_zone
+
       order.assign_attributes(
-        paid_at: result.data[:order][:closed_at],
+        paid_at: closed_at_local,
         version: result.data[:order][:version],
         state: result.data[:order][:state]
       )

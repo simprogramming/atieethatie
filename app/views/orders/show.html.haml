@@ -14,7 +14,7 @@
   %dt.col-sm-3= model_class.human_attribute_name :paid_at
   %dd.col-sm-9= order.paid_at
   %dt.col-sm-3= model_class.human_attribute_name :net_amount_due_money
-  %dd.col-sm-9= t("helpers.format.money", val: number_with_precision((order.net_amount_due_money / 100), precision: 2))
+  %dd.col-sm-9= order.net_amount_due_money.present? ? t("helpers.format.money", val: number_with_precision((order.net_amount_due_money / 100), precision: 2)) : ""
   %dt.col-sm-3= model_class.human_attribute_name :payment_id
   %dd.col-sm-9= order.payment_id
   %dt.col-sm-3= model_class.human_attribute_name :receipt_url

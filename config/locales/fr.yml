@@ -111,3 +111,8 @@ fr:
       quantity: "Quantité"
       tax_shipping: "Les taxes et les frais de livraison sont calculés au moment du paiement."
       checkout: "Checkout"
+  orders:
+    show:
+      shipping_address: "Adresse de livraison"
+      billing_address: "Adresse de facturation"
+      same_address: "Même adresse que livraison"

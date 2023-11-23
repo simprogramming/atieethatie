@@ -111,3 +111,8 @@ en:
       quantity: "Quantity"
       tax_shipping: "Taxes and shipping calculated at checkout"
       checkout: "Checkout"
+  orders:
+    show:
+      shipping_address: "Shipping address"
+      billing_address: "Billing address"
+      same_address: "Same as shipping"

@@ -29,7 +29,7 @@
       %tr
         %td= link_to catalog_item_variation.name_fr, catalog_item_catalog_item_variation_path(catalog_item_variation.catalog_item, catalog_item_variation)
         %td= catalog_item_variation.name_en
-        %td= catalog_item_variation.price
+        %td= t("helpers.format.money", val: number_with_precision(catalog_item_variation.price, precision: 2))
         %td= bool_to_text(catalog_item_variation.images.present?)
         %td= bool_to_text(catalog_item_variation.available)
 

@@ -17,15 +17,14 @@
   %tbody
     - orders.each do |order|
       %tr
-        %td= link_to order.session_id, order_url(order)
+        %td= link_to (order.email || order.session_id), order_url(order)
         %td
           - if order.order_items.sum(&:quantity).positive?
             = order.order_items.sum(&:quantity)
           - else
             = "empty"
         %td= order.state
-        -# %td= t("helpers.format.money", val: number_with_precision((order.net_amount_due_money / 100), precision: 2))
-        %td= order.net_amount_due_money
+        %td= order.net_amount_due_money.present? ? t("helpers.format.money", val: number_with_precision((order.net_amount_due_money / 100), precision: 2)) : ""
         %td= order.paid_at
 
 

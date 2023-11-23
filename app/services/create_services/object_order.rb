@@ -70,7 +70,8 @@ module CreateServices
         version: order_data[:version],
         square_id: order_data[:id],
         state: order_data[:state],
-        net_amount_due_money: net_amount_due
+        net_amount_due_money: net_amount_due,
+        email: shipping_address[:email]
       )
       @order.save!
       CreateServices::ObjectPayment.new(order: @order, token: token, verification_token: verification_token,

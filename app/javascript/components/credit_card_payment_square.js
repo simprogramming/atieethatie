@@ -190,8 +190,7 @@ function getShippingAddress() {
         city: document.getElementById('shipping-city').value,
         province: document.getElementById('shipping-province').value,
         postalCode: document.getElementById('shipping-postal-code').value,
-        country: document.getElementById('shipping-country').value,
-        phone: document.getElementById('shipping-phone').value
+        country: document.getElementById('shipping-country').value
     };
 }
 

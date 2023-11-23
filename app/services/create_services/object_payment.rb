@@ -35,7 +35,7 @@ module CreateServices
         order_id: order.square_id,
         location_id: "LJ8SPTZMQP6TS",
         verification_token: verification_token,
-        buyer_email_address: shipping_address[:email],
+        buyer_email_address: shipping_address[:email].presence || "",
         billing_address: same_address_checked? ? format_address(shipping_address) : format_address(billing_address),
         shipping_address: format_address(shipping_address)
       }

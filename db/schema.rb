@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_22_223837) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_23_022423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_223837) do
     t.bigint "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "fragrance_id", null: false
+    t.bigint "fragrance_id"
     t.index ["category_id"], name: "index_catalog_items_on_category_id"
     t.index ["fragrance_id"], name: "index_catalog_items_on_fragrance_id"
   end

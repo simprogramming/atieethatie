@@ -116,3 +116,9 @@ en:
       shipping_address: "Shipping address"
       billing_address: "Billing address"
       same_address: "Same as shipping"
+  invoice_mailer:
+    invoice_email_admin:
+      subject: "New order!"
+    invoice_email_customer:
+      subject: "We are preparing your order!"
+      greeting: "Hello %{name},"

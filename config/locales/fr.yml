@@ -116,3 +116,9 @@ fr:
       shipping_address: "Adresse de livraison"
       billing_address: "Adresse de facturation"
       same_address: "Même adresse que livraison"
+  invoice_mailer:
+    invoice_email_admin:
+      subject: "Nouvelle commande!"
+    invoice_email_customer:
+      subject: "Nous préparons votre commande!"
+      greeting: "Bonjour %{name}"

@@ -31,14 +31,15 @@
         %h2#headingThree.accordion-header{style: "background-color: transparent; border: none;"}
           %button.accordion-button{"aria-controls" => "collapseThree", "data-bs-target" => "#collapseThree", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:sizes].present?)}
             = t("attributes.sizes")
-        #collapseThree.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:sizes].present?)}
+        #collapseThree.accordion-collapse.collapse{"aria-labelledby" => "headingThree", "data-bs-parent" =>  "#accordionExample", style: "background-color: transparent; border: none;", class: ("show" if params[:sizes].present?)}
           .accordion-body
             #size-filter
-              - CatalogItemVariation::SIZE_OPTIONS.reject { |size| size == 'aucun' }.each do |size|
+              - CatalogItemVariation.where(available: true).select(:size).distinct.each do |variation|
                 .form-check
                   %label.form-check-label
-                    %input.form-check-input{ type: "checkbox", name: "sizes[]", value: size, checked: params[:sizes]&.include?(size), onchange: "this.form.requestSubmit()" }
-                    = size
+                    %input.form-check-input{ type: "checkbox", name: "sizes[]", value: variation.size, checked: params[:sizes]&.include?(variation.size) || false, onchange: "this.form.requestSubmit()" }
+                    = variation.size
+
       .accordion-item{style: "box-shadow: none; border: none;"}
         %h2#headingFour.accordion-header{style: "background-color: transparent; border: none;"}
           %button.accordion-button{"aria-controls" => "collapseFour", "data-bs-target" => "#collapseFour", "data-bs-toggle" => "collapse", type: "button", style: "background-color: transparent; border: none;", class: ("collapsed" unless params[:fragrance_profile_ids].present?)}

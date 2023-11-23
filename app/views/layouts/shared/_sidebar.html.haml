@@ -8,10 +8,11 @@
   %ul.nav.nav-pills.flex-column.mb-auto.pb-3.full-sidebar-width
     %b.my-2= t '.administration'
     - if user_signed_in?
-      %li.nav-item
-        %a.nav-link{href: letter_opener_web_path, target: '_blank'}
-          %i.fa-solid.fa-envelope
-          = t 'layouts.application.emails'
+      - if Rails.env.development?
+        %li.nav-item
+          %a.nav-link{href: letter_opener_web_path, target: '_blank'}
+            %i.fa-solid.fa-envelope
+            = t 'layouts.application.emails'
       - if policy(User).index?
         %li.nav-item
           = link_to users_path, class: "nav-link #{controller_name == "users" ? "active" : ""}" do

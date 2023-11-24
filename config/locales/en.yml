@@ -115,6 +115,7 @@ en:
       receipt: "Receipt"
       successful_payment: "Your payment has been successfully processed. Below is your receipt."
       return_home: "Return to Home"
+      view_receipt: "View receipt"
   orders:
     show:
       shipping_address: "Shipping address"

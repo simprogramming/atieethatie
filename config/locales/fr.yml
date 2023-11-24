@@ -116,6 +116,7 @@ fr:
       successful_payment: "Votre paiement a été traité avec succès. Vous trouverez ci-dessous votre reçu."
       return_home: "Retour à l'accueil"
       view_receipt: "Voir le reçu"
+      keep_receipt: "Assurez-vous de garder le lien de votre reçu!"
   orders:
     show:
       shipping_address: "Adresse de livraison"

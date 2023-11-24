@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
             const paymentResults = await createPayment(token, verificationToken);
             if (paymentResults && paymentResults.success) {
-                window.location.href = `/receipt/${paymentResults.payment_id}`;
+                window.location.href = `https://atie-et-hatie-b9d0efab7fc0.herokuapp.com/receipt/${paymentResults.payment_id}`;
             } else {
                 throw new Error('Payment processing failed');
             }

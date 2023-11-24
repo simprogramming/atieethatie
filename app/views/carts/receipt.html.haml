@@ -1,4 +1,4 @@
-.container.mt-5.pt-5
+.container.my-5.py-5
   .row.justify-content-center
     .col-12.col-lg-8
       .card
@@ -7,6 +7,7 @@
 
         .card-body
           %p= t(".successful_payment")
+          %p= t(".keep_receipt")
 
           .text-center.mt-4
             %a.btn.btn--primary{ href: @receipt.receipt_url, target: "_blank", role: "button" }= t(".view_receipt")

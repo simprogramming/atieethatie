@@ -35,7 +35,7 @@
         .col-md-6
           = ff.input :name_en, input_html: {value: "4oz white"}
         .col-md-6
-          = ff.input :size, collection: CatalogItemVariation::SIZE_OPTIONS, selected: "4oz"
+          = ff.input :size, placeholder: "4 oz / 115 mg"
         .col-md-6
           = ff.input :color, collection: CatalogItemVariation.translated_colors, selected: :white, input_html: { autocomplete: "off", selected: :white }
         .col-md-6.py-2

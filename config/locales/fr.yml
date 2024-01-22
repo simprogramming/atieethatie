@@ -127,4 +127,4 @@ fr:
       subject: "Nouvelle commande!"
     invoice_email_customer:
       subject: "Nous préparons votre commande!"
-      greeting: "Bonjour %{name}"
+      greeting: "Merci pour vos achats, ce courriel confirme que nous avons bien recu votre commande, %{name}. <br><br>Notre équipe procède à la preparation de l'envoi le plus rapidement possible. <br><br> Si vous avez des questions brulantes, n'hesitez pas a nous contacter. <br><br> Merci et bonne journée!"

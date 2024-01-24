@@ -23,8 +23,9 @@ module CreateServices
         body: {
           order: {
             location_id: "LR7ZE2YVBA61J", # production id
-            line_items: build_line_items
-            # service_charges: [build_service_charge]
+            # location_id: "LJ8SPTZMQP6TS", # sandbox id
+            line_items: build_line_items,
+            service_charges: [build_service_charge]
           },
           idempotency_key: SecureRandom.uuid
         }
@@ -56,7 +57,7 @@ module CreateServices
       {
         name: "Shipping Fee",
         amount_money: {
-          amount: 1, # 12$ en centimes -> 1200
+          amount: @order.decorate.shipping_fee * 100, # 12$ en centimes -> 1200
           currency: "CAD"
         },
         calculation_phase: "SUBTOTAL_PHASE"

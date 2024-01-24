@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   include AdminSideHelper
-  before_action :set_order, only: %i[edit update show destroy]
+  before_action :set_order, only: %i[edit update show destroy shipped]
   before_action -> { authorize @order || Order }
 
   decorates_assigned :order, :orders
@@ -42,6 +42,17 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     redirect_to orders_path, notice: destroy_successful_notice
+  end
+
+  def shipped
+    if @order.pending?
+      @order.update!(shipping_status: "processing")
+    elsif @order.processing?
+      @order.update!(shipping_status: "shipped", shipping_date: Time.zone.now)
+    elsif @order.shipped?
+      @order.update!(shipping_status: "completed")
+    end
+    redirect_to order_url(@order)
   end
 
   private

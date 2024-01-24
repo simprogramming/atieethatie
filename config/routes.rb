@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   resources :fragrance_profiles
   resources :fragrances
   resources :images, only: :destroy
-  resources :orders
+  resources :orders do
+    member do
+      put :shipped
+    end
+  end
   resources :users
 
   put :change_locale, controller: "application"

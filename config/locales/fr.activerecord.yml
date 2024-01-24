@@ -20,6 +20,13 @@ fr:
         net_amount_due_money: Total cash
         receipt_number: Numéro du reçu
         receipt_url: Lien du reçu
+        shipping_date: Date de l'expédition
+        shipping_status: Statut de livraison
+        shipping_status_list:
+          pending: En attente
+          processing: Préparation
+          shipped: Expédié
+          completed: Complété
       user:
         first_name: Prénom
         last_name: Nom de famille

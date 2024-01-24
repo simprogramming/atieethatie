@@ -10,4 +10,8 @@ class OrderDecorator < ApplicationDecorator
       I18n.t("activerecord.attributes.order.shipping_status_list.completed")
     end
   end
+
+  def shipping_fee
+    (order_items.sum(&:quantity) * 3) + 8
+  end
 end

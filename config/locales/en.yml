@@ -73,7 +73,7 @@ en:
         change_language: "FR"
       footer:
         follow_us_footer: "Join our community and be the first to discover our new products, stories, and exclusive offers. Follow us and let's illuminate every moment of our daily life together."
-        copyright: "© 2023 Atie et Hatie. All rights reserved."
+        copyright: "© 2024 Les créations Atie et Hatie S.E.N.C. All rights reserved."
       navbar:
         our_catalog: "Our Catalog"
         admin: "Admin"
@@ -91,8 +91,7 @@ en:
       information: "Additional info"
     home:
       our_partners: "Our Partners"
-      convince_them: "Illuminate every moment. Create an atmosphere of serenity and escape, inviting the discovery of scents that awaken the senses and enhance your daily life."
-  carts:
+      convince_them: "Welcome to the world of Atie and Hatie creations, where creativity, quality, and craftsmanship come together to offer you a unique experience. Each of our handmade products is the result of passionate work, designed to enrich your daily life with a touch of authenticity and charm.<br><br> Whether you're looking to add a touch of warmth to your home, give a meaningful and unique gift, or simply treat yourself, join us and discover a new way to appreciate beauty and authenticity in everyday objects."
     checkout:
       phone: "Phone (optional)"
       contact: "Contact"

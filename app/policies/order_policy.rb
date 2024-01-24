@@ -26,6 +26,10 @@ class OrderPolicy < ApplicationPolicy
     true
   end
 
+  def shipped?
+    user.admin?
+  end
+
   def permitted_attributes
     %i[]
   end

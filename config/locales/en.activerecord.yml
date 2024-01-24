@@ -20,6 +20,13 @@ en:
         net_amount_due_money: Total money
         receipt_number: Receipt number
         receipt_url: receipt link
+        shipping_date: Shipping date
+        shipping_status: Shipping Status
+        shipping_status_list:
+          pending: Pending
+          processing: Processing
+          shipped: Shipped
+          completed: Completed
       user:
         first_name: First Name
         last_name: Last Name

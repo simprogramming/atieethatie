@@ -82,6 +82,7 @@ class CartsController < ApplicationController
   def render_payment_response
     if @order.payment_id.present?
       InvoiceMailer.with(order: @order).invoice_email_customer.deliver_now
+      @order.update!(shipping_status: "pending")
       render json: { success: true, message: "Payment processed successfully.", payment_id: @order.payment_id }, status: :ok
     else
       render json: { success: false, message: "Payment failed." }, status: :unprocessable_entity

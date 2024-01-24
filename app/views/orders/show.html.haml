@@ -21,13 +21,17 @@
   %dd.col-sm-9= link_to order.receipt_url, order.receipt_url, target: '_blank'
   %dt.col-sm-3= model_class.human_attribute_name :receipt_number
   %dd.col-sm-9= order.receipt_number
+  %dt.col-sm-3= model_class.human_attribute_name :shipping_status
+  %dd.col-sm-9= order.translated_shipping_status
+  %dt.col-sm-3= model_class.human_attribute_name :shipping_date
+  %dd.col-sm-9= order.shipping_date
   %dt.col-sm-3= t(".shipping_address")
   %dd.col-sm-9= order.shipping_address&.formatted_address
   %dt.col-sm-3= t(".billing_address")
   %dd.col-sm-9= order.billing_address.present? ? order.billing_address.formatted_address : t(".same_address")
 
 
-%b= model_class.model_name.human(count: 2)
+%b= model_class.model_name.human(count: 1)
 
 %table.table.table-striped
   %thead
@@ -47,7 +51,13 @@
         %td= order_item.catalog_item_variation.size
         %td= order_item.catalog_item_variation.translated_color
         %td= order_item.quantity
+        
 - if policy(order).index?
   = link_to orders_url, class: "btn btn-outline-secondary mx-1" do
     %i.fa-solid.fa-chevron-left
     = t('.back', :default => t("helpers.links.back"))
+
+- if policy(order).shipped? && !order.completed? && !order.shipping_status.blank?
+  = link_to shipped_order_url(order), data: { "turbo-method": :put  }, class: "btn btn-warning mx-1" do
+    %i.fa-solid.fa-truck-fast
+    = order.shipping_step

@@ -12,6 +12,10 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def shipping_fee
-    (order_items.sum(&:quantity) * 3) + 8
+    if order_items.sum(&:quantity) == 1
+      8
+    else
+      ((order_items.sum(&:quantity) - 1) * 3) + 8
+    end
   end
 end

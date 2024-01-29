@@ -42,8 +42,4 @@ Rails.application.routes.draw do
   root "sites#home"
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-
-  constraints(host: /^atiehatie.com/) do
-    match "/(*path)" => redirect { |params, req| "https://www.atiehatie.com/#{params[:path]}" }, via: [:get, :post]
-  end
 end

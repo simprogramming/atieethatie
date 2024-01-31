@@ -2,7 +2,6 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Atie & Hatie
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
@@ -12,6 +11,7 @@
     = render "layouts/shared/gmaps_header"
     = render "layouts/shared/sdk_header"
     = render "layouts/shared/favicon"
+    = render "layouts/shared/meta_tags"
     = favicon_link_tag
   %body.body-web
     = render "layouts/shared/navbar"

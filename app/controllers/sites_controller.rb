@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   before_action -> { authorize :sites }
   before_action :set_product, only: :product
 
-  add_controller_helpers :catalog_item_variations, only: :products
+  add_controller_helpers :catalog_item_variations, helpers: %i[search sort], only: :products
   def home
     @catalog_item_variations = CatalogItemVariation.available.sample(5)
   end

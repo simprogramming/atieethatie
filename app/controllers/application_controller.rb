@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   include LocaleHelper
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
   layout :resolve_layout
 
   private

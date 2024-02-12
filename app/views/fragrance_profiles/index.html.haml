@@ -20,7 +20,7 @@
   %tbody
     - fragrance_profiles.each do |fragrance_profile|
       %tr
-        %td= link_to fragrance_profile.name_fr, fragrance_profile_url(fragrance_profile)
+        %td= link_to fragrance_profile.name_fr, fragrance_profile_path(fragrance_profile)
         %td= fragrance_profile.name_en
 
         %td.text-nowrap

@@ -18,7 +18,7 @@
   %tbody
     - orders.each do |order|
       %tr
-        %td= link_to (order.email || order.session_id), order_url(order)
+        %td= link_to (order.email || order.session_id), order_path(order)
         %td= order.translated_shipping_status
         %td
           - if order.order_items.sum(&:quantity).positive?

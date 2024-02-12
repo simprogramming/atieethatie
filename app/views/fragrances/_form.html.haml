@@ -8,4 +8,4 @@
       = f.association :fragrance_profile, collection: policy_scope(FragranceProfile).order(:name_fr).map { |fragrance_profile| [fragrance_profile.name_fr, fragrance_profile.id] }
 
   = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success my-3"
-  = link_to t('.cancel', default: t("helpers.links.cancel")), fragrances_url, class: "btn btn-outline-secondary"
+  = link_to t('.cancel', default: t("helpers.links.cancel")), fragrances_path, class: "btn btn-outline-secondary"

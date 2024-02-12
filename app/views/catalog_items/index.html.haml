@@ -36,7 +36,7 @@
 
         %td.text-nowrap
           - if policy(catalog_item).edit?
-            = link_to edit_catalog_item_url(catalog_item), class: "btn btn-primary btn-sm mx-1" do
+            = link_to edit_catalog_item_path(catalog_item), class: "btn btn-primary btn-sm mx-1" do
               %i.fa-solid.fa-pen
           - if policy(catalog_item).destroy?
             = link_to catalog_item, class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do

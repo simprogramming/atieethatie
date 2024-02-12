@@ -8,7 +8,7 @@
       %i.fa-solid.fa-rotate
       = "Sync with Square"
   - if policy(Category).new?
-    = link_to new_category_url, class: "btn btn-outline-secondary" do
+    = link_to new_category_path, class: "btn btn-outline-secondary" do
       %i.fa-solid.fa-plus
       = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
 
@@ -30,7 +30,7 @@
 
         %td.text-nowrap
           - if policy(category).edit?
-            = link_to edit_category_url(category), class: "btn btn-primary btn-sm mx-1" do
+            = link_to edit_category_path(category), class: "btn btn-primary btn-sm mx-1" do
               %i.fa-solid.fa-pen
           - if policy(category).destroy?
             = link_to category, class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do

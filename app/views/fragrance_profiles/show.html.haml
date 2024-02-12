@@ -11,11 +11,11 @@
 
 
 - if policy(fragrance_profile).index?
-  = link_to fragrance_profiles_url, class: "btn btn-outline-secondary mx-1" do
+  = link_to fragrance_profiles_path, class: "btn btn-outline-secondary mx-1" do
     %i.fa-solid.fa-chevron-left
     = t('.back', :default => t("helpers.links.back"))
 
 - if policy(fragrance_profile).edit?
-  = link_to edit_fragrance_profile_url(@fragrance_profile), class: "btn btn-primary mx-1" do
+  = link_to edit_fragrance_profile_path(@fragrance_profile), class: "btn btn-primary mx-1" do
     %i.fa-solid.fa-edit
     = t('.edit', :default => t("helpers.links.edit"))

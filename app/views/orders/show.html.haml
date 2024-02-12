@@ -53,11 +53,11 @@
         %td= order_item.quantity
         
 - if policy(order).index?
-  = link_to orders_url, class: "btn btn-outline-secondary mx-1" do
+  = link_to orders_path, class: "btn btn-outline-secondary mx-1" do
     %i.fa-solid.fa-chevron-left
     = t('.back', :default => t("helpers.links.back"))
 
 - if policy(order).shipped? && !order.completed? && !order.shipping_status.blank?
-  = link_to shipped_order_url(order), data: { "turbo-method": :put  }, class: "btn btn-warning mx-1" do
+  = link_to shipped_order_path(order), data: { "turbo-method": :put  }, class: "btn btn-warning mx-1" do
     %i.fa-solid.fa-truck-fast
     = order.shipping_step

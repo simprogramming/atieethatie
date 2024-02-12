@@ -4,7 +4,7 @@
 
 - content_for :title_actions do
   - if policy(FragranceProfile).new?
-    = link_to new_fragrance_profile_url, class: "btn btn-outline-secondary" do
+    = link_to new_fragrance_profile_path, class: "btn btn-outline-secondary" do
       %i.fa-solid.fa-plus
       = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
 
@@ -25,7 +25,7 @@
 
         %td.text-nowrap
           - if policy(fragrance_profile).edit?
-            = link_to edit_fragrance_profile_url(fragrance_profile), class: "btn btn-primary btn-sm mx-1" do
+            = link_to edit_fragrance_profile_path(fragrance_profile), class: "btn btn-primary btn-sm mx-1" do
               %i.fa-solid.fa-pen
           - if policy(fragrance_profile).destroy?
             = link_to fragrance_profile, class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do

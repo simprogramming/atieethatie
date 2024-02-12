@@ -28,6 +28,6 @@
     = t('.back', :default => t("helpers.links.back"))
 
 - if policy(catalog_item).edit?
-  = link_to edit_catalog_item_url(@catalog_item), class: "btn btn-primary mx-1" do
+  = link_to edit_catalog_item_path(@catalog_item), class: "btn btn-primary mx-1" do
     %i.fa-solid.fa-edit
     = t('.edit', :default => t("helpers.links.edit"))

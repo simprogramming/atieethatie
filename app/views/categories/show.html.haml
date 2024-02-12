@@ -16,6 +16,6 @@
     = t('.back', :default => t("helpers.links.back"))
 
 - if policy(category).edit?
-  = link_to edit_category_url(@category), class: "btn btn-primary mx-1" do
+  = link_to edit_category_path(@category), class: "btn btn-primary mx-1" do
     %i.fa-solid.fa-edit
     = t('.edit', :default => t("helpers.links.edit"))

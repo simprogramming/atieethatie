@@ -27,7 +27,7 @@
   %tbody
     - catalog_items.each do |catalog_item|
       %tr
-        %td= link_to catalog_item.name_fr, catalog_item_url(catalog_item)
+        %td= link_to catalog_item.name_fr, catalog_item_path(catalog_item)
         %td= catalog_item.name_en
         %td= catalog_item.square_id
         %td= catalog_item.category.name_fr

@@ -21,7 +21,7 @@
   %tbody
     - fragrances.each do |fragrance|
       %tr
-        %td= link_to fragrance.name_fr, fragrance_url(fragrance)
+        %td= link_to fragrance.name_fr, fragrance_path(fragrance)
         %td= fragrance.name_en
         %td= fragrance.fragrance_profile.name
 

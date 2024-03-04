@@ -16,7 +16,7 @@ class OrderDecorator < ApplicationDecorator
       order_item.quantity * order_item.catalog_item_variation.price
     end
 
-    return 0 if subtotal > 50
+    return 0 if subtotal >= 50
 
     total_quantity = order_items.sum(&:quantity)
     if total_quantity > 1

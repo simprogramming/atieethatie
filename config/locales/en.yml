@@ -92,6 +92,7 @@ en:
     home:
       our_partners: "Our Partners"
       convince_them: "Welcome to the world of Atie and Hatie creations, where creativity, quality, and craftsmanship come together to offer you a unique experience. Each of our handmade products is the result of passionate work, designed to enrich your daily life with a touch of authenticity and charm.<br><br> Whether you're looking to add a touch of warmth to your home, give a meaningful and unique gift, or simply treat yourself, join us and discover a new way to appreciate beauty and authenticity in everyday objects."
+  carts:
     checkout:
       phone: "Phone (optional)"
       contact: "Contact"
@@ -103,6 +104,7 @@ en:
       subtotal: "Subtotal"
       shipping: "Shipping"
       total: "Total"
+      free_shipping: "Free shipping on orders of $50 and more"
     cart_page:
       your_cart: "Your cart"
       empty_cart: "Your cart is empty"
@@ -127,6 +129,3 @@ en:
     invoice_email_customer:
       subject: "We are preparing your order!"
       greeting: "Thank you for your purchases, %{name}, this email confirms that we have received your order. <br><br>Our team is processing the shipment as quickly as possible.<br><br>If you have any burning questions, please do not hesitate to contact us.<br><br> Thank you and have a great day!"
-  carts:
-    checkout:
-      free_shipping: "Free shipping on orders of $50 and more"

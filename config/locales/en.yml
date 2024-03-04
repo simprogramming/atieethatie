@@ -127,3 +127,6 @@ en:
     invoice_email_customer:
       subject: "We are preparing your order!"
       greeting: "Thank you for your purchases, %{name}, this email confirms that we have received your order. <br><br>Our team is processing the shipment as quickly as possible.<br><br>If you have any burning questions, please do not hesitate to contact us.<br><br> Thank you and have a great day!"
+  carts:
+    checkout:
+      free_shipping: "Free shipping on orders of $50 and more"

@@ -97,6 +97,9 @@
 
 
     .col-12.col-md-6.bg-light
+      .row
+        .col-12.text-center.pt-5
+          .h4= t(".free_shipping")
       .container.mt-5.p-5{style: "position: sticky; top: 90px;"}
         - subtotal = 0
         - @order.order_items.order(:created_at).each do |order_item|

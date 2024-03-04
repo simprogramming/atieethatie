@@ -104,6 +104,7 @@ fr:
       subtotal: "Sous-total"
       shipping: "Livraison"
       total: "Total"
+      free_shipping: "Livraison gratuite sur les commandes de 50$ et plus"
     cart_page:
       your_cart: "Votre panier"
       empty_cart: "Votre panier est vide"

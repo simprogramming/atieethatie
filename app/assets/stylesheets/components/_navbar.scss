@@ -1,29 +1,4 @@
 .navbar {
-  .top-banner {
-    width: 100%;
-    background-color: black; /* Light grey background */
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 14px;
-    position: relative;
-  }
-  
-  .top-banner .btn-close {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white!important;
-    font-size: 14px;
-    background: none;
-    border: none;
-  }
-  
-  .navbar-white {
-    background-color: white !important;
-  }
-  
   transition: background-color .7s; /* Smooth transition for the color change */
   &.navbar-white {
     background-color: #fff; /* Set the background color to white */

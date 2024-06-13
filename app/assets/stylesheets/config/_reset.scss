@@ -20,11 +20,12 @@ html {
   display: flex;
   flex-direction: column;
 
-  background: linear-gradient(to right, rgb(251,244,236), rgb(198,184,177));
+  background: linear-gradient(to right, #ffffff, #f0f0f0, #d9d9d9);
   color: var(--color-text-body);
   line-height: var(--line-height-body);
   font-family: var(--font-family-sans);
 }
+
 
 img,
 picture,
@@ -48,6 +49,7 @@ h5,
 h6 {
   color: var(--color-text-header);
   line-height: var(--line-height-headers);
+  font-family: var(--font-family-serif);
 }
 
 h1 {

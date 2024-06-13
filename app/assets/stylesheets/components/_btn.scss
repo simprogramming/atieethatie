@@ -16,14 +16,14 @@
     // Modifiers will go there
     &--primary {
       color: black;
-      background-color: rgb(223,220,212);
+      background-color: #f0f0f0;
       transition: background-color 0.3s, color 0.3s;
-
+    
       &:hover,
       &:focus,
       &:focus-within,
       &:active {
-        background-color: darken(rgb(223,220,212), 15%); // Assombrit le fond un peu plus que pour le hover
+        background-color: darken(#f0f0f0, 15%); // Darken the background a bit more for hover
       }
     }
     &--success {

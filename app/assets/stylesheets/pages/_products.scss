@@ -19,7 +19,6 @@
     }
 
     .logo p {
-      font-family: cursive;
       margin-left: 10px; /* Adjust space as needed */
       font-size: 1.2em; /* Larger font size for visibility */
       color: #333; /* A modern, neutral color */
@@ -43,7 +42,6 @@
     }
 
     .logo p {
-      font-family: cursive;
       margin-left: 10px; /* Adjust space as needed */
       font-size: 1.2em; /* Larger font size for visibility */
       color: #333; /* A modern, neutral color */
@@ -57,7 +55,8 @@
 }
 
 #products_page {
-  background: linear-gradient(to right, rgb(245,233,225), rgb(215,202,192));
+  background: linear-gradient(to right, #ffffff, #f0f0f0, #d9d9d9);
+
 
 
   #carouselExampleSlidesOnly {

@@ -18,7 +18,7 @@
       left: 0;
       right: 0;
       bottom: 65%; /* Le dégradé couvrira 50% de la hauteur totale du parent */
-      background: linear-gradient(to bottom, rgb(247,250,254) 0%,rgb(149, 132, 120) 100%);
+      background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 50%, #d9d9d9 100%);
       z-index: -1;
     }
     .container-show-page {
@@ -58,7 +58,7 @@
     .accordion-item {
       flex: 0 0 100%; /* Make accordion items take full width */
       max-width: 100%; /* Ensure the max width is also full */
-      background-color: rgba(235, 235, 235, 0.95);;
+      background-color: #f0f0f0;
       border: 1px solid #e7e7e7;
       border-radius: 5px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -75,7 +75,7 @@
       left: 0;
       right: 0;
       bottom: 60%; /* Le dégradé couvrira 50% de la hauteur totale du parent */
-      background: linear-gradient(to bottom, rgb(247,250,254) 0%,rgb(149, 132, 120) 100%);
+      background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 50%, #d9d9d9 100%);
       z-index: -1;
     }
     .container-show-page {
@@ -118,7 +118,7 @@
     .accordion-item {
       flex: 0 0 calc(50% - 0.5rem); /* Do not grow, do not shrink, initial width */
       max-width: calc(50% - 0.5rem); /* Set maximum width to half of the container minus gap */
-      background-color: rgba(235, 235, 235, 0.95);;
+      background-color: #f0f0f0;
       border: 1px solid #e7e7e7;
       border-radius: 5px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -252,7 +252,7 @@
     color: #666; /* Lighter text color for the body */
     padding: 1rem; /* Consistent padding around the content */
     text-align: left; /* Align text to the left for readability */
-    background-color: #f8f9fa; /* Slightly different background to distinguish from the header */
+    background-color: #d9d9d9; /* Slightly different background to distinguish from the header */
     border-top: 1px solid #e7e7e7; /* Subtle separation from the header */
   }
 }

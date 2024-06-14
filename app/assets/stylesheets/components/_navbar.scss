@@ -1,5 +1,6 @@
 .navbar {
-  transition: background-color .7s; /* Smooth transition for the color change */
+  transition: background-color 0.3s ease, padding 0.3s ease;
+  
   &.navbar-white {
     background-color: #fff; /* Set the background color to white */
 
@@ -10,15 +11,16 @@
       }
     }
   }
-  .nav-link{
-    color: rgb(46,37,28);
+  
+  .nav-link {
+    color: rgb(46, 37, 28);
     text-transform: uppercase;
   }
 
   .navbar-brand img {
-    height: auto; /* Permet de maintenir le ratio de l'image */
-    width: auto; /* Vous pouvez spécifier une largeur si nécessaire, ex. 100px */
-    max-height: 75px; /* Ajustez la hauteur maximale pour l'aligner avec votre texte de la barre de navigation */
+    height: auto; /* Maintain the image ratio */
+    width: auto; /* Specify a width if necessary, e.g., 100px */
+    max-height: 75px; /* Adjust max height to align with your navbar text */
   }
 
   /* Style the dropdown itself */
@@ -49,5 +51,4 @@
   .nav-item.dropdown.show .dropdown-menu {
     display: block;
   }
-
 }

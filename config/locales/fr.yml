@@ -32,6 +32,7 @@
 fr:
   hello: "Salut world"
   app_name: "Atie et Hatie"
+  free_shipping: Livraison gratuite sur les commandes de 50$ et plus.
   helpers:
     filters:
       active: Activé

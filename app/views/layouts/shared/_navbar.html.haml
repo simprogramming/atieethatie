@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand-lg.px-4.fixed-top
+%nav.navbar.navbar-expand-lg.px-4.fixed-top.py-5
   = link_to root_path do
     .navbar-brand.ps-md-5.ms-md-5= image_tag "LogoAtie_Hatie_transparent_bg.png"
   %button.navbar-toggler{type: "button", 'data-bs-toggle': "collapse", 'data-bs-target': "#navbarNav", 'aria-controls': "navbarNav", 'aria-expanded': "false", 'aria-label': "Toggle navigation"}
@@ -8,25 +8,23 @@
       = link_to root_path, class: "text-decoration-none" do
         %li.nav-item.px-md-3
           .nav-link= t(".home")
-      = link_to products_path, class: "text-decoration-none" do
+
+      = link_to about_path, class: "text-decoration-none" do
+        %li.nav-item.px-md-3
+          .nav-link= t(".about")
+
+      = link_to products_path, class: "text-decoration-none", data: { turbo: "false" } do
         %li.nav-item.px-md-3
           .nav-link= t(".our_catalog")
+
       %li.nav-item.dropdown.px-md-3
         %a.nav-link.dropdown-toggle{href: "#", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded': "false"}
           = Fragrance.model_name.human count: 2
         %ul.dropdown-menu
           - FragranceProfile.joins(catalog_items: :catalog_item_variations).where(catalog_item_variations: { available: true }).distinct.each do |fragrance|
             %li
-              = link_to products_path(fragrance_profile_ids: fragrance.id), class: 'dropdown-item' do
+              = link_to products_path(fragrance_profile_ids: fragrance.id), class: 'dropdown-item', data: { turbo: "false" } do
                 = fragrance.name
-      -# %li.nav-item.dropdown.px-md-3
-        %a.nav-link.dropdown-toggle{href: "#", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded': "false"}
-          = Category.model_name.human count: 2
-        %ul.dropdown-menu
-          - Category.joins(catalog_items: :catalog_item_variations).where(catalog_item_variations: { available: true }).distinct.each do |category|
-            %li
-              = link_to products_path(category_ids: category.id), class: 'dropdown-item' do
-                = category.name
 
       = link_to change_locale_path, data: { "turbo-method": "put" }, class: "text-decoration-none" do
         %li.nav-item.px-md-3

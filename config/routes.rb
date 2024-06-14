@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   controller :sites do
     get :products, action: :products, as: :products
     get "product/:id", action: :product, as: :product
+    get :about, action: :about, as: :about
   end
   root "sites#home"
 

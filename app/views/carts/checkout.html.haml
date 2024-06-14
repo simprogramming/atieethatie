@@ -1,6 +1,8 @@
 .container-fluid.pt-5.mt-5
   .row
     .col-12.col-md-6.bg-white
+      .col-12.text-center.pt-5
+        .h4= t(".free_shipping")
       .container.p-sm-5
         .my-3
           %h2.mt-5= t(".contact")
@@ -99,7 +101,8 @@
     .col-12.col-md-6.bg-light
       .row
         .col-12.text-center.pt-5
-          .h4= t(".free_shipping")
+          .h4.text-uppercase= t(".return_policy_title")
+          .p= t(".return_policy")
       .container.mt-5.p-5{style: "position: sticky; top: 90px;"}
         - subtotal = 0
         - @order.order_items.order(:created_at).each do |order_item|

@@ -14,6 +14,8 @@
     = render "layouts/shared/meta_tags"
     = favicon_link_tag
   %body.body-web
+    .bg-black.text-sm.text-white.text-center.py-2
+      %p.mb-0= t("free_shipping")
     = render "layouts/shared/navbar"
 
     - if flash[:notice].present?

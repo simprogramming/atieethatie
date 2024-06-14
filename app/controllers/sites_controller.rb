@@ -8,6 +8,9 @@ class SitesController < ApplicationController
     @catalog_item_variations = CatalogItemVariation.available.sample(5)
   end
 
+  def about
+  end
+
   def products
     products_in_store
   end

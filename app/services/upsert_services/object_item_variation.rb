@@ -44,7 +44,7 @@ module UpsertServices
         name: item_variation.name_fr,
         pricing_type: "FIXED_PRICING",
         price_money: {
-          amount: (item_variation.price.to_i * 100),
+          amount: (item_variation.price.to_f * 100).to_i,
           currency: "CAD"
         }
       }

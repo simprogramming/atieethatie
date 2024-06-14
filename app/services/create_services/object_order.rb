@@ -11,7 +11,8 @@ module CreateServices
     end
 
     def run!
-      handle_order_creation_response(create_square_order)
+      order_response = create_square_order
+      handle_order_creation_response(order_response)
     end
 
     private
@@ -57,10 +58,10 @@ module CreateServices
       {
         name: "Shipping Fee",
         amount_money: {
-          amount: @order.decorate.shipping_fee * 100, # 12$ en centimes -> 1200
+          amount: (@order.decorate.shipping_fee * 100).to_i, # Ensure integer value for amount in cents
           currency: "CAD"
         },
-        calculation_phase: "SUBTOTAL_PHASE"
+        calculation_phase: "SUBTOTAL_PHASE" # Ensure shipping fee is included in subtotal phase
       }
     end
 
@@ -75,8 +76,17 @@ module CreateServices
         email: shipping_address[:email]
       )
       @order.save!
-      CreateServices::ObjectPayment.new(order: @order, token: token, verification_token: verification_token,
-                                        shipping_address: shipping_address, billing_address: billing_address).run!
+      process_payment
+    end
+
+    def process_payment
+      CreateServices::ObjectPayment.new(
+        order: @order,
+        token: token,
+        verification_token: verification_token,
+        shipping_address: shipping_address,
+        billing_address: billing_address
+      ).run!
     end
   end
 end

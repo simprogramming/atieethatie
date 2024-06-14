@@ -1,4 +1,4 @@
 db: docker-compose up
 web: bin/rails server -p 3000
-js: yarn build --watch
+js: node esbuild.watch.js
 css: yarn build:css --watch

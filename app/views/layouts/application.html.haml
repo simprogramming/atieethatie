@@ -1,18 +1,19 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type" }/
+    %meta{ content: "width=device-width, initial-scale=1", name: "viewport" }/
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
-    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css", :rel => "stylesheet"}
+    %link{ href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css", rel: "stylesheet" }
     = render "layouts/shared/gmaps_header"
     = render "layouts/shared/sdk_header"
     = render "layouts/shared/favicon"
     = render "layouts/shared/meta_tags"
     = favicon_link_tag
+
   %body.body-web
     .bg-black.text-sm.text-white.text-center.py-2
       %p.mb-0= t("free_shipping")
@@ -31,3 +32,5 @@
     = yield
 
     = render "layouts/shared/footer"
+
+    %div{ "data-controller": "firebase-analytics" }

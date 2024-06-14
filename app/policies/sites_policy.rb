@@ -10,4 +10,8 @@ class SitesPolicy < ApplicationPolicy
   def product?
     true
   end
+
+  def about?
+    true
+  end
 end

@@ -79,6 +79,7 @@ fr:
         our_catalog: "Notre Catalogue"
         admin: "Admin"
         home: "Accueil"
+        about: "À Propos"
   sites:
     components:
       store_filter:
@@ -93,12 +94,20 @@ fr:
     home:
       our_partners: "Nos Partenaires"
       convince_them: "Bienvenue dans l'univers des créations Atie et Hatie, où la créativité, la qualité et le savoir-faire se rejoignent pour vous offrir une expérience unique. Chacun de nos produits faits à la main est le fruit d'un travail passionné, conçu pour enrichir votre quotidien avec une touche d'authenticité et de charme.<br><br>  Que vous cherchiez à ajouter une touche de chaleur à votre foyer, à offrir un cadeau unique chargé de sens, ou simplement à vous faire plaisir. Rejoignez-nous et découvrez une nouvelle manière d'apprécier la beauté et l'authenticité dans les objets du quotidien.<br><br> "
+    about:
+      about_us: "À Propos De Nous"
+      about_title: "Nous sommes les sœurs Atie & Hatie"
+      text_one: "Nous sommes les sœurs Atie & Hatie, un surnom affectueux donné par nos enfants dès leur plus jeune âge. Après avoir passé plusieurs années dans le monde corporatif, nous avons décidé de développer notre esprit entrepreneurial en combinant nos talents et notre passion. Chez Créations Atie & Hatie, nous accordons une grande importance à la préservation de la nature. Inspirées par cette éthique, nous avons lancé notre entreprise avec pour mission de proposer des produits qui respectent à la fois votre bien-être et celui de la planète. En combinant nos compétences et notre créativité, nous avons créé une gamme de produits qui reflètent nos valeurs et notre engagement envers l'environnement."
+      text_two: "Rejoignez-nous dans notre quête d'un monde plus durable et harmonieux en faisant l'expérience de nos produits. Entre autre, nos chandelles à la cire de soja écologique, de nos savons artisanaux et de nos diffuseurs de voiture. Chaque produit est fabriqué avec soin et amour, à la main."
+      text_three: "Merci pour votre soutien continu."
   carts:
     checkout:
       phone: "Téléphone (optionnel)"
       contact: "Contact"
       delivery: "Adresse de livraison"
       payment: "Paiement"
+      return_policy_title: "Politique de retour"
+      return_policy: "Notre politique de retour vous permet de retourner les produits dans les 30 jours suivant leur réception. Les articles doivent être inutilisés, dans leur emballage d'origine, et accompagnés du reçu. Les remboursements seront effectués sur le mode de paiement original."
       secure_payment: "Toutes les transactions sont sécurisées et encryptées."
       same_address: "Utiliser la même adresse de facturation que l'adresse de livraison"
       pay: "Payer"

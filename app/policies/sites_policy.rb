@@ -14,4 +14,8 @@ class SitesPolicy < ApplicationPolicy
   def about?
     true
   end
+
+  def policy_return?
+    true
+  end
 end

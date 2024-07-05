@@ -32,7 +32,7 @@
 fr:
   hello: "Salut world"
   app_name: "Atie et Hatie"
-  free_shipping: Livraison gratuite sur les commandes de 50$ et plus.
+  free_shipping: Livraison au Canada seulement.
   helpers:
     filters:
       active: Activé
@@ -75,7 +75,9 @@ fr:
       footer:
         follow_us_footer: "Rejoignez notre communauté et soyez les premiers à découvrir nos nouveautés, nos histoires et nos offres exclusives. Suivez-nous et illuminons ensemble chaque instant de notre quotidien."
         copyright: "© 2024 Les créations Atie et Hatie S.E.N.C. Tous droits réservés."
+        policy_return: "Politique de Retour"
       navbar:
+        contact_us: "Contactez-nous"
         our_catalog: "Notre Catalogue"
         admin: "Admin"
         home: "Accueil"
@@ -97,24 +99,34 @@ fr:
     about:
       about_us: "À Propos De Nous"
       about_title: "Nous sommes les sœurs Atie & Hatie"
-      text_one: "Nous sommes les sœurs Atie & Hatie, un surnom affectueux donné par nos enfants dès leur plus jeune âge. Après avoir passé plusieurs années dans le monde corporatif, nous avons décidé de développer notre esprit entrepreneurial en combinant nos talents et notre passion. Chez Créations Atie & Hatie, nous accordons une grande importance à la préservation de la nature. Inspirées par cette éthique, nous avons lancé notre entreprise avec pour mission de proposer des produits qui respectent à la fois votre bien-être et celui de la planète. En combinant nos compétences et notre créativité, nous avons créé une gamme de produits qui reflètent nos valeurs et notre engagement envers l'environnement."
+      text_one: "Chez Créations Atie & Hatie, nous voulons que vous soyez entièrement satisfait de votre achat. Si vous n'êtes pas satisfait de votre produit, nous avons une politique de retour de 30 jours, ce qui signifie que vous avez 30 jours après réception de votre article pour demander un retour/échange. Pour commencer ce processus, veuillez nous contacter à atiehatie@gmail.com. Une fois les 30 jours écoulés depuis la réception de votre commande, nous ne proposons malheureusement plus de remboursement ni d'échange."
       text_two: "Rejoignez-nous dans notre quête d'un monde plus durable et harmonieux en faisant l'expérience de nos produits. Entre autre, nos chandelles à la cire de soja écologique, de nos savons artisanaux et de nos diffuseurs de voiture. Chaque produit est fabriqué avec soin et amour, à la main."
       text_three: "Merci pour votre soutien continu."
+    policy_return:
+      policy_return: "Politique de Retour"
+      policy_return_title: "RETOURS + ÉCHANGES"
+      text_one: "Chez Créations Atie & Hatie, nous voulons que vous soyez entièrement satisfait de votre achat. Si vous n'êtes pas satisfait de votre produit, nous avons une politique de retour de 30 jours, ce qui signifie que vous avez 30 jours après réception de votre article pour demander un retour/échange. Pour commencer ce processus, veuillez nous contacter à atiehatie@gmail.com. Une fois les 30 jours écoulés depuis la réception de votre commande, nous ne proposons malheureusement plus de remboursement ni d'échange."
+      text_two: "Seuls les articles au prix régulier peuvent être remboursés ou échangés."
+      text_three: "Les commandes passées avec un code de réduction sont éligibles à l'échange uniquement."
+      text_four: "Les articles en solde sont des ventes finales."
+      text_five: "Veuillez noter que les frais d'expédition de retour sont à la charge du client - Nous recommandons de conserver une preuve d'envoi pour votre retour, au cas où nous ne recevrions pas le colis. Les frais d'expédition de la commande initiale ne sont pas remboursables. Pour être éligible à un remboursement, tous les articles doivent être retournés, non utilisés. Vous serez automatiquement remboursé sur votre mode de paiement d'origine dans un délai de 10 jours ouvrables. Veuillez noter que votre banque ou votre société de carte de crédit peut également prendre du temps pour traiter et afficher le remboursement."
+      text_six: "Dommages et problèmes"
+      text_seven: "Dommages / Problèmes - Si, dès réception de votre commande, vous constatez un dommage ou une erreur, veuillez nous contacter immédiatement à atiehatie@gmail.com afin que nous puissions évaluer le problème et le résoudre."
+      text_eight: "Si votre commande est arrivée endommagée, veuillez nous envoyer un e-mail dans les 48 heures suivant la réception de votre commande, accompagné de photos du dommage et d'une description du dommage. Veuillez signaler les produits endommagés dans les 48 heures et avant d'utiliser votre produit pour la première fois. Pour tous les retours, remboursements ou échanges, vous aurez besoin du reçu ou de la preuve d'achat."
+      text_nine: "Colis perdus"
+      text_ten: "Notre procédure standard pour les colis perdus nécessitera des investigations par le fournisseur d'expédition de la commande en question pour fournir des solutions. Cela inclut les commandes en transit et les commandes marquées comme livrées mais non reçues. Créations Atie & Hatie n'est pas responsable des réclamations refusées par les fournisseurs d'expédition."
+      text_eleven: "Note - Les bougies, savons et autres produits similaires peuvent ramollir ou fondre lors de l'expédition par temps chaud. Les produits qui deviennent fondus lorsqu'ils sont soumis à des températures élevées pendant de longues périodes nous ne pouvons être tenus responsables. Si les colis sont laissés dehors par temps chaud, les bougies et articles similaires pourraient potentiellement fondre et nous ne pouvons être tenus responsables de tels dommages."
   carts:
     checkout:
       phone: "Téléphone (optionnel)"
       contact: "Contact"
       delivery: "Adresse de livraison"
       payment: "Paiement"
-      return_policy_title: "Politique de retour"
-      return_policy: "Notre politique de retour vous permet de retourner les produits dans les 30 jours suivant leur réception. Les articles doivent être inutilisés, dans leur emballage d'origine, et accompagnés du reçu. Les remboursements seront effectués sur le mode de paiement original."
-      secure_payment: "Toutes les transactions sont sécurisées et encryptées."
       same_address: "Utiliser la même adresse de facturation que l'adresse de livraison"
       pay: "Payer"
       subtotal: "Sous-total"
       shipping: "Livraison"
       total: "Total"
-      free_shipping: "Livraison gratuite sur les commandes de 50$ et plus"
     cart_page:
       your_cart: "Votre panier"
       empty_cart: "Votre panier est vide"

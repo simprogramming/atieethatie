@@ -32,7 +32,7 @@
 en:
   hello: "Hello world"
   app_name: "Atie & Hatie"
-  free_shipping: "Free shipping on orders above $50"
+  free_shipping: "Shipping available only in Canada"
   helpers:
     filters:
       active: Enabled
@@ -75,7 +75,9 @@ en:
       footer:
         follow_us_footer: "Join our community and be the first to discover our new products, stories, and exclusive offers. Follow us and let's illuminate every moment of our daily life together."
         copyright: "© 2024 Les créations Atie et Hatie S.E.N.C. All rights reserved."
+        policy_return: "Return Policy"
       navbar:
+        contact_us: "Contact us"
         our_catalog: "Our Catalog"
         admin: "Admin"
         home: "Home"
@@ -100,21 +102,33 @@ en:
       text_one: "We are the sisters Atie & Hatie, an affectionate nickname given by our children from a young age. After spending several years in the corporate world, we decided to develop our entrepreneurial spirit by combining our talents and passion. At Créations Atie & Hatie, we place great importance on preserving nature. Inspired by this ethic, we launched our business with the mission of offering products that respect both your well-being and the planet. By combining our skills and creativity, we have created a range of products that reflect our values and commitment to the environment."
       text_two: "Join us in our quest for a more sustainable and harmonious world by experiencing our products. Among other things, our eco-friendly soy wax candles, handcrafted soaps, and car diffusers. Each product is made with care and love, by hand."
       text_three: "Thank you for your continued support."
+    policy_return:
+      policy_return: "Policy Return"
+      policy_return_title: "RETURNS + EXCHANGES"
+      text_one: "At Créations Atie & Hatie, we want you to be completely satisfied with your purchase. If you are not happy with your product, we have a 30-day return policy, which means you have 30 days after receiving your item to request a return/exchange. To start this process, please contact us at atiehatie@gmail.com. Unfortunately, once the 30 days have passed since you received your order, we can no longer offer a refund or exchange."
+      text_two: "Only regular-priced items can be refunded or exchanged."
+      text_three: "Orders placed with a discount code are eligible for exchange only."
+      text_four: "Sale items are final sales."
+      text_five: "Please note that return shipping costs are the responsibility of the customer. We recommend keeping proof of shipment for your return, in case we do not receive the package. The initial order's shipping costs are non-refundable. To be eligible for a refund, all items must be returned unused. You will be automatically refunded to your original payment method within 10 business days. Please note that your bank or credit card company may also take some time to process and post the refund."
+      text_six: "Damages and issues"
+      text_seven: "Damages / Issues - If, upon receiving your order, you notice any damage or error, please contact us immediately at atiehatie@gmail.com so we can assess the issue and resolve it."
+      text_eight: "If your order arrives damaged, please email us within 48 hours of receiving your order, including photos and a description of the damage. Please report damaged products within 48 hours and before using your product for the first time. For all returns, refunds, or exchanges, you will need the receipt or proof of purchase."
+      text_nine: "Lost Packages"
+      text_ten: "Our standard procedure for lost packages requires investigations by the shipping provider for the order in question to provide solutions. This includes orders in transit and orders marked as delivered but not received. Créations Atie & Hatie is not responsible for claims denied by shipping providers."
+      text_eleven: "Note - Candles, soaps, and other similar products may soften or melt during shipping in hot weather. We cannot be held responsible for products that melt when exposed to high temperatures for extended periods. If packages are left outside in hot weather, candles and similar items could potentially melt, and we cannot be held responsible for such damage."
+  
   carts:
     checkout:
       phone: "Phone (optional)"
       contact: "Contact"
       delivery: "Delivery address"
       payment: "Payment"
-      return_policy_title: "Return Policy"
-      return_policy: "Our return policy allows you to return products within 30 days of receipt. Items must be unused, in their original packaging, and accompanied by the receipt. Refunds will be issued to the original form of payment."
       secure_payment: "All transactions are secure and encrypted."
       same_address: "Use same address for billing as shipping address"
       pay: "Pay"
       subtotal: "Subtotal"
       shipping: "Shipping"
       total: "Total"
-      free_shipping: "Free shipping on orders of $50 and more"
     cart_page:
       your_cart: "Your cart"
       empty_cart: "Your cart is empty"

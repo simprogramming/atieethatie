@@ -12,17 +12,11 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def shipping_fee
-    subtotal = order_items.sum do |order_item|
-      order_item.quantity * order_item.catalog_item_variation.price
-    end
-
-    return 0 if subtotal >= 50
-
     total_quantity = order_items.sum(&:quantity)
     if total_quantity > 1
-      ((total_quantity - 1) * 3) + 8
+      ((total_quantity - 1) * 3) + 10
     else
-      8
+      10
     end
   end
 end

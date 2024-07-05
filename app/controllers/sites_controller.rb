@@ -11,6 +11,9 @@ class SitesController < ApplicationController
   def about
   end
 
+  def policy_return
+  end
+
   def products
     products_in_store
   end

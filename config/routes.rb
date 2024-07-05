@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     get :products, action: :products, as: :products
     get "product/:id", action: :product, as: :product
     get :about, action: :about, as: :about
+    get :policy_return, action: :policy_return, as: :policy_return
   end
   root "sites#home"
 

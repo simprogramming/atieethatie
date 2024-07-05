@@ -10,12 +10,13 @@
 
 // Styles spécifiques pour mobile
 @include media(mobile) {
-  .banner-image {
-    margin-top: 7rem; // Réduit pour mobile
+  #carouselExampleSlidesOnly2 .carousel-inner .carousel-item img {
+    margin-top: 100px;
     width: 100%;
-    height: auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    height: auto; /* S'assure que la hauteur soit proportionnelle à la largeur */
+    max-height: 80vh; /* La hauteur maximale que vous souhaitez pour votre bannière */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée légère pour donner du relief */
+    border-radius: 2px; /* Bords arrondis pour un look moderne */
   }
 
   .logo-image {
@@ -143,11 +144,11 @@
 
 // Styles spécifiques pour tablette et desktop
 @include media(tabletAndUp) {
-  .banner-image {
+  #carouselExampleSlidesOnly2 .carousel-inner .carousel-item img {
     margin-top: 100px;
     width: 100%;
     height: auto; /* S'assure que la hauteur soit proportionnelle à la largeur */
-    max-height: 450px; /* La hauteur maximale que vous souhaitez pour votre bannière */
+    max-height: 80vh; /* La hauteur maximale que vous souhaitez pour votre bannière */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée légère pour donner du relief */
     border-radius: 8px; /* Bords arrondis pour un look moderne */
   }

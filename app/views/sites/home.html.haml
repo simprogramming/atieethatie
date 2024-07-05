@@ -1,4 +1,18 @@
-= image_tag "banner1.png", class: 'banner-image'
+#carouselExampleSlidesOnly2.carousel.slide{"data-bs-ride" => "carousel"}
+  .carousel-inner
+    .carousel-item.active{"data-bs-interval" => "4000"}
+      = image_tag "banner-home.jpg", class: 'd-block w-100'
+    .carousel-item{"data-bs-interval" => "4000"}
+      = image_tag "banner-home1.jpg", class: 'd-block w-100'
+    .carousel-item{"data-bs-interval" => "4000"}
+      = image_tag "banner-home2.jpg", class: 'd-block w-100'
+    .carousel-item{"data-bs-interval" => "4000"}
+      = image_tag "banner-home3.jpg", class: 'd-block w-100'
+    .carousel-item{"data-bs-interval" => "4000"}
+      = image_tag "banner-home4.jpg", class: 'd-block w-100'
+    .carousel-item{"data-bs-interval" => "4000"}
+      = image_tag "banner-home5.jpg", class: 'd-block w-100'
+
 
 .intro-section
   = image_tag 'LogoAtie_Hatie_transparent_bg.png', alt: '', class: "img-fluid logo-image logo-image--visible"
@@ -26,5 +40,7 @@
     %div.logos-container.pb-3
       %div.logo-item
         = image_tag "logo1.png", alt: "Logo Boutique 1"
+      %div.logo-item
+        = image_tag "eco_logo.png", alt: "Logo Boutique 3"
       %div.logo-item
         = image_tag "logo2.png", alt: "Logo Boutique 2"

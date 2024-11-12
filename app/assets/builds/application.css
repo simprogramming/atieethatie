@@ -12616,7 +12616,7 @@ h4, .h4 {
 #products_page .cards-section .container .card-container .card .card-img-top {
   width: 100%;
   height: 260px;
-  object-fit: fill;
+  object-fit: fit;
 }
 #products_page .cards-section .container .card-container .card .card-body {
   padding: 1rem;

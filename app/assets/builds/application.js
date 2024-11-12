@@ -5,8 +5,8 @@
     return fn3 && (res = (0, fn3[__getOwnPropNames(fn3)[0]])(fn3 = 0)), res;
   };
   var __export = (target, all) => {
-    for (var name5 in all)
-      __defProp(target, name5, { get: all[name5], enumerable: true });
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
   };
 
   // node_modules/@rails/actioncable/src/adapters.js
@@ -575,8 +575,8 @@
   function createConsumer(url = getConfig("url") || internal_default.default_mount_path) {
     return new Consumer(url);
   }
-  function getConfig(name5) {
-    const element = document.head.querySelector(`meta[name='action-cable-${name5}']`);
+  function getConfig(name) {
+    const element = document.head.querySelector(`meta[name='action-cable-${name}']`);
     if (element) {
       return element.getAttribute("content");
     }
@@ -632,8 +632,8 @@
       submitter.type == "submit" || raise(TypeError, "The specified element is not a submit button");
       submitter.form == form || raise(DOMException, "The specified element is not owned by this form element", "NotFoundError");
     }
-    function raise(errorConstructor, message, name5) {
-      throw new errorConstructor("Failed to execute 'requestSubmit' on 'HTMLFormElement': " + message + ".", name5);
+    function raise(errorConstructor, message, name) {
+      throw new errorConstructor("Failed to execute 'requestSubmit' on 'HTMLFormElement': " + message + ".", name);
     }
   })(HTMLFormElement.prototype);
   var submittersByForm = /* @__PURE__ */ new WeakMap();
@@ -689,12 +689,12 @@
     reload() {
       return this.delegate.sourceURLReloaded();
     }
-    attributeChangedCallback(name5) {
-      if (name5 == "loading") {
+    attributeChangedCallback(name) {
+      if (name == "loading") {
         this.delegate.loadingStyleChanged();
-      } else if (name5 == "complete") {
+      } else if (name == "complete") {
         this.delegate.completeChanged();
-      } else if (name5 == "src") {
+      } else if (name == "src") {
         this.delegate.sourceURLChanged();
       } else {
         this.delegate.disabledChanged();
@@ -850,8 +850,8 @@
         return Promise.resolve(void 0);
       }
     }
-    header(name5) {
-      return this.response.headers.get(name5);
+    header(name) {
+      return this.response.headers.get(name);
     }
   };
   function activateScriptElement(element) {
@@ -870,8 +870,8 @@
     }
   }
   function copyElementAttributes(destinationElement, sourceElement) {
-    for (const { name: name5, value } of sourceElement.attributes) {
-      destinationElement.setAttribute(name5, value);
+    for (const { name, value } of sourceElement.attributes) {
+      destinationElement.setAttribute(name, value);
     }
   }
   function createDocumentFragment(html) {
@@ -984,18 +984,18 @@
     const action = getAttribute("data-turbo-action", ...elements);
     return isAction(action) ? action : null;
   }
-  function getMetaElement(name5) {
-    return document.querySelector(`meta[name="${name5}"]`);
+  function getMetaElement(name) {
+    return document.querySelector(`meta[name="${name}"]`);
   }
-  function getMetaContent(name5) {
-    const element = getMetaElement(name5);
+  function getMetaContent(name) {
+    const element = getMetaElement(name);
     return element && element.content;
   }
-  function setMetaContent(name5, content) {
-    let element = getMetaElement(name5);
+  function setMetaContent(name, content) {
+    let element = getMetaElement(name);
     if (!element) {
       element = document.createElement("meta");
-      element.setAttribute("name", name5);
+      element.setAttribute("name", name);
       document.head.appendChild(element);
     }
     element.setAttribute("content", content);
@@ -1257,8 +1257,8 @@
       return this.fetchRequest.isSafe;
     }
     get stringFormData() {
-      return [...this.formData].reduce((entries, [name5, value]) => {
-        return entries.concat(typeof value == "string" ? [[name5, value]] : []);
+      return [...this.formData].reduce((entries, [name, value]) => {
+        return entries.concat(typeof value == "string" ? [[name, value]] : []);
       }, []);
     }
     async start() {
@@ -1374,10 +1374,10 @@
   };
   function buildFormData(formElement, submitter) {
     const formData = new FormData(formElement);
-    const name5 = submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("name");
+    const name = submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("name");
     const value = submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("value");
-    if (name5) {
-      formData.append(name5, value || "");
+    if (name) {
+      formData.append(name, value || "");
     }
     return formData;
   }
@@ -1396,10 +1396,10 @@
   }
   function mergeFormDataEntries(url, entries) {
     const searchParams = new URLSearchParams();
-    for (const [name5, value] of entries) {
+    for (const [name, value] of entries) {
       if (value instanceof File)
         continue;
-      searchParams.append(name5, value);
+      searchParams.append(name, value);
     }
     url.search = searchParams.toString();
     return url;
@@ -1718,8 +1718,8 @@
     followedLinkToLocation(link, location2) {
       const form = document.createElement("form");
       const type = "hidden";
-      for (const [name5, value] of location2.searchParams) {
-        form.append(Object.assign(document.createElement("input"), { type, name: name5, value }));
+      for (const [name, value] of location2.searchParams) {
+        form.append(Object.assign(document.createElement("input"), { type, name, value }));
       }
       const action = Object.assign(location2, { search: "" });
       form.setAttribute("data-turbo", "true");
@@ -2071,14 +2071,14 @@
         }
       }, []);
     }
-    getMetaValue(name5) {
-      const element = this.findMetaElementByName(name5);
+    getMetaValue(name) {
+      const element = this.findMetaElementByName(name);
       return element ? element.getAttribute("content") : null;
     }
-    findMetaElementByName(name5) {
+    findMetaElementByName(name) {
       return Object.keys(this.detailsByOuterHTML).reduce((result, outerHTML) => {
         const { elements: [element] } = this.detailsByOuterHTML[outerHTML];
-        return elementIsMetaElementWithName(element, name5) ? element : result;
+        return elementIsMetaElementWithName(element, name) ? element : result;
       }, void 0);
     }
   };
@@ -2104,9 +2104,9 @@
     const tagName = element.localName;
     return tagName == "style" || tagName == "link" && element.getAttribute("rel") == "stylesheet";
   }
-  function elementIsMetaElementWithName(element, name5) {
+  function elementIsMetaElementWithName(element, name) {
     const tagName = element.localName;
-    return tagName == "meta" && element.getAttribute("name") == name5;
+    return tagName == "meta" && element.getAttribute("name") == name;
   }
   function elementWithoutNonce(element) {
     if (element.hasAttribute("nonce")) {
@@ -2164,8 +2164,8 @@
     get isVisitable() {
       return this.getSetting("visit-control") != "reload";
     }
-    getSetting(name5) {
-      return this.headSnapshot.getMetaValue(`turbo-${name5}`);
+    getSetting(name) {
+      return this.headSnapshot.getMetaValue(`turbo-${name}`);
     }
   };
   var TimingMetric;
@@ -4774,8 +4774,8 @@
     get params() {
       const params = {};
       const pattern = new RegExp(`^data-${this.identifier}-(.+)-param$`, "i");
-      for (const { name: name5, value } of Array.from(this.element.attributes)) {
-        const match = name5.match(pattern);
+      for (const { name, value } of Array.from(this.element.attributes)) {
+        const match = name.match(pattern);
         const key = match && match[1];
         if (key) {
           params[camelize(key)] = typecast(value);
@@ -4857,10 +4857,10 @@
       const { actionDescriptorFilters } = this.context.application;
       const { controller } = this.context;
       let passes = true;
-      for (const [name5, value] of Object.entries(this.eventOptions)) {
-        if (name5 in actionDescriptorFilters) {
-          const filter = actionDescriptorFilters[name5];
-          passes = passes && filter({ name: name5, value, event, element, controller });
+      for (const [name, value] of Object.entries(this.eventOptions)) {
+        if (name in actionDescriptorFilters) {
+          const filter = actionDescriptorFilters[name];
+          passes = passes && filter({ name, value, event, element, controller });
         } else {
           continue;
         }
@@ -5122,11 +5122,11 @@
     }
     get values() {
       const sets = Array.from(this.valuesByKey.values());
-      return sets.reduce((values, set2) => values.concat(Array.from(set2)), []);
+      return sets.reduce((values, set) => values.concat(Array.from(set)), []);
     }
     get size() {
       const sets = Array.from(this.valuesByKey.values());
-      return sets.reduce((size, set2) => size + set2.size, 0);
+      return sets.reduce((size, set) => size + set.size, 0);
     }
     add(key, value) {
       add(this.valuesByKey, key, value);
@@ -5143,7 +5143,7 @@
     }
     hasValue(value) {
       const sets = Array.from(this.valuesByKey.values());
-      return sets.some((set2) => set2.has(value));
+      return sets.some((set) => set.has(value));
     }
     getValuesForKey(key) {
       const values = this.valuesByKey.get(key);
@@ -5566,14 +5566,14 @@
         this.invokeChangedCallback(key, descriptor.writer(this.receiver[key]), descriptor.writer(descriptor.defaultValue));
       }
     }
-    stringMapValueChanged(value, name5, oldValue) {
-      const descriptor = this.valueDescriptorNameMap[name5];
+    stringMapValueChanged(value, name, oldValue) {
+      const descriptor = this.valueDescriptorNameMap[name];
       if (value === null)
         return;
       if (oldValue === null) {
         oldValue = descriptor.writer(descriptor.defaultValue);
       }
-      this.invokeChangedCallback(name5, value, oldValue);
+      this.invokeChangedCallback(name, value, oldValue);
     }
     stringMapKeyRemoved(key, attributeName, oldValue) {
       const descriptor = this.valueDescriptorNameMap[key];
@@ -5584,17 +5584,17 @@
       }
     }
     invokeChangedCallbacksForDefaultValues() {
-      for (const { key, name: name5, defaultValue, writer } of this.valueDescriptors) {
+      for (const { key, name, defaultValue, writer } of this.valueDescriptors) {
         if (defaultValue != void 0 && !this.controller.data.has(key)) {
-          this.invokeChangedCallback(name5, writer(defaultValue), void 0);
+          this.invokeChangedCallback(name, writer(defaultValue), void 0);
         }
       }
     }
-    invokeChangedCallback(name5, rawValue, rawOldValue) {
-      const changedMethodName = `${name5}Changed`;
+    invokeChangedCallback(name, rawValue, rawOldValue) {
+      const changedMethodName = `${name}Changed`;
       const changedMethod = this.receiver[changedMethodName];
       if (typeof changedMethod == "function") {
-        const descriptor = this.valueDescriptorNameMap[name5];
+        const descriptor = this.valueDescriptorNameMap[name];
         try {
           const value = descriptor.reader(rawValue);
           let oldValue = rawOldValue;
@@ -5647,32 +5647,32 @@
         delete this.tokenListObserver;
       }
     }
-    tokenMatched({ element, content: name5 }) {
+    tokenMatched({ element, content: name }) {
       if (this.scope.containsElement(element)) {
-        this.connectTarget(element, name5);
+        this.connectTarget(element, name);
       }
     }
-    tokenUnmatched({ element, content: name5 }) {
-      this.disconnectTarget(element, name5);
+    tokenUnmatched({ element, content: name }) {
+      this.disconnectTarget(element, name);
     }
-    connectTarget(element, name5) {
+    connectTarget(element, name) {
       var _a;
-      if (!this.targetsByName.has(name5, element)) {
-        this.targetsByName.add(name5, element);
-        (_a = this.tokenListObserver) === null || _a === void 0 ? void 0 : _a.pause(() => this.delegate.targetConnected(element, name5));
+      if (!this.targetsByName.has(name, element)) {
+        this.targetsByName.add(name, element);
+        (_a = this.tokenListObserver) === null || _a === void 0 ? void 0 : _a.pause(() => this.delegate.targetConnected(element, name));
       }
     }
-    disconnectTarget(element, name5) {
+    disconnectTarget(element, name) {
       var _a;
-      if (this.targetsByName.has(name5, element)) {
-        this.targetsByName.delete(name5, element);
-        (_a = this.tokenListObserver) === null || _a === void 0 ? void 0 : _a.pause(() => this.delegate.targetDisconnected(element, name5));
+      if (this.targetsByName.has(name, element)) {
+        this.targetsByName.delete(name, element);
+        (_a = this.tokenListObserver) === null || _a === void 0 ? void 0 : _a.pause(() => this.delegate.targetDisconnected(element, name));
       }
     }
     disconnectAllTargets() {
-      for (const name5 of this.targetsByName.keys) {
-        for (const element of this.targetsByName.getValuesForKey(name5)) {
-          this.disconnectTarget(element, name5);
+      for (const name of this.targetsByName.keys) {
+        for (const element of this.targetsByName.getValuesForKey(name)) {
+          this.disconnectTarget(element, name);
         }
       }
     }
@@ -5689,7 +5689,7 @@
   function readInheritableStaticArrayValues(constructor, propertyName) {
     const ancestors = getAncestorsForConstructor(constructor);
     return Array.from(ancestors.reduce((values, constructor2) => {
-      getOwnStaticArrayValues(constructor2, propertyName).forEach((name5) => values.add(name5));
+      getOwnStaticArrayValues(constructor2, propertyName).forEach((name) => values.add(name));
       return values;
     }, /* @__PURE__ */ new Set()));
   }
@@ -5967,17 +5967,17 @@
       detail = Object.assign({ identifier, controller, element }, detail);
       this.application.handleError(error2, `Error ${message}`, detail);
     }
-    targetConnected(element, name5) {
-      this.invokeControllerMethod(`${name5}TargetConnected`, element);
+    targetConnected(element, name) {
+      this.invokeControllerMethod(`${name}TargetConnected`, element);
     }
-    targetDisconnected(element, name5) {
-      this.invokeControllerMethod(`${name5}TargetDisconnected`, element);
+    targetDisconnected(element, name) {
+      this.invokeControllerMethod(`${name}TargetDisconnected`, element);
     }
-    outletConnected(outlet, element, name5) {
-      this.invokeControllerMethod(`${namespaceCamelize(name5)}OutletConnected`, outlet, element);
+    outletConnected(outlet, element, name) {
+      this.invokeControllerMethod(`${namespaceCamelize(name)}OutletConnected`, outlet, element);
     }
-    outletDisconnected(outlet, element, name5) {
-      this.invokeControllerMethod(`${namespaceCamelize(name5)}OutletDisconnected`, outlet, element);
+    outletDisconnected(outlet, element, name) {
+      this.invokeControllerMethod(`${namespaceCamelize(name)}OutletDisconnected`, outlet, element);
     }
     invokeControllerMethod(methodName, ...args) {
       const controller = this.controller;
@@ -6109,21 +6109,21 @@
     constructor(scope) {
       this.scope = scope;
     }
-    has(name5) {
-      return this.data.has(this.getDataKey(name5));
+    has(name) {
+      return this.data.has(this.getDataKey(name));
     }
-    get(name5) {
-      return this.getAll(name5)[0];
+    get(name) {
+      return this.getAll(name)[0];
     }
-    getAll(name5) {
-      const tokenString = this.data.get(this.getDataKey(name5)) || "";
+    getAll(name) {
+      const tokenString = this.data.get(this.getDataKey(name)) || "";
       return tokenize(tokenString);
     }
-    getAttributeName(name5) {
-      return this.data.getAttributeNameForKey(this.getDataKey(name5));
+    getAttributeName(name) {
+      return this.data.getAttributeNameForKey(this.getDataKey(name));
     }
-    getDataKey(name5) {
-      return `${name5}-class`;
+    getDataKey(name) {
+      return `${name}-class`;
     }
     get data() {
       return this.scope.data;
@@ -6140,22 +6140,22 @@
       return this.scope.identifier;
     }
     get(key) {
-      const name5 = this.getAttributeNameForKey(key);
-      return this.element.getAttribute(name5);
+      const name = this.getAttributeNameForKey(key);
+      return this.element.getAttribute(name);
     }
     set(key, value) {
-      const name5 = this.getAttributeNameForKey(key);
-      this.element.setAttribute(name5, value);
+      const name = this.getAttributeNameForKey(key);
+      this.element.setAttribute(name, value);
       return this.get(key);
     }
     has(key) {
-      const name5 = this.getAttributeNameForKey(key);
-      return this.element.hasAttribute(name5);
+      const name = this.getAttributeNameForKey(key);
+      return this.element.hasAttribute(name);
     }
     delete(key) {
       if (this.has(key)) {
-        const name5 = this.getAttributeNameForKey(key);
-        this.element.removeAttribute(name5);
+        const name = this.getAttributeNameForKey(key);
+        this.element.removeAttribute(name);
         return true;
       } else {
         return false;
@@ -6166,9 +6166,9 @@
     }
   };
   var Guide = class {
-    constructor(logger3) {
+    constructor(logger) {
       this.warnedKeysByObject = /* @__PURE__ */ new WeakMap();
-      this.logger = logger3;
+      this.logger = logger;
     }
     warn(object, key, message) {
       let warnedKeys = this.warnedKeysByObject.get(object);
@@ -6298,7 +6298,7 @@
     }
   };
   var Scope = class _Scope {
-    constructor(schema, element, identifier, logger3) {
+    constructor(schema, element, identifier, logger) {
       this.targets = new TargetSet(this);
       this.classes = new ClassMap(this);
       this.data = new DataMap(this);
@@ -6308,7 +6308,7 @@
       this.schema = schema;
       this.element = element;
       this.identifier = identifier;
-      this.guide = new Guide(logger3);
+      this.guide = new Guide(logger);
       this.outlets = new OutletSet(this.documentScope, element);
     }
     findElement(selector) {
@@ -6527,8 +6527,8 @@
     register(identifier, controllerConstructor) {
       this.load({ identifier, controllerConstructor });
     }
-    registerActionOption(name5, filter) {
-      this.actionDescriptorFilters[name5] = filter;
+    registerActionOption(name, filter) {
+      this.actionDescriptorFilters[name] = filter;
     }
     load(head, ...rest) {
       const definitions = Array.isArray(head) ? head : [head, ...rest];
@@ -6623,31 +6623,31 @@
     if (outletController)
       return outletController;
   }
-  function propertiesForOutletDefinition(name5) {
-    const camelizedName = namespaceCamelize(name5);
+  function propertiesForOutletDefinition(name) {
+    const camelizedName = namespaceCamelize(name);
     return {
       [`${camelizedName}Outlet`]: {
         get() {
-          const outletElement = this.outlets.find(name5);
-          const selector = this.outlets.getSelectorForOutletName(name5);
+          const outletElement = this.outlets.find(name);
+          const selector = this.outlets.getSelectorForOutletName(name);
           if (outletElement) {
-            const outletController = getControllerAndEnsureConnectedScope(this, outletElement, name5);
+            const outletController = getControllerAndEnsureConnectedScope(this, outletElement, name);
             if (outletController)
               return outletController;
-            throw new Error(`The provided outlet element is missing an outlet controller "${name5}" instance for host controller "${this.identifier}"`);
+            throw new Error(`The provided outlet element is missing an outlet controller "${name}" instance for host controller "${this.identifier}"`);
           }
-          throw new Error(`Missing outlet element "${name5}" for host controller "${this.identifier}". Stimulus couldn't find a matching outlet element using selector "${selector}".`);
+          throw new Error(`Missing outlet element "${name}" for host controller "${this.identifier}". Stimulus couldn't find a matching outlet element using selector "${selector}".`);
         }
       },
       [`${camelizedName}Outlets`]: {
         get() {
-          const outlets = this.outlets.findAll(name5);
+          const outlets = this.outlets.findAll(name);
           if (outlets.length > 0) {
             return outlets.map((outletElement) => {
-              const outletController = getControllerAndEnsureConnectedScope(this, outletElement, name5);
+              const outletController = getControllerAndEnsureConnectedScope(this, outletElement, name);
               if (outletController)
                 return outletController;
-              console.warn(`The provided outlet element is missing an outlet controller "${name5}" instance for host controller "${this.identifier}"`, outletElement);
+              console.warn(`The provided outlet element is missing an outlet controller "${name}" instance for host controller "${this.identifier}"`, outletElement);
             }).filter((controller) => controller);
           }
           return [];
@@ -6655,23 +6655,23 @@
       },
       [`${camelizedName}OutletElement`]: {
         get() {
-          const outletElement = this.outlets.find(name5);
-          const selector = this.outlets.getSelectorForOutletName(name5);
+          const outletElement = this.outlets.find(name);
+          const selector = this.outlets.getSelectorForOutletName(name);
           if (outletElement) {
             return outletElement;
           } else {
-            throw new Error(`Missing outlet element "${name5}" for host controller "${this.identifier}". Stimulus couldn't find a matching outlet element using selector "${selector}".`);
+            throw new Error(`Missing outlet element "${name}" for host controller "${this.identifier}". Stimulus couldn't find a matching outlet element using selector "${selector}".`);
           }
         }
       },
       [`${camelizedName}OutletElements`]: {
         get() {
-          return this.outlets.findAll(name5);
+          return this.outlets.findAll(name);
         }
       },
       [`has${capitalize(camelizedName)}Outlet`]: {
         get() {
-          return this.outlets.has(name5);
+          return this.outlets.has(name);
         }
       }
     };
@@ -6682,26 +6682,26 @@
       return Object.assign(properties, propertiesForTargetDefinition(targetDefinition));
     }, {});
   }
-  function propertiesForTargetDefinition(name5) {
+  function propertiesForTargetDefinition(name) {
     return {
-      [`${name5}Target`]: {
+      [`${name}Target`]: {
         get() {
-          const target = this.targets.find(name5);
+          const target = this.targets.find(name);
           if (target) {
             return target;
           } else {
-            throw new Error(`Missing target element "${name5}" for "${this.identifier}" controller`);
+            throw new Error(`Missing target element "${name}" for "${this.identifier}" controller`);
           }
         }
       },
-      [`${name5}Targets`]: {
+      [`${name}Targets`]: {
         get() {
-          return this.targets.findAll(name5);
+          return this.targets.findAll(name);
         }
       },
-      [`has${capitalize(name5)}Target`]: {
+      [`has${capitalize(name)}Target`]: {
         get() {
-          return this.targets.has(name5);
+          return this.targets.has(name);
         }
       }
     };
@@ -6725,9 +6725,9 @@
   }
   function propertiesForValueDefinitionPair(valueDefinitionPair, controller) {
     const definition = parseValueDefinitionPair(valueDefinitionPair, controller);
-    const { key, name: name5, reader: read2, writer: write2 } = definition;
+    const { key, name, reader: read2, writer: write2 } = definition;
     return {
-      [name5]: {
+      [name]: {
         get() {
           const value = this.data.get(key);
           if (value !== null) {
@@ -6744,7 +6744,7 @@
           }
         }
       },
-      [`has${capitalize(name5)}`]: {
+      [`has${capitalize(name)}`]: {
         get() {
           return this.data.has(key) || definition.hasCustomDefaultValue;
         }
@@ -7150,2786 +7150,9 @@
     }
   };
 
-  // node_modules/@firebase/util/dist/index.esm2017.js
-  var stringToByteArray$1 = function(str) {
-    const out = [];
-    let p2 = 0;
-    for (let i2 = 0; i2 < str.length; i2++) {
-      let c2 = str.charCodeAt(i2);
-      if (c2 < 128) {
-        out[p2++] = c2;
-      } else if (c2 < 2048) {
-        out[p2++] = c2 >> 6 | 192;
-        out[p2++] = c2 & 63 | 128;
-      } else if ((c2 & 64512) === 55296 && i2 + 1 < str.length && (str.charCodeAt(i2 + 1) & 64512) === 56320) {
-        c2 = 65536 + ((c2 & 1023) << 10) + (str.charCodeAt(++i2) & 1023);
-        out[p2++] = c2 >> 18 | 240;
-        out[p2++] = c2 >> 12 & 63 | 128;
-        out[p2++] = c2 >> 6 & 63 | 128;
-        out[p2++] = c2 & 63 | 128;
-      } else {
-        out[p2++] = c2 >> 12 | 224;
-        out[p2++] = c2 >> 6 & 63 | 128;
-        out[p2++] = c2 & 63 | 128;
-      }
-    }
-    return out;
-  };
-  var byteArrayToString = function(bytes) {
-    const out = [];
-    let pos = 0, c2 = 0;
-    while (pos < bytes.length) {
-      const c1 = bytes[pos++];
-      if (c1 < 128) {
-        out[c2++] = String.fromCharCode(c1);
-      } else if (c1 > 191 && c1 < 224) {
-        const c22 = bytes[pos++];
-        out[c2++] = String.fromCharCode((c1 & 31) << 6 | c22 & 63);
-      } else if (c1 > 239 && c1 < 365) {
-        const c22 = bytes[pos++];
-        const c3 = bytes[pos++];
-        const c4 = bytes[pos++];
-        const u2 = ((c1 & 7) << 18 | (c22 & 63) << 12 | (c3 & 63) << 6 | c4 & 63) - 65536;
-        out[c2++] = String.fromCharCode(55296 + (u2 >> 10));
-        out[c2++] = String.fromCharCode(56320 + (u2 & 1023));
-      } else {
-        const c22 = bytes[pos++];
-        const c3 = bytes[pos++];
-        out[c2++] = String.fromCharCode((c1 & 15) << 12 | (c22 & 63) << 6 | c3 & 63);
-      }
-    }
-    return out.join("");
-  };
-  var base64 = {
-    /**
-     * Maps bytes to characters.
-     */
-    byteToCharMap_: null,
-    /**
-     * Maps characters to bytes.
-     */
-    charToByteMap_: null,
-    /**
-     * Maps bytes to websafe characters.
-     * @private
-     */
-    byteToCharMapWebSafe_: null,
-    /**
-     * Maps websafe characters to bytes.
-     * @private
-     */
-    charToByteMapWebSafe_: null,
-    /**
-     * Our default alphabet, shared between
-     * ENCODED_VALS and ENCODED_VALS_WEBSAFE
-     */
-    ENCODED_VALS_BASE: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-    /**
-     * Our default alphabet. Value 64 (=) is special; it means "nothing."
-     */
-    get ENCODED_VALS() {
-      return this.ENCODED_VALS_BASE + "+/=";
-    },
-    /**
-     * Our websafe alphabet.
-     */
-    get ENCODED_VALS_WEBSAFE() {
-      return this.ENCODED_VALS_BASE + "-_.";
-    },
-    /**
-     * Whether this browser supports the atob and btoa functions. This extension
-     * started at Mozilla but is now implemented by many browsers. We use the
-     * ASSUME_* variables to avoid pulling in the full useragent detection library
-     * but still allowing the standard per-browser compilations.
-     *
-     */
-    HAS_NATIVE_SUPPORT: typeof atob === "function",
-    /**
-     * Base64-encode an array of bytes.
-     *
-     * @param input An array of bytes (numbers with
-     *     value in [0, 255]) to encode.
-     * @param webSafe Boolean indicating we should use the
-     *     alternative alphabet.
-     * @return The base64 encoded string.
-     */
-    encodeByteArray(input, webSafe) {
-      if (!Array.isArray(input)) {
-        throw Error("encodeByteArray takes an array as a parameter");
-      }
-      this.init_();
-      const byteToCharMap = webSafe ? this.byteToCharMapWebSafe_ : this.byteToCharMap_;
-      const output = [];
-      for (let i2 = 0; i2 < input.length; i2 += 3) {
-        const byte1 = input[i2];
-        const haveByte2 = i2 + 1 < input.length;
-        const byte2 = haveByte2 ? input[i2 + 1] : 0;
-        const haveByte3 = i2 + 2 < input.length;
-        const byte3 = haveByte3 ? input[i2 + 2] : 0;
-        const outByte1 = byte1 >> 2;
-        const outByte2 = (byte1 & 3) << 4 | byte2 >> 4;
-        let outByte3 = (byte2 & 15) << 2 | byte3 >> 6;
-        let outByte4 = byte3 & 63;
-        if (!haveByte3) {
-          outByte4 = 64;
-          if (!haveByte2) {
-            outByte3 = 64;
-          }
-        }
-        output.push(byteToCharMap[outByte1], byteToCharMap[outByte2], byteToCharMap[outByte3], byteToCharMap[outByte4]);
-      }
-      return output.join("");
-    },
-    /**
-     * Base64-encode a string.
-     *
-     * @param input A string to encode.
-     * @param webSafe If true, we should use the
-     *     alternative alphabet.
-     * @return The base64 encoded string.
-     */
-    encodeString(input, webSafe) {
-      if (this.HAS_NATIVE_SUPPORT && !webSafe) {
-        return btoa(input);
-      }
-      return this.encodeByteArray(stringToByteArray$1(input), webSafe);
-    },
-    /**
-     * Base64-decode a string.
-     *
-     * @param input to decode.
-     * @param webSafe True if we should use the
-     *     alternative alphabet.
-     * @return string representing the decoded value.
-     */
-    decodeString(input, webSafe) {
-      if (this.HAS_NATIVE_SUPPORT && !webSafe) {
-        return atob(input);
-      }
-      return byteArrayToString(this.decodeStringToByteArray(input, webSafe));
-    },
-    /**
-     * Base64-decode a string.
-     *
-     * In base-64 decoding, groups of four characters are converted into three
-     * bytes.  If the encoder did not apply padding, the input length may not
-     * be a multiple of 4.
-     *
-     * In this case, the last group will have fewer than 4 characters, and
-     * padding will be inferred.  If the group has one or two characters, it decodes
-     * to one byte.  If the group has three characters, it decodes to two bytes.
-     *
-     * @param input Input to decode.
-     * @param webSafe True if we should use the web-safe alphabet.
-     * @return bytes representing the decoded value.
-     */
-    decodeStringToByteArray(input, webSafe) {
-      this.init_();
-      const charToByteMap = webSafe ? this.charToByteMapWebSafe_ : this.charToByteMap_;
-      const output = [];
-      for (let i2 = 0; i2 < input.length; ) {
-        const byte1 = charToByteMap[input.charAt(i2++)];
-        const haveByte2 = i2 < input.length;
-        const byte2 = haveByte2 ? charToByteMap[input.charAt(i2)] : 0;
-        ++i2;
-        const haveByte3 = i2 < input.length;
-        const byte3 = haveByte3 ? charToByteMap[input.charAt(i2)] : 64;
-        ++i2;
-        const haveByte4 = i2 < input.length;
-        const byte4 = haveByte4 ? charToByteMap[input.charAt(i2)] : 64;
-        ++i2;
-        if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
-          throw new DecodeBase64StringError();
-        }
-        const outByte1 = byte1 << 2 | byte2 >> 4;
-        output.push(outByte1);
-        if (byte3 !== 64) {
-          const outByte2 = byte2 << 4 & 240 | byte3 >> 2;
-          output.push(outByte2);
-          if (byte4 !== 64) {
-            const outByte3 = byte3 << 6 & 192 | byte4;
-            output.push(outByte3);
-          }
-        }
-      }
-      return output;
-    },
-    /**
-     * Lazy static initialization function. Called before
-     * accessing any of the static map variables.
-     * @private
-     */
-    init_() {
-      if (!this.byteToCharMap_) {
-        this.byteToCharMap_ = {};
-        this.charToByteMap_ = {};
-        this.byteToCharMapWebSafe_ = {};
-        this.charToByteMapWebSafe_ = {};
-        for (let i2 = 0; i2 < this.ENCODED_VALS.length; i2++) {
-          this.byteToCharMap_[i2] = this.ENCODED_VALS.charAt(i2);
-          this.charToByteMap_[this.byteToCharMap_[i2]] = i2;
-          this.byteToCharMapWebSafe_[i2] = this.ENCODED_VALS_WEBSAFE.charAt(i2);
-          this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[i2]] = i2;
-          if (i2 >= this.ENCODED_VALS_BASE.length) {
-            this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(i2)] = i2;
-            this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(i2)] = i2;
-          }
-        }
-      }
-    }
-  };
-  var DecodeBase64StringError = class extends Error {
-    constructor() {
-      super(...arguments);
-      this.name = "DecodeBase64StringError";
-    }
-  };
-  var base64Encode = function(str) {
-    const utf8Bytes = stringToByteArray$1(str);
-    return base64.encodeByteArray(utf8Bytes, true);
-  };
-  var base64urlEncodeWithoutPadding = function(str) {
-    return base64Encode(str).replace(/\./g, "");
-  };
-  var base64Decode = function(str) {
-    try {
-      return base64.decodeString(str, true);
-    } catch (e2) {
-      console.error("base64Decode failed: ", e2);
-    }
-    return null;
-  };
-  function getGlobal() {
-    if (typeof self !== "undefined") {
-      return self;
-    }
-    if (typeof window !== "undefined") {
-      return window;
-    }
-    if (typeof global !== "undefined") {
-      return global;
-    }
-    throw new Error("Unable to locate global object.");
-  }
-  var getDefaultsFromGlobal = () => getGlobal().__FIREBASE_DEFAULTS__;
-  var getDefaultsFromEnvVariable = () => {
-    if (typeof process === "undefined" || typeof process.env === "undefined") {
-      return;
-    }
-    const defaultsJsonString = process.env.__FIREBASE_DEFAULTS__;
-    if (defaultsJsonString) {
-      return JSON.parse(defaultsJsonString);
-    }
-  };
-  var getDefaultsFromCookie = () => {
-    if (typeof document === "undefined") {
-      return;
-    }
-    let match;
-    try {
-      match = document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/);
-    } catch (e2) {
-      return;
-    }
-    const decoded = match && base64Decode(match[1]);
-    return decoded && JSON.parse(decoded);
-  };
-  var getDefaults = () => {
-    try {
-      return getDefaultsFromGlobal() || getDefaultsFromEnvVariable() || getDefaultsFromCookie();
-    } catch (e2) {
-      console.info(`Unable to get __FIREBASE_DEFAULTS__ due to: ${e2}`);
-      return;
-    }
-  };
-  var getDefaultAppConfig = () => {
-    var _a;
-    return (_a = getDefaults()) === null || _a === void 0 ? void 0 : _a.config;
-  };
-  var Deferred = class {
-    constructor() {
-      this.reject = () => {
-      };
-      this.resolve = () => {
-      };
-      this.promise = new Promise((resolve, reject) => {
-        this.resolve = resolve;
-        this.reject = reject;
-      });
-    }
-    /**
-     * Our API internals are not promiseified and cannot because our callback APIs have subtle expectations around
-     * invoking promises inline, which Promises are forbidden to do. This method accepts an optional node-style callback
-     * and returns a node-style callback which will resolve or reject the Deferred's promise.
-     */
-    wrapCallback(callback) {
-      return (error2, value) => {
-        if (error2) {
-          this.reject(error2);
-        } else {
-          this.resolve(value);
-        }
-        if (typeof callback === "function") {
-          this.promise.catch(() => {
-          });
-          if (callback.length === 1) {
-            callback(error2);
-          } else {
-            callback(error2, value);
-          }
-        }
-      };
-    }
-  };
-  function isBrowserExtension() {
-    const runtime = typeof chrome === "object" ? chrome.runtime : typeof browser === "object" ? browser.runtime : void 0;
-    return typeof runtime === "object" && runtime.id !== void 0;
-  }
-  function isIndexedDBAvailable() {
-    try {
-      return typeof indexedDB === "object";
-    } catch (e2) {
-      return false;
-    }
-  }
-  function validateIndexedDBOpenable() {
-    return new Promise((resolve, reject) => {
-      try {
-        let preExist = true;
-        const DB_CHECK_NAME = "validate-browser-context-for-indexeddb-analytics-module";
-        const request = self.indexedDB.open(DB_CHECK_NAME);
-        request.onsuccess = () => {
-          request.result.close();
-          if (!preExist) {
-            self.indexedDB.deleteDatabase(DB_CHECK_NAME);
-          }
-          resolve(true);
-        };
-        request.onupgradeneeded = () => {
-          preExist = false;
-        };
-        request.onerror = () => {
-          var _a;
-          reject(((_a = request.error) === null || _a === void 0 ? void 0 : _a.message) || "");
-        };
-      } catch (error2) {
-        reject(error2);
-      }
-    });
-  }
-  function areCookiesEnabled() {
-    if (typeof navigator === "undefined" || !navigator.cookieEnabled) {
-      return false;
-    }
-    return true;
-  }
-  var ERROR_NAME = "FirebaseError";
-  var FirebaseError = class _FirebaseError extends Error {
-    constructor(code, message, customData) {
-      super(message);
-      this.code = code;
-      this.customData = customData;
-      this.name = ERROR_NAME;
-      Object.setPrototypeOf(this, _FirebaseError.prototype);
-      if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, ErrorFactory.prototype.create);
-      }
-    }
-  };
-  var ErrorFactory = class {
-    constructor(service, serviceName, errors) {
-      this.service = service;
-      this.serviceName = serviceName;
-      this.errors = errors;
-    }
-    create(code, ...data) {
-      const customData = data[0] || {};
-      const fullCode = `${this.service}/${code}`;
-      const template = this.errors[code];
-      const message = template ? replaceTemplate(template, customData) : "Error";
-      const fullMessage = `${this.serviceName}: ${message} (${fullCode}).`;
-      const error2 = new FirebaseError(fullCode, fullMessage, customData);
-      return error2;
-    }
-  };
-  function replaceTemplate(template, data) {
-    return template.replace(PATTERN, (_2, key) => {
-      const value = data[key];
-      return value != null ? String(value) : `<${key}?>`;
-    });
-  }
-  var PATTERN = /\{\$([^}]+)}/g;
-  function deepEqual(a2, b2) {
-    if (a2 === b2) {
-      return true;
-    }
-    const aKeys = Object.keys(a2);
-    const bKeys = Object.keys(b2);
-    for (const k2 of aKeys) {
-      if (!bKeys.includes(k2)) {
-        return false;
-      }
-      const aProp = a2[k2];
-      const bProp = b2[k2];
-      if (isObject(aProp) && isObject(bProp)) {
-        if (!deepEqual(aProp, bProp)) {
-          return false;
-        }
-      } else if (aProp !== bProp) {
-        return false;
-      }
-    }
-    for (const k2 of bKeys) {
-      if (!aKeys.includes(k2)) {
-        return false;
-      }
-    }
-    return true;
-  }
-  function isObject(thing) {
-    return thing !== null && typeof thing === "object";
-  }
-  var DEFAULT_INTERVAL_MILLIS = 1e3;
-  var DEFAULT_BACKOFF_FACTOR = 2;
-  var MAX_VALUE_MILLIS = 4 * 60 * 60 * 1e3;
-  var RANDOM_FACTOR = 0.5;
-  function calculateBackoffMillis(backoffCount, intervalMillis = DEFAULT_INTERVAL_MILLIS, backoffFactor = DEFAULT_BACKOFF_FACTOR) {
-    const currBaseValue = intervalMillis * Math.pow(backoffFactor, backoffCount);
-    const randomWait = Math.round(
-      // A fraction of the backoff value to add/subtract.
-      // Deviation: changes multiplication order to improve readability.
-      RANDOM_FACTOR * currBaseValue * // A random float (rounded to int by Math.round above) in the range [-1, 1]. Determines
-      // if we add or subtract.
-      (Math.random() - 0.5) * 2
-    );
-    return Math.min(MAX_VALUE_MILLIS, currBaseValue + randomWait);
-  }
-  function getModularInstance(service) {
-    if (service && service._delegate) {
-      return service._delegate;
-    } else {
-      return service;
-    }
-  }
-
-  // node_modules/@firebase/component/dist/esm/index.esm2017.js
-  var Component = class {
-    /**
-     *
-     * @param name The public service name, e.g. app, auth, firestore, database
-     * @param instanceFactory Service factory responsible for creating the public interface
-     * @param type whether the service provided by the component is public or private
-     */
-    constructor(name5, instanceFactory, type) {
-      this.name = name5;
-      this.instanceFactory = instanceFactory;
-      this.type = type;
-      this.multipleInstances = false;
-      this.serviceProps = {};
-      this.instantiationMode = "LAZY";
-      this.onInstanceCreated = null;
-    }
-    setInstantiationMode(mode) {
-      this.instantiationMode = mode;
-      return this;
-    }
-    setMultipleInstances(multipleInstances) {
-      this.multipleInstances = multipleInstances;
-      return this;
-    }
-    setServiceProps(props) {
-      this.serviceProps = props;
-      return this;
-    }
-    setInstanceCreatedCallback(callback) {
-      this.onInstanceCreated = callback;
-      return this;
-    }
-  };
-  var DEFAULT_ENTRY_NAME = "[DEFAULT]";
-  var Provider = class {
-    constructor(name5, container) {
-      this.name = name5;
-      this.container = container;
-      this.component = null;
-      this.instances = /* @__PURE__ */ new Map();
-      this.instancesDeferred = /* @__PURE__ */ new Map();
-      this.instancesOptions = /* @__PURE__ */ new Map();
-      this.onInitCallbacks = /* @__PURE__ */ new Map();
-    }
-    /**
-     * @param identifier A provider can provide mulitple instances of a service
-     * if this.component.multipleInstances is true.
-     */
-    get(identifier) {
-      const normalizedIdentifier = this.normalizeInstanceIdentifier(identifier);
-      if (!this.instancesDeferred.has(normalizedIdentifier)) {
-        const deferred = new Deferred();
-        this.instancesDeferred.set(normalizedIdentifier, deferred);
-        if (this.isInitialized(normalizedIdentifier) || this.shouldAutoInitialize()) {
-          try {
-            const instance = this.getOrInitializeService({
-              instanceIdentifier: normalizedIdentifier
-            });
-            if (instance) {
-              deferred.resolve(instance);
-            }
-          } catch (e2) {
-          }
-        }
-      }
-      return this.instancesDeferred.get(normalizedIdentifier).promise;
-    }
-    getImmediate(options) {
-      var _a;
-      const normalizedIdentifier = this.normalizeInstanceIdentifier(options === null || options === void 0 ? void 0 : options.identifier);
-      const optional = (_a = options === null || options === void 0 ? void 0 : options.optional) !== null && _a !== void 0 ? _a : false;
-      if (this.isInitialized(normalizedIdentifier) || this.shouldAutoInitialize()) {
-        try {
-          return this.getOrInitializeService({
-            instanceIdentifier: normalizedIdentifier
-          });
-        } catch (e2) {
-          if (optional) {
-            return null;
-          } else {
-            throw e2;
-          }
-        }
-      } else {
-        if (optional) {
-          return null;
-        } else {
-          throw Error(`Service ${this.name} is not available`);
-        }
-      }
-    }
-    getComponent() {
-      return this.component;
-    }
-    setComponent(component) {
-      if (component.name !== this.name) {
-        throw Error(`Mismatching Component ${component.name} for Provider ${this.name}.`);
-      }
-      if (this.component) {
-        throw Error(`Component for ${this.name} has already been provided`);
-      }
-      this.component = component;
-      if (!this.shouldAutoInitialize()) {
-        return;
-      }
-      if (isComponentEager(component)) {
-        try {
-          this.getOrInitializeService({ instanceIdentifier: DEFAULT_ENTRY_NAME });
-        } catch (e2) {
-        }
-      }
-      for (const [instanceIdentifier, instanceDeferred] of this.instancesDeferred.entries()) {
-        const normalizedIdentifier = this.normalizeInstanceIdentifier(instanceIdentifier);
-        try {
-          const instance = this.getOrInitializeService({
-            instanceIdentifier: normalizedIdentifier
-          });
-          instanceDeferred.resolve(instance);
-        } catch (e2) {
-        }
-      }
-    }
-    clearInstance(identifier = DEFAULT_ENTRY_NAME) {
-      this.instancesDeferred.delete(identifier);
-      this.instancesOptions.delete(identifier);
-      this.instances.delete(identifier);
-    }
-    // app.delete() will call this method on every provider to delete the services
-    // TODO: should we mark the provider as deleted?
-    async delete() {
-      const services = Array.from(this.instances.values());
-      await Promise.all([
-        ...services.filter((service) => "INTERNAL" in service).map((service) => service.INTERNAL.delete()),
-        ...services.filter((service) => "_delete" in service).map((service) => service._delete())
-      ]);
-    }
-    isComponentSet() {
-      return this.component != null;
-    }
-    isInitialized(identifier = DEFAULT_ENTRY_NAME) {
-      return this.instances.has(identifier);
-    }
-    getOptions(identifier = DEFAULT_ENTRY_NAME) {
-      return this.instancesOptions.get(identifier) || {};
-    }
-    initialize(opts = {}) {
-      const { options = {} } = opts;
-      const normalizedIdentifier = this.normalizeInstanceIdentifier(opts.instanceIdentifier);
-      if (this.isInitialized(normalizedIdentifier)) {
-        throw Error(`${this.name}(${normalizedIdentifier}) has already been initialized`);
-      }
-      if (!this.isComponentSet()) {
-        throw Error(`Component ${this.name} has not been registered yet`);
-      }
-      const instance = this.getOrInitializeService({
-        instanceIdentifier: normalizedIdentifier,
-        options
-      });
-      for (const [instanceIdentifier, instanceDeferred] of this.instancesDeferred.entries()) {
-        const normalizedDeferredIdentifier = this.normalizeInstanceIdentifier(instanceIdentifier);
-        if (normalizedIdentifier === normalizedDeferredIdentifier) {
-          instanceDeferred.resolve(instance);
-        }
-      }
-      return instance;
-    }
-    /**
-     *
-     * @param callback - a function that will be invoked  after the provider has been initialized by calling provider.initialize().
-     * The function is invoked SYNCHRONOUSLY, so it should not execute any longrunning tasks in order to not block the program.
-     *
-     * @param identifier An optional instance identifier
-     * @returns a function to unregister the callback
-     */
-    onInit(callback, identifier) {
-      var _a;
-      const normalizedIdentifier = this.normalizeInstanceIdentifier(identifier);
-      const existingCallbacks = (_a = this.onInitCallbacks.get(normalizedIdentifier)) !== null && _a !== void 0 ? _a : /* @__PURE__ */ new Set();
-      existingCallbacks.add(callback);
-      this.onInitCallbacks.set(normalizedIdentifier, existingCallbacks);
-      const existingInstance = this.instances.get(normalizedIdentifier);
-      if (existingInstance) {
-        callback(existingInstance, normalizedIdentifier);
-      }
-      return () => {
-        existingCallbacks.delete(callback);
-      };
-    }
-    /**
-     * Invoke onInit callbacks synchronously
-     * @param instance the service instance`
-     */
-    invokeOnInitCallbacks(instance, identifier) {
-      const callbacks = this.onInitCallbacks.get(identifier);
-      if (!callbacks) {
-        return;
-      }
-      for (const callback of callbacks) {
-        try {
-          callback(instance, identifier);
-        } catch (_a) {
-        }
-      }
-    }
-    getOrInitializeService({ instanceIdentifier, options = {} }) {
-      let instance = this.instances.get(instanceIdentifier);
-      if (!instance && this.component) {
-        instance = this.component.instanceFactory(this.container, {
-          instanceIdentifier: normalizeIdentifierForFactory(instanceIdentifier),
-          options
-        });
-        this.instances.set(instanceIdentifier, instance);
-        this.instancesOptions.set(instanceIdentifier, options);
-        this.invokeOnInitCallbacks(instance, instanceIdentifier);
-        if (this.component.onInstanceCreated) {
-          try {
-            this.component.onInstanceCreated(this.container, instanceIdentifier, instance);
-          } catch (_a) {
-          }
-        }
-      }
-      return instance || null;
-    }
-    normalizeInstanceIdentifier(identifier = DEFAULT_ENTRY_NAME) {
-      if (this.component) {
-        return this.component.multipleInstances ? identifier : DEFAULT_ENTRY_NAME;
-      } else {
-        return identifier;
-      }
-    }
-    shouldAutoInitialize() {
-      return !!this.component && this.component.instantiationMode !== "EXPLICIT";
-    }
-  };
-  function normalizeIdentifierForFactory(identifier) {
-    return identifier === DEFAULT_ENTRY_NAME ? void 0 : identifier;
-  }
-  function isComponentEager(component) {
-    return component.instantiationMode === "EAGER";
-  }
-  var ComponentContainer = class {
-    constructor(name5) {
-      this.name = name5;
-      this.providers = /* @__PURE__ */ new Map();
-    }
-    /**
-     *
-     * @param component Component being added
-     * @param overwrite When a component with the same name has already been registered,
-     * if overwrite is true: overwrite the existing component with the new component and create a new
-     * provider with the new component. It can be useful in tests where you want to use different mocks
-     * for different tests.
-     * if overwrite is false: throw an exception
-     */
-    addComponent(component) {
-      const provider = this.getProvider(component.name);
-      if (provider.isComponentSet()) {
-        throw new Error(`Component ${component.name} has already been registered with ${this.name}`);
-      }
-      provider.setComponent(component);
-    }
-    addOrOverwriteComponent(component) {
-      const provider = this.getProvider(component.name);
-      if (provider.isComponentSet()) {
-        this.providers.delete(component.name);
-      }
-      this.addComponent(component);
-    }
-    /**
-     * getProvider provides a type safe interface where it can only be called with a field name
-     * present in NameServiceMapping interface.
-     *
-     * Firebase SDKs providing services should extend NameServiceMapping interface to register
-     * themselves.
-     */
-    getProvider(name5) {
-      if (this.providers.has(name5)) {
-        return this.providers.get(name5);
-      }
-      const provider = new Provider(name5, this);
-      this.providers.set(name5, provider);
-      return provider;
-    }
-    getProviders() {
-      return Array.from(this.providers.values());
-    }
-  };
-
-  // node_modules/@firebase/logger/dist/esm/index.esm2017.js
-  var instances = [];
-  var LogLevel;
-  (function(LogLevel2) {
-    LogLevel2[LogLevel2["DEBUG"] = 0] = "DEBUG";
-    LogLevel2[LogLevel2["VERBOSE"] = 1] = "VERBOSE";
-    LogLevel2[LogLevel2["INFO"] = 2] = "INFO";
-    LogLevel2[LogLevel2["WARN"] = 3] = "WARN";
-    LogLevel2[LogLevel2["ERROR"] = 4] = "ERROR";
-    LogLevel2[LogLevel2["SILENT"] = 5] = "SILENT";
-  })(LogLevel || (LogLevel = {}));
-  var levelStringToEnum = {
-    "debug": LogLevel.DEBUG,
-    "verbose": LogLevel.VERBOSE,
-    "info": LogLevel.INFO,
-    "warn": LogLevel.WARN,
-    "error": LogLevel.ERROR,
-    "silent": LogLevel.SILENT
-  };
-  var defaultLogLevel = LogLevel.INFO;
-  var ConsoleMethod = {
-    [LogLevel.DEBUG]: "log",
-    [LogLevel.VERBOSE]: "log",
-    [LogLevel.INFO]: "info",
-    [LogLevel.WARN]: "warn",
-    [LogLevel.ERROR]: "error"
-  };
-  var defaultLogHandler = (instance, logType, ...args) => {
-    if (logType < instance.logLevel) {
-      return;
-    }
-    const now2 = (/* @__PURE__ */ new Date()).toISOString();
-    const method = ConsoleMethod[logType];
-    if (method) {
-      console[method](`[${now2}]  ${instance.name}:`, ...args);
-    } else {
-      throw new Error(`Attempted to log a message with an invalid logType (value: ${logType})`);
-    }
-  };
-  var Logger = class {
-    /**
-     * Gives you an instance of a Logger to capture messages according to
-     * Firebase's logging scheme.
-     *
-     * @param name The name that the logs will be associated with
-     */
-    constructor(name5) {
-      this.name = name5;
-      this._logLevel = defaultLogLevel;
-      this._logHandler = defaultLogHandler;
-      this._userLogHandler = null;
-      instances.push(this);
-    }
-    get logLevel() {
-      return this._logLevel;
-    }
-    set logLevel(val) {
-      if (!(val in LogLevel)) {
-        throw new TypeError(`Invalid value "${val}" assigned to \`logLevel\``);
-      }
-      this._logLevel = val;
-    }
-    // Workaround for setter/getter having to be the same type.
-    setLogLevel(val) {
-      this._logLevel = typeof val === "string" ? levelStringToEnum[val] : val;
-    }
-    get logHandler() {
-      return this._logHandler;
-    }
-    set logHandler(val) {
-      if (typeof val !== "function") {
-        throw new TypeError("Value assigned to `logHandler` must be a function");
-      }
-      this._logHandler = val;
-    }
-    get userLogHandler() {
-      return this._userLogHandler;
-    }
-    set userLogHandler(val) {
-      this._userLogHandler = val;
-    }
-    /**
-     * The functions below are all based on the `console` interface
-     */
-    debug(...args) {
-      this._userLogHandler && this._userLogHandler(this, LogLevel.DEBUG, ...args);
-      this._logHandler(this, LogLevel.DEBUG, ...args);
-    }
-    log(...args) {
-      this._userLogHandler && this._userLogHandler(this, LogLevel.VERBOSE, ...args);
-      this._logHandler(this, LogLevel.VERBOSE, ...args);
-    }
-    info(...args) {
-      this._userLogHandler && this._userLogHandler(this, LogLevel.INFO, ...args);
-      this._logHandler(this, LogLevel.INFO, ...args);
-    }
-    warn(...args) {
-      this._userLogHandler && this._userLogHandler(this, LogLevel.WARN, ...args);
-      this._logHandler(this, LogLevel.WARN, ...args);
-    }
-    error(...args) {
-      this._userLogHandler && this._userLogHandler(this, LogLevel.ERROR, ...args);
-      this._logHandler(this, LogLevel.ERROR, ...args);
-    }
-  };
-
-  // node_modules/idb/build/wrap-idb-value.js
-  var instanceOfAny = (object, constructors) => constructors.some((c2) => object instanceof c2);
-  var idbProxyableTypes;
-  var cursorAdvanceMethods;
-  function getIdbProxyableTypes() {
-    return idbProxyableTypes || (idbProxyableTypes = [
-      IDBDatabase,
-      IDBObjectStore,
-      IDBIndex,
-      IDBCursor,
-      IDBTransaction
-    ]);
-  }
-  function getCursorAdvanceMethods() {
-    return cursorAdvanceMethods || (cursorAdvanceMethods = [
-      IDBCursor.prototype.advance,
-      IDBCursor.prototype.continue,
-      IDBCursor.prototype.continuePrimaryKey
-    ]);
-  }
-  var cursorRequestMap = /* @__PURE__ */ new WeakMap();
-  var transactionDoneMap = /* @__PURE__ */ new WeakMap();
-  var transactionStoreNamesMap = /* @__PURE__ */ new WeakMap();
-  var transformCache = /* @__PURE__ */ new WeakMap();
-  var reverseTransformCache = /* @__PURE__ */ new WeakMap();
-  function promisifyRequest(request) {
-    const promise = new Promise((resolve, reject) => {
-      const unlisten = () => {
-        request.removeEventListener("success", success);
-        request.removeEventListener("error", error2);
-      };
-      const success = () => {
-        resolve(wrap(request.result));
-        unlisten();
-      };
-      const error2 = () => {
-        reject(request.error);
-        unlisten();
-      };
-      request.addEventListener("success", success);
-      request.addEventListener("error", error2);
-    });
-    promise.then((value) => {
-      if (value instanceof IDBCursor) {
-        cursorRequestMap.set(value, request);
-      }
-    }).catch(() => {
-    });
-    reverseTransformCache.set(promise, request);
-    return promise;
-  }
-  function cacheDonePromiseForTransaction(tx) {
-    if (transactionDoneMap.has(tx))
-      return;
-    const done = new Promise((resolve, reject) => {
-      const unlisten = () => {
-        tx.removeEventListener("complete", complete);
-        tx.removeEventListener("error", error2);
-        tx.removeEventListener("abort", error2);
-      };
-      const complete = () => {
-        resolve();
-        unlisten();
-      };
-      const error2 = () => {
-        reject(tx.error || new DOMException("AbortError", "AbortError"));
-        unlisten();
-      };
-      tx.addEventListener("complete", complete);
-      tx.addEventListener("error", error2);
-      tx.addEventListener("abort", error2);
-    });
-    transactionDoneMap.set(tx, done);
-  }
-  var idbProxyTraps = {
-    get(target, prop, receiver) {
-      if (target instanceof IDBTransaction) {
-        if (prop === "done")
-          return transactionDoneMap.get(target);
-        if (prop === "objectStoreNames") {
-          return target.objectStoreNames || transactionStoreNamesMap.get(target);
-        }
-        if (prop === "store") {
-          return receiver.objectStoreNames[1] ? void 0 : receiver.objectStore(receiver.objectStoreNames[0]);
-        }
-      }
-      return wrap(target[prop]);
-    },
-    set(target, prop, value) {
-      target[prop] = value;
-      return true;
-    },
-    has(target, prop) {
-      if (target instanceof IDBTransaction && (prop === "done" || prop === "store")) {
-        return true;
-      }
-      return prop in target;
-    }
-  };
-  function replaceTraps(callback) {
-    idbProxyTraps = callback(idbProxyTraps);
-  }
-  function wrapFunction(func) {
-    if (func === IDBDatabase.prototype.transaction && !("objectStoreNames" in IDBTransaction.prototype)) {
-      return function(storeNames, ...args) {
-        const tx = func.call(unwrap(this), storeNames, ...args);
-        transactionStoreNamesMap.set(tx, storeNames.sort ? storeNames.sort() : [storeNames]);
-        return wrap(tx);
-      };
-    }
-    if (getCursorAdvanceMethods().includes(func)) {
-      return function(...args) {
-        func.apply(unwrap(this), args);
-        return wrap(cursorRequestMap.get(this));
-      };
-    }
-    return function(...args) {
-      return wrap(func.apply(unwrap(this), args));
-    };
-  }
-  function transformCachableValue(value) {
-    if (typeof value === "function")
-      return wrapFunction(value);
-    if (value instanceof IDBTransaction)
-      cacheDonePromiseForTransaction(value);
-    if (instanceOfAny(value, getIdbProxyableTypes()))
-      return new Proxy(value, idbProxyTraps);
-    return value;
-  }
-  function wrap(value) {
-    if (value instanceof IDBRequest)
-      return promisifyRequest(value);
-    if (transformCache.has(value))
-      return transformCache.get(value);
-    const newValue = transformCachableValue(value);
-    if (newValue !== value) {
-      transformCache.set(value, newValue);
-      reverseTransformCache.set(newValue, value);
-    }
-    return newValue;
-  }
-  var unwrap = (value) => reverseTransformCache.get(value);
-
-  // node_modules/idb/build/index.js
-  function openDB(name5, version4, { blocked, upgrade, blocking, terminated } = {}) {
-    const request = indexedDB.open(name5, version4);
-    const openPromise = wrap(request);
-    if (upgrade) {
-      request.addEventListener("upgradeneeded", (event) => {
-        upgrade(wrap(request.result), event.oldVersion, event.newVersion, wrap(request.transaction), event);
-      });
-    }
-    if (blocked) {
-      request.addEventListener("blocked", (event) => blocked(
-        // Casting due to https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1405
-        event.oldVersion,
-        event.newVersion,
-        event
-      ));
-    }
-    openPromise.then((db) => {
-      if (terminated)
-        db.addEventListener("close", () => terminated());
-      if (blocking) {
-        db.addEventListener("versionchange", (event) => blocking(event.oldVersion, event.newVersion, event));
-      }
-    }).catch(() => {
-    });
-    return openPromise;
-  }
-  var readMethods = ["get", "getKey", "getAll", "getAllKeys", "count"];
-  var writeMethods = ["put", "add", "delete", "clear"];
-  var cachedMethods = /* @__PURE__ */ new Map();
-  function getMethod(target, prop) {
-    if (!(target instanceof IDBDatabase && !(prop in target) && typeof prop === "string")) {
-      return;
-    }
-    if (cachedMethods.get(prop))
-      return cachedMethods.get(prop);
-    const targetFuncName = prop.replace(/FromIndex$/, "");
-    const useIndex = prop !== targetFuncName;
-    const isWrite = writeMethods.includes(targetFuncName);
-    if (
-      // Bail if the target doesn't exist on the target. Eg, getAll isn't in Edge.
-      !(targetFuncName in (useIndex ? IDBIndex : IDBObjectStore).prototype) || !(isWrite || readMethods.includes(targetFuncName))
-    ) {
-      return;
-    }
-    const method = async function(storeName, ...args) {
-      const tx = this.transaction(storeName, isWrite ? "readwrite" : "readonly");
-      let target2 = tx.store;
-      if (useIndex)
-        target2 = target2.index(args.shift());
-      return (await Promise.all([
-        target2[targetFuncName](...args),
-        isWrite && tx.done
-      ]))[0];
-    };
-    cachedMethods.set(prop, method);
-    return method;
-  }
-  replaceTraps((oldTraps) => ({
-    ...oldTraps,
-    get: (target, prop, receiver) => getMethod(target, prop) || oldTraps.get(target, prop, receiver),
-    has: (target, prop) => !!getMethod(target, prop) || oldTraps.has(target, prop)
-  }));
-
-  // node_modules/@firebase/app/dist/esm/index.esm2017.js
-  var PlatformLoggerServiceImpl = class {
-    constructor(container) {
-      this.container = container;
-    }
-    // In initial implementation, this will be called by installations on
-    // auth token refresh, and installations will send this string.
-    getPlatformInfoString() {
-      const providers = this.container.getProviders();
-      return providers.map((provider) => {
-        if (isVersionServiceProvider(provider)) {
-          const service = provider.getImmediate();
-          return `${service.library}/${service.version}`;
-        } else {
-          return null;
-        }
-      }).filter((logString) => logString).join(" ");
-    }
-  };
-  function isVersionServiceProvider(provider) {
-    const component = provider.getComponent();
-    return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
-  }
-  var name$p = "@firebase/app";
-  var version$1 = "0.10.5";
-  var logger = new Logger("@firebase/app");
-  var name$o = "@firebase/app-compat";
-  var name$n = "@firebase/analytics-compat";
-  var name$m = "@firebase/analytics";
-  var name$l = "@firebase/app-check-compat";
-  var name$k = "@firebase/app-check";
-  var name$j = "@firebase/auth";
-  var name$i = "@firebase/auth-compat";
-  var name$h = "@firebase/database";
-  var name$g = "@firebase/database-compat";
-  var name$f = "@firebase/functions";
-  var name$e = "@firebase/functions-compat";
-  var name$d = "@firebase/installations";
-  var name$c = "@firebase/installations-compat";
-  var name$b = "@firebase/messaging";
-  var name$a = "@firebase/messaging-compat";
-  var name$9 = "@firebase/performance";
-  var name$8 = "@firebase/performance-compat";
-  var name$7 = "@firebase/remote-config";
-  var name$6 = "@firebase/remote-config-compat";
-  var name$5 = "@firebase/storage";
-  var name$4 = "@firebase/storage-compat";
-  var name$3 = "@firebase/firestore";
-  var name$2 = "@firebase/vertexai-preview";
-  var name$1 = "@firebase/firestore-compat";
-  var name = "firebase";
-  var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
-  var PLATFORM_LOG_STRING = {
-    [name$p]: "fire-core",
-    [name$o]: "fire-core-compat",
-    [name$m]: "fire-analytics",
-    [name$n]: "fire-analytics-compat",
-    [name$k]: "fire-app-check",
-    [name$l]: "fire-app-check-compat",
-    [name$j]: "fire-auth",
-    [name$i]: "fire-auth-compat",
-    [name$h]: "fire-rtdb",
-    [name$g]: "fire-rtdb-compat",
-    [name$f]: "fire-fn",
-    [name$e]: "fire-fn-compat",
-    [name$d]: "fire-iid",
-    [name$c]: "fire-iid-compat",
-    [name$b]: "fire-fcm",
-    [name$a]: "fire-fcm-compat",
-    [name$9]: "fire-perf",
-    [name$8]: "fire-perf-compat",
-    [name$7]: "fire-rc",
-    [name$6]: "fire-rc-compat",
-    [name$5]: "fire-gcs",
-    [name$4]: "fire-gcs-compat",
-    [name$3]: "fire-fst",
-    [name$1]: "fire-fst-compat",
-    [name$2]: "fire-vertex",
-    "fire-js": "fire-js",
-    [name]: "fire-js-all"
-  };
-  var _apps = /* @__PURE__ */ new Map();
-  var _serverApps = /* @__PURE__ */ new Map();
-  var _components = /* @__PURE__ */ new Map();
-  function _addComponent(app, component) {
-    try {
-      app.container.addComponent(component);
-    } catch (e2) {
-      logger.debug(`Component ${component.name} failed to register with FirebaseApp ${app.name}`, e2);
-    }
-  }
-  function _registerComponent(component) {
-    const componentName = component.name;
-    if (_components.has(componentName)) {
-      logger.debug(`There were multiple attempts to register component ${componentName}.`);
-      return false;
-    }
-    _components.set(componentName, component);
-    for (const app of _apps.values()) {
-      _addComponent(app, component);
-    }
-    for (const serverApp of _serverApps.values()) {
-      _addComponent(serverApp, component);
-    }
-    return true;
-  }
-  function _getProvider(app, name5) {
-    const heartbeatController = app.container.getProvider("heartbeat").getImmediate({ optional: true });
-    if (heartbeatController) {
-      void heartbeatController.triggerHeartbeat();
-    }
-    return app.container.getProvider(name5);
-  }
-  var ERRORS = {
-    [
-      "no-app"
-      /* AppError.NO_APP */
-    ]: "No Firebase App '{$appName}' has been created - call initializeApp() first",
-    [
-      "bad-app-name"
-      /* AppError.BAD_APP_NAME */
-    ]: "Illegal App name: '{$appName}'",
-    [
-      "duplicate-app"
-      /* AppError.DUPLICATE_APP */
-    ]: "Firebase App named '{$appName}' already exists with different options or config",
-    [
-      "app-deleted"
-      /* AppError.APP_DELETED */
-    ]: "Firebase App named '{$appName}' already deleted",
-    [
-      "server-app-deleted"
-      /* AppError.SERVER_APP_DELETED */
-    ]: "Firebase Server App has been deleted",
-    [
-      "no-options"
-      /* AppError.NO_OPTIONS */
-    ]: "Need to provide options, when not being deployed to hosting via source.",
-    [
-      "invalid-app-argument"
-      /* AppError.INVALID_APP_ARGUMENT */
-    ]: "firebase.{$appName}() takes either no argument or a Firebase App instance.",
-    [
-      "invalid-log-argument"
-      /* AppError.INVALID_LOG_ARGUMENT */
-    ]: "First argument to `onLog` must be null or a function.",
-    [
-      "idb-open"
-      /* AppError.IDB_OPEN */
-    ]: "Error thrown when opening IndexedDB. Original error: {$originalErrorMessage}.",
-    [
-      "idb-get"
-      /* AppError.IDB_GET */
-    ]: "Error thrown when reading from IndexedDB. Original error: {$originalErrorMessage}.",
-    [
-      "idb-set"
-      /* AppError.IDB_WRITE */
-    ]: "Error thrown when writing to IndexedDB. Original error: {$originalErrorMessage}.",
-    [
-      "idb-delete"
-      /* AppError.IDB_DELETE */
-    ]: "Error thrown when deleting from IndexedDB. Original error: {$originalErrorMessage}.",
-    [
-      "finalization-registry-not-supported"
-      /* AppError.FINALIZATION_REGISTRY_NOT_SUPPORTED */
-    ]: "FirebaseServerApp deleteOnDeref field defined but the JS runtime does not support FinalizationRegistry.",
-    [
-      "invalid-server-app-environment"
-      /* AppError.INVALID_SERVER_APP_ENVIRONMENT */
-    ]: "FirebaseServerApp is not for use in browser environments."
-  };
-  var ERROR_FACTORY = new ErrorFactory("app", "Firebase", ERRORS);
-  var FirebaseAppImpl = class {
-    constructor(options, config, container) {
-      this._isDeleted = false;
-      this._options = Object.assign({}, options);
-      this._config = Object.assign({}, config);
-      this._name = config.name;
-      this._automaticDataCollectionEnabled = config.automaticDataCollectionEnabled;
-      this._container = container;
-      this.container.addComponent(new Component(
-        "app",
-        () => this,
-        "PUBLIC"
-        /* ComponentType.PUBLIC */
-      ));
-    }
-    get automaticDataCollectionEnabled() {
-      this.checkDestroyed();
-      return this._automaticDataCollectionEnabled;
-    }
-    set automaticDataCollectionEnabled(val) {
-      this.checkDestroyed();
-      this._automaticDataCollectionEnabled = val;
-    }
-    get name() {
-      this.checkDestroyed();
-      return this._name;
-    }
-    get options() {
-      this.checkDestroyed();
-      return this._options;
-    }
-    get config() {
-      this.checkDestroyed();
-      return this._config;
-    }
-    get container() {
-      return this._container;
-    }
-    get isDeleted() {
-      return this._isDeleted;
-    }
-    set isDeleted(val) {
-      this._isDeleted = val;
-    }
-    /**
-     * This function will throw an Error if the App has already been deleted -
-     * use before performing API actions on the App.
-     */
-    checkDestroyed() {
-      if (this.isDeleted) {
-        throw ERROR_FACTORY.create("app-deleted", { appName: this._name });
-      }
-    }
-  };
-  function initializeApp(_options, rawConfig = {}) {
-    let options = _options;
-    if (typeof rawConfig !== "object") {
-      const name6 = rawConfig;
-      rawConfig = { name: name6 };
-    }
-    const config = Object.assign({ name: DEFAULT_ENTRY_NAME2, automaticDataCollectionEnabled: false }, rawConfig);
-    const name5 = config.name;
-    if (typeof name5 !== "string" || !name5) {
-      throw ERROR_FACTORY.create("bad-app-name", {
-        appName: String(name5)
-      });
-    }
-    options || (options = getDefaultAppConfig());
-    if (!options) {
-      throw ERROR_FACTORY.create(
-        "no-options"
-        /* AppError.NO_OPTIONS */
-      );
-    }
-    const existingApp = _apps.get(name5);
-    if (existingApp) {
-      if (deepEqual(options, existingApp.options) && deepEqual(config, existingApp.config)) {
-        return existingApp;
-      } else {
-        throw ERROR_FACTORY.create("duplicate-app", { appName: name5 });
-      }
-    }
-    const container = new ComponentContainer(name5);
-    for (const component of _components.values()) {
-      container.addComponent(component);
-    }
-    const newApp = new FirebaseAppImpl(options, config, container);
-    _apps.set(name5, newApp);
-    return newApp;
-  }
-  function getApp(name5 = DEFAULT_ENTRY_NAME2) {
-    const app = _apps.get(name5);
-    if (!app && name5 === DEFAULT_ENTRY_NAME2 && getDefaultAppConfig()) {
-      return initializeApp();
-    }
-    if (!app) {
-      throw ERROR_FACTORY.create("no-app", { appName: name5 });
-    }
-    return app;
-  }
-  function registerVersion(libraryKeyOrName, version4, variant) {
-    var _a;
-    let library = (_a = PLATFORM_LOG_STRING[libraryKeyOrName]) !== null && _a !== void 0 ? _a : libraryKeyOrName;
-    if (variant) {
-      library += `-${variant}`;
-    }
-    const libraryMismatch = library.match(/\s|\//);
-    const versionMismatch = version4.match(/\s|\//);
-    if (libraryMismatch || versionMismatch) {
-      const warning = [
-        `Unable to register library "${library}" with version "${version4}":`
-      ];
-      if (libraryMismatch) {
-        warning.push(`library name "${library}" contains illegal characters (whitespace or "/")`);
-      }
-      if (libraryMismatch && versionMismatch) {
-        warning.push("and");
-      }
-      if (versionMismatch) {
-        warning.push(`version name "${version4}" contains illegal characters (whitespace or "/")`);
-      }
-      logger.warn(warning.join(" "));
-      return;
-    }
-    _registerComponent(new Component(
-      `${library}-version`,
-      () => ({ library, version: version4 }),
-      "VERSION"
-      /* ComponentType.VERSION */
-    ));
-  }
-  var DB_NAME = "firebase-heartbeat-database";
-  var DB_VERSION = 1;
-  var STORE_NAME = "firebase-heartbeat-store";
-  var dbPromise = null;
-  function getDbPromise() {
-    if (!dbPromise) {
-      dbPromise = openDB(DB_NAME, DB_VERSION, {
-        upgrade: (db, oldVersion) => {
-          switch (oldVersion) {
-            case 0:
-              try {
-                db.createObjectStore(STORE_NAME);
-              } catch (e2) {
-                console.warn(e2);
-              }
-          }
-        }
-      }).catch((e2) => {
-        throw ERROR_FACTORY.create("idb-open", {
-          originalErrorMessage: e2.message
-        });
-      });
-    }
-    return dbPromise;
-  }
-  async function readHeartbeatsFromIndexedDB(app) {
-    try {
-      const db = await getDbPromise();
-      const tx = db.transaction(STORE_NAME);
-      const result = await tx.objectStore(STORE_NAME).get(computeKey(app));
-      await tx.done;
-      return result;
-    } catch (e2) {
-      if (e2 instanceof FirebaseError) {
-        logger.warn(e2.message);
-      } else {
-        const idbGetError = ERROR_FACTORY.create("idb-get", {
-          originalErrorMessage: e2 === null || e2 === void 0 ? void 0 : e2.message
-        });
-        logger.warn(idbGetError.message);
-      }
-    }
-  }
-  async function writeHeartbeatsToIndexedDB(app, heartbeatObject) {
-    try {
-      const db = await getDbPromise();
-      const tx = db.transaction(STORE_NAME, "readwrite");
-      const objectStore = tx.objectStore(STORE_NAME);
-      await objectStore.put(heartbeatObject, computeKey(app));
-      await tx.done;
-    } catch (e2) {
-      if (e2 instanceof FirebaseError) {
-        logger.warn(e2.message);
-      } else {
-        const idbGetError = ERROR_FACTORY.create("idb-set", {
-          originalErrorMessage: e2 === null || e2 === void 0 ? void 0 : e2.message
-        });
-        logger.warn(idbGetError.message);
-      }
-    }
-  }
-  function computeKey(app) {
-    return `${app.name}!${app.options.appId}`;
-  }
-  var MAX_HEADER_BYTES = 1024;
-  var STORED_HEARTBEAT_RETENTION_MAX_MILLIS = 30 * 24 * 60 * 60 * 1e3;
-  var HeartbeatServiceImpl = class {
-    constructor(container) {
-      this.container = container;
-      this._heartbeatsCache = null;
-      const app = this.container.getProvider("app").getImmediate();
-      this._storage = new HeartbeatStorageImpl(app);
-      this._heartbeatsCachePromise = this._storage.read().then((result) => {
-        this._heartbeatsCache = result;
-        return result;
-      });
-    }
-    /**
-     * Called to report a heartbeat. The function will generate
-     * a HeartbeatsByUserAgent object, update heartbeatsCache, and persist it
-     * to IndexedDB.
-     * Note that we only store one heartbeat per day. So if a heartbeat for today is
-     * already logged, subsequent calls to this function in the same day will be ignored.
-     */
-    async triggerHeartbeat() {
-      var _a, _b;
-      const platformLogger = this.container.getProvider("platform-logger").getImmediate();
-      const agent = platformLogger.getPlatformInfoString();
-      const date = getUTCDateString();
-      if (((_a = this._heartbeatsCache) === null || _a === void 0 ? void 0 : _a.heartbeats) == null) {
-        this._heartbeatsCache = await this._heartbeatsCachePromise;
-        if (((_b = this._heartbeatsCache) === null || _b === void 0 ? void 0 : _b.heartbeats) == null) {
-          return;
-        }
-      }
-      if (this._heartbeatsCache.lastSentHeartbeatDate === date || this._heartbeatsCache.heartbeats.some((singleDateHeartbeat) => singleDateHeartbeat.date === date)) {
-        return;
-      } else {
-        this._heartbeatsCache.heartbeats.push({ date, agent });
-      }
-      this._heartbeatsCache.heartbeats = this._heartbeatsCache.heartbeats.filter((singleDateHeartbeat) => {
-        const hbTimestamp = new Date(singleDateHeartbeat.date).valueOf();
-        const now2 = Date.now();
-        return now2 - hbTimestamp <= STORED_HEARTBEAT_RETENTION_MAX_MILLIS;
-      });
-      return this._storage.overwrite(this._heartbeatsCache);
-    }
-    /**
-     * Returns a base64 encoded string which can be attached to the heartbeat-specific header directly.
-     * It also clears all heartbeats from memory as well as in IndexedDB.
-     *
-     * NOTE: Consuming product SDKs should not send the header if this method
-     * returns an empty string.
-     */
-    async getHeartbeatsHeader() {
-      var _a;
-      if (this._heartbeatsCache === null) {
-        await this._heartbeatsCachePromise;
-      }
-      if (((_a = this._heartbeatsCache) === null || _a === void 0 ? void 0 : _a.heartbeats) == null || this._heartbeatsCache.heartbeats.length === 0) {
-        return "";
-      }
-      const date = getUTCDateString();
-      const { heartbeatsToSend, unsentEntries } = extractHeartbeatsForHeader(this._heartbeatsCache.heartbeats);
-      const headerString = base64urlEncodeWithoutPadding(JSON.stringify({ version: 2, heartbeats: heartbeatsToSend }));
-      this._heartbeatsCache.lastSentHeartbeatDate = date;
-      if (unsentEntries.length > 0) {
-        this._heartbeatsCache.heartbeats = unsentEntries;
-        await this._storage.overwrite(this._heartbeatsCache);
-      } else {
-        this._heartbeatsCache.heartbeats = [];
-        void this._storage.overwrite(this._heartbeatsCache);
-      }
-      return headerString;
-    }
-  };
-  function getUTCDateString() {
-    const today = /* @__PURE__ */ new Date();
-    return today.toISOString().substring(0, 10);
-  }
-  function extractHeartbeatsForHeader(heartbeatsCache, maxSize = MAX_HEADER_BYTES) {
-    const heartbeatsToSend = [];
-    let unsentEntries = heartbeatsCache.slice();
-    for (const singleDateHeartbeat of heartbeatsCache) {
-      const heartbeatEntry = heartbeatsToSend.find((hb) => hb.agent === singleDateHeartbeat.agent);
-      if (!heartbeatEntry) {
-        heartbeatsToSend.push({
-          agent: singleDateHeartbeat.agent,
-          dates: [singleDateHeartbeat.date]
-        });
-        if (countBytes(heartbeatsToSend) > maxSize) {
-          heartbeatsToSend.pop();
-          break;
-        }
-      } else {
-        heartbeatEntry.dates.push(singleDateHeartbeat.date);
-        if (countBytes(heartbeatsToSend) > maxSize) {
-          heartbeatEntry.dates.pop();
-          break;
-        }
-      }
-      unsentEntries = unsentEntries.slice(1);
-    }
-    return {
-      heartbeatsToSend,
-      unsentEntries
-    };
-  }
-  var HeartbeatStorageImpl = class {
-    constructor(app) {
-      this.app = app;
-      this._canUseIndexedDBPromise = this.runIndexedDBEnvironmentCheck();
-    }
-    async runIndexedDBEnvironmentCheck() {
-      if (!isIndexedDBAvailable()) {
-        return false;
-      } else {
-        return validateIndexedDBOpenable().then(() => true).catch(() => false);
-      }
-    }
-    /**
-     * Read all heartbeats.
-     */
-    async read() {
-      const canUseIndexedDB = await this._canUseIndexedDBPromise;
-      if (!canUseIndexedDB) {
-        return { heartbeats: [] };
-      } else {
-        const idbHeartbeatObject = await readHeartbeatsFromIndexedDB(this.app);
-        if (idbHeartbeatObject === null || idbHeartbeatObject === void 0 ? void 0 : idbHeartbeatObject.heartbeats) {
-          return idbHeartbeatObject;
-        } else {
-          return { heartbeats: [] };
-        }
-      }
-    }
-    // overwrite the storage with the provided heartbeats
-    async overwrite(heartbeatsObject) {
-      var _a;
-      const canUseIndexedDB = await this._canUseIndexedDBPromise;
-      if (!canUseIndexedDB) {
-        return;
-      } else {
-        const existingHeartbeatsObject = await this.read();
-        return writeHeartbeatsToIndexedDB(this.app, {
-          lastSentHeartbeatDate: (_a = heartbeatsObject.lastSentHeartbeatDate) !== null && _a !== void 0 ? _a : existingHeartbeatsObject.lastSentHeartbeatDate,
-          heartbeats: heartbeatsObject.heartbeats
-        });
-      }
-    }
-    // add heartbeats
-    async add(heartbeatsObject) {
-      var _a;
-      const canUseIndexedDB = await this._canUseIndexedDBPromise;
-      if (!canUseIndexedDB) {
-        return;
-      } else {
-        const existingHeartbeatsObject = await this.read();
-        return writeHeartbeatsToIndexedDB(this.app, {
-          lastSentHeartbeatDate: (_a = heartbeatsObject.lastSentHeartbeatDate) !== null && _a !== void 0 ? _a : existingHeartbeatsObject.lastSentHeartbeatDate,
-          heartbeats: [
-            ...existingHeartbeatsObject.heartbeats,
-            ...heartbeatsObject.heartbeats
-          ]
-        });
-      }
-    }
-  };
-  function countBytes(heartbeatsCache) {
-    return base64urlEncodeWithoutPadding(
-      // heartbeatsCache wrapper properties
-      JSON.stringify({ version: 2, heartbeats: heartbeatsCache })
-    ).length;
-  }
-  function registerCoreComponents(variant) {
-    _registerComponent(new Component(
-      "platform-logger",
-      (container) => new PlatformLoggerServiceImpl(container),
-      "PRIVATE"
-      /* ComponentType.PRIVATE */
-    ));
-    _registerComponent(new Component(
-      "heartbeat",
-      (container) => new HeartbeatServiceImpl(container),
-      "PRIVATE"
-      /* ComponentType.PRIVATE */
-    ));
-    registerVersion(name$p, version$1, variant);
-    registerVersion(name$p, version$1, "esm2017");
-    registerVersion("fire-js", "");
-  }
-  registerCoreComponents("");
-
-  // node_modules/firebase/app/dist/esm/index.esm.js
-  var name2 = "firebase";
-  var version = "10.12.2";
-  registerVersion(name2, version, "app");
-
-  // node_modules/@firebase/installations/dist/esm/index.esm2017.js
-  var name3 = "@firebase/installations";
-  var version2 = "0.6.7";
-  var PENDING_TIMEOUT_MS = 1e4;
-  var PACKAGE_VERSION = `w:${version2}`;
-  var INTERNAL_AUTH_VERSION = "FIS_v2";
-  var INSTALLATIONS_API_URL = "https://firebaseinstallations.googleapis.com/v1";
-  var TOKEN_EXPIRATION_BUFFER = 60 * 60 * 1e3;
-  var SERVICE = "installations";
-  var SERVICE_NAME = "Installations";
-  var ERROR_DESCRIPTION_MAP = {
-    [
-      "missing-app-config-values"
-      /* ErrorCode.MISSING_APP_CONFIG_VALUES */
-    ]: 'Missing App configuration value: "{$valueName}"',
-    [
-      "not-registered"
-      /* ErrorCode.NOT_REGISTERED */
-    ]: "Firebase Installation is not registered.",
-    [
-      "installation-not-found"
-      /* ErrorCode.INSTALLATION_NOT_FOUND */
-    ]: "Firebase Installation not found.",
-    [
-      "request-failed"
-      /* ErrorCode.REQUEST_FAILED */
-    ]: '{$requestName} request failed with error "{$serverCode} {$serverStatus}: {$serverMessage}"',
-    [
-      "app-offline"
-      /* ErrorCode.APP_OFFLINE */
-    ]: "Could not process request. Application offline.",
-    [
-      "delete-pending-registration"
-      /* ErrorCode.DELETE_PENDING_REGISTRATION */
-    ]: "Can't delete installation while there is a pending registration request."
-  };
-  var ERROR_FACTORY2 = new ErrorFactory(SERVICE, SERVICE_NAME, ERROR_DESCRIPTION_MAP);
-  function isServerError(error2) {
-    return error2 instanceof FirebaseError && error2.code.includes(
-      "request-failed"
-      /* ErrorCode.REQUEST_FAILED */
-    );
-  }
-  function getInstallationsEndpoint({ projectId }) {
-    return `${INSTALLATIONS_API_URL}/projects/${projectId}/installations`;
-  }
-  function extractAuthTokenInfoFromResponse(response) {
-    return {
-      token: response.token,
-      requestStatus: 2,
-      expiresIn: getExpiresInFromResponseExpiresIn(response.expiresIn),
-      creationTime: Date.now()
-    };
-  }
-  async function getErrorFromResponse(requestName, response) {
-    const responseJson = await response.json();
-    const errorData = responseJson.error;
-    return ERROR_FACTORY2.create("request-failed", {
-      requestName,
-      serverCode: errorData.code,
-      serverMessage: errorData.message,
-      serverStatus: errorData.status
-    });
-  }
-  function getHeaders({ apiKey }) {
-    return new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "x-goog-api-key": apiKey
-    });
-  }
-  function getHeadersWithAuth(appConfig, { refreshToken }) {
-    const headers = getHeaders(appConfig);
-    headers.append("Authorization", getAuthorizationHeader(refreshToken));
-    return headers;
-  }
-  async function retryIfServerError(fn3) {
-    const result = await fn3();
-    if (result.status >= 500 && result.status < 600) {
-      return fn3();
-    }
-    return result;
-  }
-  function getExpiresInFromResponseExpiresIn(responseExpiresIn) {
-    return Number(responseExpiresIn.replace("s", "000"));
-  }
-  function getAuthorizationHeader(refreshToken) {
-    return `${INTERNAL_AUTH_VERSION} ${refreshToken}`;
-  }
-  async function createInstallationRequest({ appConfig, heartbeatServiceProvider }, { fid }) {
-    const endpoint = getInstallationsEndpoint(appConfig);
-    const headers = getHeaders(appConfig);
-    const heartbeatService = heartbeatServiceProvider.getImmediate({
-      optional: true
-    });
-    if (heartbeatService) {
-      const heartbeatsHeader = await heartbeatService.getHeartbeatsHeader();
-      if (heartbeatsHeader) {
-        headers.append("x-firebase-client", heartbeatsHeader);
-      }
-    }
-    const body = {
-      fid,
-      authVersion: INTERNAL_AUTH_VERSION,
-      appId: appConfig.appId,
-      sdkVersion: PACKAGE_VERSION
-    };
-    const request = {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body)
-    };
-    const response = await retryIfServerError(() => fetch(endpoint, request));
-    if (response.ok) {
-      const responseValue = await response.json();
-      const registeredInstallationEntry = {
-        fid: responseValue.fid || fid,
-        registrationStatus: 2,
-        refreshToken: responseValue.refreshToken,
-        authToken: extractAuthTokenInfoFromResponse(responseValue.authToken)
-      };
-      return registeredInstallationEntry;
-    } else {
-      throw await getErrorFromResponse("Create Installation", response);
-    }
-  }
-  function sleep(ms) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }
-  function bufferToBase64UrlSafe(array) {
-    const b64 = btoa(String.fromCharCode(...array));
-    return b64.replace(/\+/g, "-").replace(/\//g, "_");
-  }
-  var VALID_FID_PATTERN = /^[cdef][\w-]{21}$/;
-  var INVALID_FID = "";
-  function generateFid() {
-    try {
-      const fidByteArray = new Uint8Array(17);
-      const crypto = self.crypto || self.msCrypto;
-      crypto.getRandomValues(fidByteArray);
-      fidByteArray[0] = 112 + fidByteArray[0] % 16;
-      const fid = encode(fidByteArray);
-      return VALID_FID_PATTERN.test(fid) ? fid : INVALID_FID;
-    } catch (_a) {
-      return INVALID_FID;
-    }
-  }
-  function encode(fidByteArray) {
-    const b64String = bufferToBase64UrlSafe(fidByteArray);
-    return b64String.substr(0, 22);
-  }
-  function getKey(appConfig) {
-    return `${appConfig.appName}!${appConfig.appId}`;
-  }
-  var fidChangeCallbacks = /* @__PURE__ */ new Map();
-  function fidChanged(appConfig, fid) {
-    const key = getKey(appConfig);
-    callFidChangeCallbacks(key, fid);
-    broadcastFidChange(key, fid);
-  }
-  function callFidChangeCallbacks(key, fid) {
-    const callbacks = fidChangeCallbacks.get(key);
-    if (!callbacks) {
-      return;
-    }
-    for (const callback of callbacks) {
-      callback(fid);
-    }
-  }
-  function broadcastFidChange(key, fid) {
-    const channel = getBroadcastChannel();
-    if (channel) {
-      channel.postMessage({ key, fid });
-    }
-    closeBroadcastChannel();
-  }
-  var broadcastChannel = null;
-  function getBroadcastChannel() {
-    if (!broadcastChannel && "BroadcastChannel" in self) {
-      broadcastChannel = new BroadcastChannel("[Firebase] FID Change");
-      broadcastChannel.onmessage = (e2) => {
-        callFidChangeCallbacks(e2.data.key, e2.data.fid);
-      };
-    }
-    return broadcastChannel;
-  }
-  function closeBroadcastChannel() {
-    if (fidChangeCallbacks.size === 0 && broadcastChannel) {
-      broadcastChannel.close();
-      broadcastChannel = null;
-    }
-  }
-  var DATABASE_NAME = "firebase-installations-database";
-  var DATABASE_VERSION = 1;
-  var OBJECT_STORE_NAME = "firebase-installations-store";
-  var dbPromise2 = null;
-  function getDbPromise2() {
-    if (!dbPromise2) {
-      dbPromise2 = openDB(DATABASE_NAME, DATABASE_VERSION, {
-        upgrade: (db, oldVersion) => {
-          switch (oldVersion) {
-            case 0:
-              db.createObjectStore(OBJECT_STORE_NAME);
-          }
-        }
-      });
-    }
-    return dbPromise2;
-  }
-  async function set(appConfig, value) {
-    const key = getKey(appConfig);
-    const db = await getDbPromise2();
-    const tx = db.transaction(OBJECT_STORE_NAME, "readwrite");
-    const objectStore = tx.objectStore(OBJECT_STORE_NAME);
-    const oldValue = await objectStore.get(key);
-    await objectStore.put(value, key);
-    await tx.done;
-    if (!oldValue || oldValue.fid !== value.fid) {
-      fidChanged(appConfig, value.fid);
-    }
-    return value;
-  }
-  async function remove(appConfig) {
-    const key = getKey(appConfig);
-    const db = await getDbPromise2();
-    const tx = db.transaction(OBJECT_STORE_NAME, "readwrite");
-    await tx.objectStore(OBJECT_STORE_NAME).delete(key);
-    await tx.done;
-  }
-  async function update(appConfig, updateFn) {
-    const key = getKey(appConfig);
-    const db = await getDbPromise2();
-    const tx = db.transaction(OBJECT_STORE_NAME, "readwrite");
-    const store = tx.objectStore(OBJECT_STORE_NAME);
-    const oldValue = await store.get(key);
-    const newValue = updateFn(oldValue);
-    if (newValue === void 0) {
-      await store.delete(key);
-    } else {
-      await store.put(newValue, key);
-    }
-    await tx.done;
-    if (newValue && (!oldValue || oldValue.fid !== newValue.fid)) {
-      fidChanged(appConfig, newValue.fid);
-    }
-    return newValue;
-  }
-  async function getInstallationEntry(installations) {
-    let registrationPromise;
-    const installationEntry = await update(installations.appConfig, (oldEntry) => {
-      const installationEntry2 = updateOrCreateInstallationEntry(oldEntry);
-      const entryWithPromise = triggerRegistrationIfNecessary(installations, installationEntry2);
-      registrationPromise = entryWithPromise.registrationPromise;
-      return entryWithPromise.installationEntry;
-    });
-    if (installationEntry.fid === INVALID_FID) {
-      return { installationEntry: await registrationPromise };
-    }
-    return {
-      installationEntry,
-      registrationPromise
-    };
-  }
-  function updateOrCreateInstallationEntry(oldEntry) {
-    const entry = oldEntry || {
-      fid: generateFid(),
-      registrationStatus: 0
-      /* RequestStatus.NOT_STARTED */
-    };
-    return clearTimedOutRequest(entry);
-  }
-  function triggerRegistrationIfNecessary(installations, installationEntry) {
-    if (installationEntry.registrationStatus === 0) {
-      if (!navigator.onLine) {
-        const registrationPromiseWithError = Promise.reject(ERROR_FACTORY2.create(
-          "app-offline"
-          /* ErrorCode.APP_OFFLINE */
-        ));
-        return {
-          installationEntry,
-          registrationPromise: registrationPromiseWithError
-        };
-      }
-      const inProgressEntry = {
-        fid: installationEntry.fid,
-        registrationStatus: 1,
-        registrationTime: Date.now()
-      };
-      const registrationPromise = registerInstallation(installations, inProgressEntry);
-      return { installationEntry: inProgressEntry, registrationPromise };
-    } else if (installationEntry.registrationStatus === 1) {
-      return {
-        installationEntry,
-        registrationPromise: waitUntilFidRegistration(installations)
-      };
-    } else {
-      return { installationEntry };
-    }
-  }
-  async function registerInstallation(installations, installationEntry) {
-    try {
-      const registeredInstallationEntry = await createInstallationRequest(installations, installationEntry);
-      return set(installations.appConfig, registeredInstallationEntry);
-    } catch (e2) {
-      if (isServerError(e2) && e2.customData.serverCode === 409) {
-        await remove(installations.appConfig);
-      } else {
-        await set(installations.appConfig, {
-          fid: installationEntry.fid,
-          registrationStatus: 0
-          /* RequestStatus.NOT_STARTED */
-        });
-      }
-      throw e2;
-    }
-  }
-  async function waitUntilFidRegistration(installations) {
-    let entry = await updateInstallationRequest(installations.appConfig);
-    while (entry.registrationStatus === 1) {
-      await sleep(100);
-      entry = await updateInstallationRequest(installations.appConfig);
-    }
-    if (entry.registrationStatus === 0) {
-      const { installationEntry, registrationPromise } = await getInstallationEntry(installations);
-      if (registrationPromise) {
-        return registrationPromise;
-      } else {
-        return installationEntry;
-      }
-    }
-    return entry;
-  }
-  function updateInstallationRequest(appConfig) {
-    return update(appConfig, (oldEntry) => {
-      if (!oldEntry) {
-        throw ERROR_FACTORY2.create(
-          "installation-not-found"
-          /* ErrorCode.INSTALLATION_NOT_FOUND */
-        );
-      }
-      return clearTimedOutRequest(oldEntry);
-    });
-  }
-  function clearTimedOutRequest(entry) {
-    if (hasInstallationRequestTimedOut(entry)) {
-      return {
-        fid: entry.fid,
-        registrationStatus: 0
-        /* RequestStatus.NOT_STARTED */
-      };
-    }
-    return entry;
-  }
-  function hasInstallationRequestTimedOut(installationEntry) {
-    return installationEntry.registrationStatus === 1 && installationEntry.registrationTime + PENDING_TIMEOUT_MS < Date.now();
-  }
-  async function generateAuthTokenRequest({ appConfig, heartbeatServiceProvider }, installationEntry) {
-    const endpoint = getGenerateAuthTokenEndpoint(appConfig, installationEntry);
-    const headers = getHeadersWithAuth(appConfig, installationEntry);
-    const heartbeatService = heartbeatServiceProvider.getImmediate({
-      optional: true
-    });
-    if (heartbeatService) {
-      const heartbeatsHeader = await heartbeatService.getHeartbeatsHeader();
-      if (heartbeatsHeader) {
-        headers.append("x-firebase-client", heartbeatsHeader);
-      }
-    }
-    const body = {
-      installation: {
-        sdkVersion: PACKAGE_VERSION,
-        appId: appConfig.appId
-      }
-    };
-    const request = {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body)
-    };
-    const response = await retryIfServerError(() => fetch(endpoint, request));
-    if (response.ok) {
-      const responseValue = await response.json();
-      const completedAuthToken = extractAuthTokenInfoFromResponse(responseValue);
-      return completedAuthToken;
-    } else {
-      throw await getErrorFromResponse("Generate Auth Token", response);
-    }
-  }
-  function getGenerateAuthTokenEndpoint(appConfig, { fid }) {
-    return `${getInstallationsEndpoint(appConfig)}/${fid}/authTokens:generate`;
-  }
-  async function refreshAuthToken(installations, forceRefresh = false) {
-    let tokenPromise;
-    const entry = await update(installations.appConfig, (oldEntry) => {
-      if (!isEntryRegistered(oldEntry)) {
-        throw ERROR_FACTORY2.create(
-          "not-registered"
-          /* ErrorCode.NOT_REGISTERED */
-        );
-      }
-      const oldAuthToken = oldEntry.authToken;
-      if (!forceRefresh && isAuthTokenValid(oldAuthToken)) {
-        return oldEntry;
-      } else if (oldAuthToken.requestStatus === 1) {
-        tokenPromise = waitUntilAuthTokenRequest(installations, forceRefresh);
-        return oldEntry;
-      } else {
-        if (!navigator.onLine) {
-          throw ERROR_FACTORY2.create(
-            "app-offline"
-            /* ErrorCode.APP_OFFLINE */
-          );
-        }
-        const inProgressEntry = makeAuthTokenRequestInProgressEntry(oldEntry);
-        tokenPromise = fetchAuthTokenFromServer(installations, inProgressEntry);
-        return inProgressEntry;
-      }
-    });
-    const authToken = tokenPromise ? await tokenPromise : entry.authToken;
-    return authToken;
-  }
-  async function waitUntilAuthTokenRequest(installations, forceRefresh) {
-    let entry = await updateAuthTokenRequest(installations.appConfig);
-    while (entry.authToken.requestStatus === 1) {
-      await sleep(100);
-      entry = await updateAuthTokenRequest(installations.appConfig);
-    }
-    const authToken = entry.authToken;
-    if (authToken.requestStatus === 0) {
-      return refreshAuthToken(installations, forceRefresh);
-    } else {
-      return authToken;
-    }
-  }
-  function updateAuthTokenRequest(appConfig) {
-    return update(appConfig, (oldEntry) => {
-      if (!isEntryRegistered(oldEntry)) {
-        throw ERROR_FACTORY2.create(
-          "not-registered"
-          /* ErrorCode.NOT_REGISTERED */
-        );
-      }
-      const oldAuthToken = oldEntry.authToken;
-      if (hasAuthTokenRequestTimedOut(oldAuthToken)) {
-        return Object.assign(Object.assign({}, oldEntry), { authToken: {
-          requestStatus: 0
-          /* RequestStatus.NOT_STARTED */
-        } });
-      }
-      return oldEntry;
-    });
-  }
-  async function fetchAuthTokenFromServer(installations, installationEntry) {
-    try {
-      const authToken = await generateAuthTokenRequest(installations, installationEntry);
-      const updatedInstallationEntry = Object.assign(Object.assign({}, installationEntry), { authToken });
-      await set(installations.appConfig, updatedInstallationEntry);
-      return authToken;
-    } catch (e2) {
-      if (isServerError(e2) && (e2.customData.serverCode === 401 || e2.customData.serverCode === 404)) {
-        await remove(installations.appConfig);
-      } else {
-        const updatedInstallationEntry = Object.assign(Object.assign({}, installationEntry), { authToken: {
-          requestStatus: 0
-          /* RequestStatus.NOT_STARTED */
-        } });
-        await set(installations.appConfig, updatedInstallationEntry);
-      }
-      throw e2;
-    }
-  }
-  function isEntryRegistered(installationEntry) {
-    return installationEntry !== void 0 && installationEntry.registrationStatus === 2;
-  }
-  function isAuthTokenValid(authToken) {
-    return authToken.requestStatus === 2 && !isAuthTokenExpired(authToken);
-  }
-  function isAuthTokenExpired(authToken) {
-    const now2 = Date.now();
-    return now2 < authToken.creationTime || authToken.creationTime + authToken.expiresIn < now2 + TOKEN_EXPIRATION_BUFFER;
-  }
-  function makeAuthTokenRequestInProgressEntry(oldEntry) {
-    const inProgressAuthToken = {
-      requestStatus: 1,
-      requestTime: Date.now()
-    };
-    return Object.assign(Object.assign({}, oldEntry), { authToken: inProgressAuthToken });
-  }
-  function hasAuthTokenRequestTimedOut(authToken) {
-    return authToken.requestStatus === 1 && authToken.requestTime + PENDING_TIMEOUT_MS < Date.now();
-  }
-  async function getId(installations) {
-    const installationsImpl = installations;
-    const { installationEntry, registrationPromise } = await getInstallationEntry(installationsImpl);
-    if (registrationPromise) {
-      registrationPromise.catch(console.error);
-    } else {
-      refreshAuthToken(installationsImpl).catch(console.error);
-    }
-    return installationEntry.fid;
-  }
-  async function getToken(installations, forceRefresh = false) {
-    const installationsImpl = installations;
-    await completeInstallationRegistration(installationsImpl);
-    const authToken = await refreshAuthToken(installationsImpl, forceRefresh);
-    return authToken.token;
-  }
-  async function completeInstallationRegistration(installations) {
-    const { registrationPromise } = await getInstallationEntry(installations);
-    if (registrationPromise) {
-      await registrationPromise;
-    }
-  }
-  function extractAppConfig(app) {
-    if (!app || !app.options) {
-      throw getMissingValueError("App Configuration");
-    }
-    if (!app.name) {
-      throw getMissingValueError("App Name");
-    }
-    const configKeys = [
-      "projectId",
-      "apiKey",
-      "appId"
-    ];
-    for (const keyName of configKeys) {
-      if (!app.options[keyName]) {
-        throw getMissingValueError(keyName);
-      }
-    }
-    return {
-      appName: app.name,
-      projectId: app.options.projectId,
-      apiKey: app.options.apiKey,
-      appId: app.options.appId
-    };
-  }
-  function getMissingValueError(valueName) {
-    return ERROR_FACTORY2.create("missing-app-config-values", {
-      valueName
-    });
-  }
-  var INSTALLATIONS_NAME = "installations";
-  var INSTALLATIONS_NAME_INTERNAL = "installations-internal";
-  var publicFactory = (container) => {
-    const app = container.getProvider("app").getImmediate();
-    const appConfig = extractAppConfig(app);
-    const heartbeatServiceProvider = _getProvider(app, "heartbeat");
-    const installationsImpl = {
-      app,
-      appConfig,
-      heartbeatServiceProvider,
-      _delete: () => Promise.resolve()
-    };
-    return installationsImpl;
-  };
-  var internalFactory = (container) => {
-    const app = container.getProvider("app").getImmediate();
-    const installations = _getProvider(app, INSTALLATIONS_NAME).getImmediate();
-    const installationsInternal = {
-      getId: () => getId(installations),
-      getToken: (forceRefresh) => getToken(installations, forceRefresh)
-    };
-    return installationsInternal;
-  };
-  function registerInstallations() {
-    _registerComponent(new Component(
-      INSTALLATIONS_NAME,
-      publicFactory,
-      "PUBLIC"
-      /* ComponentType.PUBLIC */
-    ));
-    _registerComponent(new Component(
-      INSTALLATIONS_NAME_INTERNAL,
-      internalFactory,
-      "PRIVATE"
-      /* ComponentType.PRIVATE */
-    ));
-  }
-  registerInstallations();
-  registerVersion(name3, version2);
-  registerVersion(name3, version2, "esm2017");
-
-  // node_modules/@firebase/analytics/dist/esm/index.esm2017.js
-  var ANALYTICS_TYPE = "analytics";
-  var GA_FID_KEY = "firebase_id";
-  var ORIGIN_KEY = "origin";
-  var FETCH_TIMEOUT_MILLIS = 60 * 1e3;
-  var DYNAMIC_CONFIG_URL = "https://firebase.googleapis.com/v1alpha/projects/-/apps/{app-id}/webConfig";
-  var GTAG_URL = "https://www.googletagmanager.com/gtag/js";
-  var logger2 = new Logger("@firebase/analytics");
-  var ERRORS2 = {
-    [
-      "already-exists"
-      /* AnalyticsError.ALREADY_EXISTS */
-    ]: "A Firebase Analytics instance with the appId {$id}  already exists. Only one Firebase Analytics instance can be created for each appId.",
-    [
-      "already-initialized"
-      /* AnalyticsError.ALREADY_INITIALIZED */
-    ]: "initializeAnalytics() cannot be called again with different options than those it was initially called with. It can be called again with the same options to return the existing instance, or getAnalytics() can be used to get a reference to the already-intialized instance.",
-    [
-      "already-initialized-settings"
-      /* AnalyticsError.ALREADY_INITIALIZED_SETTINGS */
-    ]: "Firebase Analytics has already been initialized.settings() must be called before initializing any Analytics instanceor it will have no effect.",
-    [
-      "interop-component-reg-failed"
-      /* AnalyticsError.INTEROP_COMPONENT_REG_FAILED */
-    ]: "Firebase Analytics Interop Component failed to instantiate: {$reason}",
-    [
-      "invalid-analytics-context"
-      /* AnalyticsError.INVALID_ANALYTICS_CONTEXT */
-    ]: "Firebase Analytics is not supported in this environment. Wrap initialization of analytics in analytics.isSupported() to prevent initialization in unsupported environments. Details: {$errorInfo}",
-    [
-      "indexeddb-unavailable"
-      /* AnalyticsError.INDEXEDDB_UNAVAILABLE */
-    ]: "IndexedDB unavailable or restricted in this environment. Wrap initialization of analytics in analytics.isSupported() to prevent initialization in unsupported environments. Details: {$errorInfo}",
-    [
-      "fetch-throttle"
-      /* AnalyticsError.FETCH_THROTTLE */
-    ]: "The config fetch request timed out while in an exponential backoff state. Unix timestamp in milliseconds when fetch request throttling ends: {$throttleEndTimeMillis}.",
-    [
-      "config-fetch-failed"
-      /* AnalyticsError.CONFIG_FETCH_FAILED */
-    ]: "Dynamic config fetch failed: [{$httpStatus}] {$responseMessage}",
-    [
-      "no-api-key"
-      /* AnalyticsError.NO_API_KEY */
-    ]: 'The "apiKey" field is empty in the local Firebase config. Firebase Analytics requires this field tocontain a valid API key.',
-    [
-      "no-app-id"
-      /* AnalyticsError.NO_APP_ID */
-    ]: 'The "appId" field is empty in the local Firebase config. Firebase Analytics requires this field tocontain a valid app ID.',
-    [
-      "no-client-id"
-      /* AnalyticsError.NO_CLIENT_ID */
-    ]: 'The "client_id" field is empty.',
-    [
-      "invalid-gtag-resource"
-      /* AnalyticsError.INVALID_GTAG_RESOURCE */
-    ]: "Trusted Types detected an invalid gtag resource: {$gtagURL}."
-  };
-  var ERROR_FACTORY3 = new ErrorFactory("analytics", "Analytics", ERRORS2);
-  function createGtagTrustedTypesScriptURL(url) {
-    if (!url.startsWith(GTAG_URL)) {
-      const err = ERROR_FACTORY3.create("invalid-gtag-resource", {
-        gtagURL: url
-      });
-      logger2.warn(err.message);
-      return "";
-    }
-    return url;
-  }
-  function promiseAllSettled(promises) {
-    return Promise.all(promises.map((promise) => promise.catch((e2) => e2)));
-  }
-  function createTrustedTypesPolicy(policyName, policyOptions) {
-    let trustedTypesPolicy;
-    if (window.trustedTypes) {
-      trustedTypesPolicy = window.trustedTypes.createPolicy(policyName, policyOptions);
-    }
-    return trustedTypesPolicy;
-  }
-  function insertScriptTag(dataLayerName2, measurementId) {
-    const trustedTypesPolicy = createTrustedTypesPolicy("firebase-js-sdk-policy", {
-      createScriptURL: createGtagTrustedTypesScriptURL
-    });
-    const script = document.createElement("script");
-    const gtagScriptURL = `${GTAG_URL}?l=${dataLayerName2}&id=${measurementId}`;
-    script.src = trustedTypesPolicy ? trustedTypesPolicy === null || trustedTypesPolicy === void 0 ? void 0 : trustedTypesPolicy.createScriptURL(gtagScriptURL) : gtagScriptURL;
-    script.async = true;
-    document.head.appendChild(script);
-  }
-  function getOrCreateDataLayer(dataLayerName2) {
-    let dataLayer = [];
-    if (Array.isArray(window[dataLayerName2])) {
-      dataLayer = window[dataLayerName2];
-    } else {
-      window[dataLayerName2] = dataLayer;
-    }
-    return dataLayer;
-  }
-  async function gtagOnConfig(gtagCore, initializationPromisesMap2, dynamicConfigPromisesList2, measurementIdToAppId2, measurementId, gtagParams) {
-    const correspondingAppId = measurementIdToAppId2[measurementId];
-    try {
-      if (correspondingAppId) {
-        await initializationPromisesMap2[correspondingAppId];
-      } else {
-        const dynamicConfigResults = await promiseAllSettled(dynamicConfigPromisesList2);
-        const foundConfig = dynamicConfigResults.find((config) => config.measurementId === measurementId);
-        if (foundConfig) {
-          await initializationPromisesMap2[foundConfig.appId];
-        }
-      }
-    } catch (e2) {
-      logger2.error(e2);
-    }
-    gtagCore("config", measurementId, gtagParams);
-  }
-  async function gtagOnEvent(gtagCore, initializationPromisesMap2, dynamicConfigPromisesList2, measurementId, gtagParams) {
-    try {
-      let initializationPromisesToWaitFor = [];
-      if (gtagParams && gtagParams["send_to"]) {
-        let gaSendToList = gtagParams["send_to"];
-        if (!Array.isArray(gaSendToList)) {
-          gaSendToList = [gaSendToList];
-        }
-        const dynamicConfigResults = await promiseAllSettled(dynamicConfigPromisesList2);
-        for (const sendToId of gaSendToList) {
-          const foundConfig = dynamicConfigResults.find((config) => config.measurementId === sendToId);
-          const initializationPromise = foundConfig && initializationPromisesMap2[foundConfig.appId];
-          if (initializationPromise) {
-            initializationPromisesToWaitFor.push(initializationPromise);
-          } else {
-            initializationPromisesToWaitFor = [];
-            break;
-          }
-        }
-      }
-      if (initializationPromisesToWaitFor.length === 0) {
-        initializationPromisesToWaitFor = Object.values(initializationPromisesMap2);
-      }
-      await Promise.all(initializationPromisesToWaitFor);
-      gtagCore("event", measurementId, gtagParams || {});
-    } catch (e2) {
-      logger2.error(e2);
-    }
-  }
-  function wrapGtag(gtagCore, initializationPromisesMap2, dynamicConfigPromisesList2, measurementIdToAppId2) {
-    async function gtagWrapper(command, ...args) {
-      try {
-        if (command === "event") {
-          const [measurementId, gtagParams] = args;
-          await gtagOnEvent(gtagCore, initializationPromisesMap2, dynamicConfigPromisesList2, measurementId, gtagParams);
-        } else if (command === "config") {
-          const [measurementId, gtagParams] = args;
-          await gtagOnConfig(gtagCore, initializationPromisesMap2, dynamicConfigPromisesList2, measurementIdToAppId2, measurementId, gtagParams);
-        } else if (command === "consent") {
-          const [consentAction, gtagParams] = args;
-          gtagCore("consent", consentAction, gtagParams);
-        } else if (command === "get") {
-          const [measurementId, fieldName, callback] = args;
-          gtagCore("get", measurementId, fieldName, callback);
-        } else if (command === "set") {
-          const [customParams] = args;
-          gtagCore("set", customParams);
-        } else {
-          gtagCore(command, ...args);
-        }
-      } catch (e2) {
-        logger2.error(e2);
-      }
-    }
-    return gtagWrapper;
-  }
-  function wrapOrCreateGtag(initializationPromisesMap2, dynamicConfigPromisesList2, measurementIdToAppId2, dataLayerName2, gtagFunctionName) {
-    let gtagCore = function(..._args) {
-      window[dataLayerName2].push(arguments);
-    };
-    if (window[gtagFunctionName] && typeof window[gtagFunctionName] === "function") {
-      gtagCore = window[gtagFunctionName];
-    }
-    window[gtagFunctionName] = wrapGtag(gtagCore, initializationPromisesMap2, dynamicConfigPromisesList2, measurementIdToAppId2);
-    return {
-      gtagCore,
-      wrappedGtag: window[gtagFunctionName]
-    };
-  }
-  function findGtagScriptOnPage(dataLayerName2) {
-    const scriptTags = window.document.getElementsByTagName("script");
-    for (const tag of Object.values(scriptTags)) {
-      if (tag.src && tag.src.includes(GTAG_URL) && tag.src.includes(dataLayerName2)) {
-        return tag;
-      }
-    }
-    return null;
-  }
-  var LONG_RETRY_FACTOR = 30;
-  var BASE_INTERVAL_MILLIS = 1e3;
-  var RetryData = class {
-    constructor(throttleMetadata = {}, intervalMillis = BASE_INTERVAL_MILLIS) {
-      this.throttleMetadata = throttleMetadata;
-      this.intervalMillis = intervalMillis;
-    }
-    getThrottleMetadata(appId2) {
-      return this.throttleMetadata[appId2];
-    }
-    setThrottleMetadata(appId2, metadata) {
-      this.throttleMetadata[appId2] = metadata;
-    }
-    deleteThrottleMetadata(appId2) {
-      delete this.throttleMetadata[appId2];
-    }
-  };
-  var defaultRetryData = new RetryData();
-  function getHeaders2(apiKey) {
-    return new Headers({
-      Accept: "application/json",
-      "x-goog-api-key": apiKey
-    });
-  }
-  async function fetchDynamicConfig(appFields) {
-    var _a;
-    const { appId: appId2, apiKey } = appFields;
-    const request = {
-      method: "GET",
-      headers: getHeaders2(apiKey)
-    };
-    const appUrl = DYNAMIC_CONFIG_URL.replace("{app-id}", appId2);
-    const response = await fetch(appUrl, request);
-    if (response.status !== 200 && response.status !== 304) {
-      let errorMessage = "";
-      try {
-        const jsonResponse = await response.json();
-        if ((_a = jsonResponse.error) === null || _a === void 0 ? void 0 : _a.message) {
-          errorMessage = jsonResponse.error.message;
-        }
-      } catch (_ignored) {
-      }
-      throw ERROR_FACTORY3.create("config-fetch-failed", {
-        httpStatus: response.status,
-        responseMessage: errorMessage
-      });
-    }
-    return response.json();
-  }
-  async function fetchDynamicConfigWithRetry(app, retryData = defaultRetryData, timeoutMillis) {
-    const { appId: appId2, apiKey, measurementId } = app.options;
-    if (!appId2) {
-      throw ERROR_FACTORY3.create(
-        "no-app-id"
-        /* AnalyticsError.NO_APP_ID */
-      );
-    }
-    if (!apiKey) {
-      if (measurementId) {
-        return {
-          measurementId,
-          appId: appId2
-        };
-      }
-      throw ERROR_FACTORY3.create(
-        "no-api-key"
-        /* AnalyticsError.NO_API_KEY */
-      );
-    }
-    const throttleMetadata = retryData.getThrottleMetadata(appId2) || {
-      backoffCount: 0,
-      throttleEndTimeMillis: Date.now()
-    };
-    const signal = new AnalyticsAbortSignal();
-    setTimeout(async () => {
-      signal.abort();
-    }, timeoutMillis !== void 0 ? timeoutMillis : FETCH_TIMEOUT_MILLIS);
-    return attemptFetchDynamicConfigWithRetry({ appId: appId2, apiKey, measurementId }, throttleMetadata, signal, retryData);
-  }
-  async function attemptFetchDynamicConfigWithRetry(appFields, { throttleEndTimeMillis, backoffCount }, signal, retryData = defaultRetryData) {
-    var _a;
-    const { appId: appId2, measurementId } = appFields;
-    try {
-      await setAbortableTimeout(signal, throttleEndTimeMillis);
-    } catch (e2) {
-      if (measurementId) {
-        logger2.warn(`Timed out fetching this Firebase app's measurement ID from the server. Falling back to the measurement ID ${measurementId} provided in the "measurementId" field in the local Firebase config. [${e2 === null || e2 === void 0 ? void 0 : e2.message}]`);
-        return { appId: appId2, measurementId };
-      }
-      throw e2;
-    }
-    try {
-      const response = await fetchDynamicConfig(appFields);
-      retryData.deleteThrottleMetadata(appId2);
-      return response;
-    } catch (e2) {
-      const error2 = e2;
-      if (!isRetriableError(error2)) {
-        retryData.deleteThrottleMetadata(appId2);
-        if (measurementId) {
-          logger2.warn(`Failed to fetch this Firebase app's measurement ID from the server. Falling back to the measurement ID ${measurementId} provided in the "measurementId" field in the local Firebase config. [${error2 === null || error2 === void 0 ? void 0 : error2.message}]`);
-          return { appId: appId2, measurementId };
-        } else {
-          throw e2;
-        }
-      }
-      const backoffMillis = Number((_a = error2 === null || error2 === void 0 ? void 0 : error2.customData) === null || _a === void 0 ? void 0 : _a.httpStatus) === 503 ? calculateBackoffMillis(backoffCount, retryData.intervalMillis, LONG_RETRY_FACTOR) : calculateBackoffMillis(backoffCount, retryData.intervalMillis);
-      const throttleMetadata = {
-        throttleEndTimeMillis: Date.now() + backoffMillis,
-        backoffCount: backoffCount + 1
-      };
-      retryData.setThrottleMetadata(appId2, throttleMetadata);
-      logger2.debug(`Calling attemptFetch again in ${backoffMillis} millis`);
-      return attemptFetchDynamicConfigWithRetry(appFields, throttleMetadata, signal, retryData);
-    }
-  }
-  function setAbortableTimeout(signal, throttleEndTimeMillis) {
-    return new Promise((resolve, reject) => {
-      const backoffMillis = Math.max(throttleEndTimeMillis - Date.now(), 0);
-      const timeout = setTimeout(resolve, backoffMillis);
-      signal.addEventListener(() => {
-        clearTimeout(timeout);
-        reject(ERROR_FACTORY3.create("fetch-throttle", {
-          throttleEndTimeMillis
-        }));
-      });
-    });
-  }
-  function isRetriableError(e2) {
-    if (!(e2 instanceof FirebaseError) || !e2.customData) {
-      return false;
-    }
-    const httpStatus = Number(e2.customData["httpStatus"]);
-    return httpStatus === 429 || httpStatus === 500 || httpStatus === 503 || httpStatus === 504;
-  }
-  var AnalyticsAbortSignal = class {
-    constructor() {
-      this.listeners = [];
-    }
-    addEventListener(listener) {
-      this.listeners.push(listener);
-    }
-    abort() {
-      this.listeners.forEach((listener) => listener());
-    }
-  };
-  var defaultEventParametersForInit;
-  async function logEvent$1(gtagFunction, initializationPromise, eventName, eventParams, options) {
-    if (options && options.global) {
-      gtagFunction("event", eventName, eventParams);
-      return;
-    } else {
-      const measurementId = await initializationPromise;
-      const params = Object.assign(Object.assign({}, eventParams), { "send_to": measurementId });
-      gtagFunction("event", eventName, params);
-    }
-  }
-  var defaultConsentSettingsForInit;
-  function _setConsentDefaultForInit(consentSettings) {
-    defaultConsentSettingsForInit = consentSettings;
-  }
-  function _setDefaultEventParametersForInit(customParams) {
-    defaultEventParametersForInit = customParams;
-  }
-  async function validateIndexedDB() {
-    if (!isIndexedDBAvailable()) {
-      logger2.warn(ERROR_FACTORY3.create("indexeddb-unavailable", {
-        errorInfo: "IndexedDB is not available in this environment."
-      }).message);
-      return false;
-    } else {
-      try {
-        await validateIndexedDBOpenable();
-      } catch (e2) {
-        logger2.warn(ERROR_FACTORY3.create("indexeddb-unavailable", {
-          errorInfo: e2 === null || e2 === void 0 ? void 0 : e2.toString()
-        }).message);
-        return false;
-      }
-    }
-    return true;
-  }
-  async function _initializeAnalytics(app, dynamicConfigPromisesList2, measurementIdToAppId2, installations, gtagCore, dataLayerName2, options) {
-    var _a;
-    const dynamicConfigPromise = fetchDynamicConfigWithRetry(app);
-    dynamicConfigPromise.then((config) => {
-      measurementIdToAppId2[config.measurementId] = config.appId;
-      if (app.options.measurementId && config.measurementId !== app.options.measurementId) {
-        logger2.warn(`The measurement ID in the local Firebase config (${app.options.measurementId}) does not match the measurement ID fetched from the server (${config.measurementId}). To ensure analytics events are always sent to the correct Analytics property, update the measurement ID field in the local config or remove it from the local config.`);
-      }
-    }).catch((e2) => logger2.error(e2));
-    dynamicConfigPromisesList2.push(dynamicConfigPromise);
-    const fidPromise = validateIndexedDB().then((envIsValid) => {
-      if (envIsValid) {
-        return installations.getId();
-      } else {
-        return void 0;
-      }
-    });
-    const [dynamicConfig, fid] = await Promise.all([
-      dynamicConfigPromise,
-      fidPromise
-    ]);
-    if (!findGtagScriptOnPage(dataLayerName2)) {
-      insertScriptTag(dataLayerName2, dynamicConfig.measurementId);
-    }
-    if (defaultConsentSettingsForInit) {
-      gtagCore("consent", "default", defaultConsentSettingsForInit);
-      _setConsentDefaultForInit(void 0);
-    }
-    gtagCore("js", /* @__PURE__ */ new Date());
-    const configProperties = (_a = options === null || options === void 0 ? void 0 : options.config) !== null && _a !== void 0 ? _a : {};
-    configProperties[ORIGIN_KEY] = "firebase";
-    configProperties.update = true;
-    if (fid != null) {
-      configProperties[GA_FID_KEY] = fid;
-    }
-    gtagCore("config", dynamicConfig.measurementId, configProperties);
-    if (defaultEventParametersForInit) {
-      gtagCore("set", defaultEventParametersForInit);
-      _setDefaultEventParametersForInit(void 0);
-    }
-    return dynamicConfig.measurementId;
-  }
-  var AnalyticsService = class {
-    constructor(app) {
-      this.app = app;
-    }
-    _delete() {
-      delete initializationPromisesMap[this.app.options.appId];
-      return Promise.resolve();
-    }
-  };
-  var initializationPromisesMap = {};
-  var dynamicConfigPromisesList = [];
-  var measurementIdToAppId = {};
-  var dataLayerName = "dataLayer";
-  var gtagName = "gtag";
-  var gtagCoreFunction;
-  var wrappedGtagFunction;
-  var globalInitDone = false;
-  function warnOnBrowserContextMismatch() {
-    const mismatchedEnvMessages = [];
-    if (isBrowserExtension()) {
-      mismatchedEnvMessages.push("This is a browser extension environment.");
-    }
-    if (!areCookiesEnabled()) {
-      mismatchedEnvMessages.push("Cookies are not available.");
-    }
-    if (mismatchedEnvMessages.length > 0) {
-      const details = mismatchedEnvMessages.map((message, index) => `(${index + 1}) ${message}`).join(" ");
-      const err = ERROR_FACTORY3.create("invalid-analytics-context", {
-        errorInfo: details
-      });
-      logger2.warn(err.message);
-    }
-  }
-  function factory(app, installations, options) {
-    warnOnBrowserContextMismatch();
-    const appId2 = app.options.appId;
-    if (!appId2) {
-      throw ERROR_FACTORY3.create(
-        "no-app-id"
-        /* AnalyticsError.NO_APP_ID */
-      );
-    }
-    if (!app.options.apiKey) {
-      if (app.options.measurementId) {
-        logger2.warn(`The "apiKey" field is empty in the local Firebase config. This is needed to fetch the latest measurement ID for this Firebase app. Falling back to the measurement ID ${app.options.measurementId} provided in the "measurementId" field in the local Firebase config.`);
-      } else {
-        throw ERROR_FACTORY3.create(
-          "no-api-key"
-          /* AnalyticsError.NO_API_KEY */
-        );
-      }
-    }
-    if (initializationPromisesMap[appId2] != null) {
-      throw ERROR_FACTORY3.create("already-exists", {
-        id: appId2
-      });
-    }
-    if (!globalInitDone) {
-      getOrCreateDataLayer(dataLayerName);
-      const { wrappedGtag, gtagCore } = wrapOrCreateGtag(initializationPromisesMap, dynamicConfigPromisesList, measurementIdToAppId, dataLayerName, gtagName);
-      wrappedGtagFunction = wrappedGtag;
-      gtagCoreFunction = gtagCore;
-      globalInitDone = true;
-    }
-    initializationPromisesMap[appId2] = _initializeAnalytics(app, dynamicConfigPromisesList, measurementIdToAppId, installations, gtagCoreFunction, dataLayerName, options);
-    const analyticsInstance = new AnalyticsService(app);
-    return analyticsInstance;
-  }
-  function getAnalytics(app = getApp()) {
-    app = getModularInstance(app);
-    const analyticsProvider = _getProvider(app, ANALYTICS_TYPE);
-    if (analyticsProvider.isInitialized()) {
-      return analyticsProvider.getImmediate();
-    }
-    return initializeAnalytics(app);
-  }
-  function initializeAnalytics(app, options = {}) {
-    const analyticsProvider = _getProvider(app, ANALYTICS_TYPE);
-    if (analyticsProvider.isInitialized()) {
-      const existingInstance = analyticsProvider.getImmediate();
-      if (deepEqual(options, analyticsProvider.getOptions())) {
-        return existingInstance;
-      } else {
-        throw ERROR_FACTORY3.create(
-          "already-initialized"
-          /* AnalyticsError.ALREADY_INITIALIZED */
-        );
-      }
-    }
-    const analyticsInstance = analyticsProvider.initialize({ options });
-    return analyticsInstance;
-  }
-  function logEvent(analyticsInstance, eventName, eventParams, options) {
-    analyticsInstance = getModularInstance(analyticsInstance);
-    logEvent$1(wrappedGtagFunction, initializationPromisesMap[analyticsInstance.app.options.appId], eventName, eventParams, options).catch((e2) => logger2.error(e2));
-  }
-  var name4 = "@firebase/analytics";
-  var version3 = "0.10.4";
-  function registerAnalytics() {
-    _registerComponent(new Component(
-      ANALYTICS_TYPE,
-      (container, { options: analyticsOptions }) => {
-        const app = container.getProvider("app").getImmediate();
-        const installations = container.getProvider("installations-internal").getImmediate();
-        return factory(app, installations, analyticsOptions);
-      },
-      "PUBLIC"
-      /* ComponentType.PUBLIC */
-    ));
-    _registerComponent(new Component(
-      "analytics-internal",
-      internalFactory2,
-      "PRIVATE"
-      /* ComponentType.PRIVATE */
-    ));
-    registerVersion(name4, version3);
-    registerVersion(name4, version3, "esm2017");
-    function internalFactory2(container) {
-      try {
-        const analytics = container.getProvider(ANALYTICS_TYPE).getImmediate();
-        return {
-          logEvent: (eventName, eventParams, options) => logEvent(analytics, eventName, eventParams, options)
-        };
-      } catch (e2) {
-        throw ERROR_FACTORY3.create("interop-component-reg-failed", {
-          reason: e2
-        });
-      }
-    }
-  }
-  registerAnalytics();
-
-  // app/javascript/controllers/firebase_analytics_controller.js
-  var firebase_analytics_controller_default = class extends Controller {
-    connect() {
-      const firebaseConfig = {
-        apiKey: "AIzaSyB0ZYIRcskwQltsMKOqK_VrSyPOjq_47U4",
-        authDomain: "atie-et-hatie-ef5da.firebaseapp.com",
-        projectId: "atie-et-hatie-ef5da",
-        storageBucket: "atie-et-hatie-ef5da.appspot.com",
-        messagingSenderId: "689017128628",
-        appId: "1:689017128628:web:a150160affdae413f879e1",
-        measurementId: "G-MCYW1K2B8S"
-      };
-      const app = initializeApp(firebaseConfig);
-      getAnalytics(app);
-    }
-  };
-
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
   application.register("places", places_controller_default);
-  application.register("firebase-analytics", firebase_analytics_controller_default);
 
   // app/javascript/components/sidebar.js
   document.addEventListener("turbo:load", function() {
@@ -9970,8 +7193,8 @@
   });
 
   // app/javascript/components/credit_card_payment_square.js
-  var appId = "sq0idp-tRPmjz_9gEGmASSfaa9IUw";
-  var locationId = "LR7ZE2YVBA61J";
+  var appId = "sandbox-sq0idb-c82Rx8uA5RNvDCMxGUKAsg";
+  var locationId = "LJ8SPTZMQP6TS";
   var csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
   async function initializeCard(payments) {
     const card = await payments.card();
@@ -15463,9 +12686,9 @@
     exports: {}
   };
   (function(module, exports) {
-    (function(factory2) {
+    (function(factory) {
       {
-        module.exports = factory2();
+        module.exports = factory();
       }
     })(function(undefined$1) {
       var hex_chr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
@@ -15915,8 +13138,8 @@
       }
     }
   };
-  function getMetaValue(name5) {
-    const element = findElement(document.head, `meta[name="${name5}"]`);
+  function getMetaValue(name) {
+    const element = findElement(document.head, `meta[name="${name}"]`);
     if (element) {
       return element.getAttribute("content");
     }
@@ -16125,10 +13348,10 @@
     get url() {
       return this.input.getAttribute("data-direct-upload-url");
     }
-    dispatch(name5, detail = {}) {
+    dispatch(name, detail = {}) {
       detail.file = this.file;
       detail.id = this.directUpload.id;
-      return dispatchEvent2(this.input, `direct-upload:${name5}`, {
+      return dispatchEvent2(this.input, `direct-upload:${name}`, {
         detail
       });
     }
@@ -16189,8 +13412,8 @@
       });
       return controllers;
     }
-    dispatch(name5, detail = {}) {
-      return dispatchEvent2(this.form, `direct-uploads:${name5}`, {
+    dispatch(name, detail = {}) {
+      return dispatchEvent2(this.form, `direct-uploads:${name}`, {
         detail
       });
     }
@@ -16441,20 +13664,20 @@
   // node_modules/@popperjs/core/lib/modifiers/applyStyles.js
   function applyStyles(_ref) {
     var state = _ref.state;
-    Object.keys(state.elements).forEach(function(name5) {
-      var style = state.styles[name5] || {};
-      var attributes = state.attributes[name5] || {};
-      var element = state.elements[name5];
+    Object.keys(state.elements).forEach(function(name) {
+      var style = state.styles[name] || {};
+      var attributes = state.attributes[name] || {};
+      var element = state.elements[name];
       if (!isHTMLElement(element) || !getNodeName(element)) {
         return;
       }
       Object.assign(element.style, style);
-      Object.keys(attributes).forEach(function(name6) {
-        var value = attributes[name6];
+      Object.keys(attributes).forEach(function(name2) {
+        var value = attributes[name2];
         if (value === false) {
-          element.removeAttribute(name6);
+          element.removeAttribute(name2);
         } else {
-          element.setAttribute(name6, value === true ? "" : value);
+          element.setAttribute(name2, value === true ? "" : value);
         }
       });
     });
@@ -16479,10 +13702,10 @@
       Object.assign(state.elements.arrow.style, initialStyles.arrow);
     }
     return function() {
-      Object.keys(state.elements).forEach(function(name5) {
-        var element = state.elements[name5];
-        var attributes = state.attributes[name5] || {};
-        var styleProperties = Object.keys(state.styles.hasOwnProperty(name5) ? state.styles[name5] : initialStyles[name5]);
+      Object.keys(state.elements).forEach(function(name) {
+        var element = state.elements[name];
+        var attributes = state.attributes[name] || {};
+        var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]);
         var style = styleProperties.reduce(function(style2, property) {
           style2[property] = "";
           return style2;
@@ -16725,7 +13948,7 @@
   };
   function arrow(_ref) {
     var _state$modifiersData$;
-    var state = _ref.state, name5 = _ref.name, options = _ref.options;
+    var state = _ref.state, name = _ref.name, options = _ref.options;
     var arrowElement = state.elements.arrow;
     var popperOffsets2 = state.modifiersData.popperOffsets;
     var basePlacement = getBasePlacement(state.placement);
@@ -16749,7 +13972,7 @@
     var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
     var offset2 = within(min2, center, max2);
     var axisProp = axis;
-    state.modifiersData[name5] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset2, _state$modifiersData$.centerOffset = offset2 - center, _state$modifiersData$);
+    state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset2, _state$modifiersData$.centerOffset = offset2 - center, _state$modifiersData$);
   }
   function effect2(_ref2) {
     var state = _ref2.state, options = _ref2.options;
@@ -17251,8 +14474,8 @@
     return [getOppositeVariationPlacement(placement), oppositePlacement, getOppositeVariationPlacement(oppositePlacement)];
   }
   function flip(_ref) {
-    var state = _ref.state, options = _ref.options, name5 = _ref.name;
-    if (state.modifiersData[name5]._skip) {
+    var state = _ref.state, options = _ref.options, name = _ref.name;
+    if (state.modifiersData[name]._skip) {
       return;
     }
     var _options$mainAxis = options.mainAxis, checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis, _options$altAxis = options.altAxis, checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis, specifiedFallbackPlacements = options.fallbackPlacements, padding = options.padding, boundary = options.boundary, rootBoundary = options.rootBoundary, altBoundary = options.altBoundary, _options$flipVariatio = options.flipVariations, flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio, allowedAutoPlacements = options.allowedAutoPlacements;
@@ -17332,7 +14555,7 @@
       }
     }
     if (state.placement !== firstFittingPlacement) {
-      state.modifiersData[name5]._skip = true;
+      state.modifiersData[name]._skip = true;
       state.placement = firstFittingPlacement;
       state.reset = true;
     }
@@ -17369,7 +14592,7 @@
     });
   }
   function hide(_ref) {
-    var state = _ref.state, name5 = _ref.name;
+    var state = _ref.state, name = _ref.name;
     var referenceRect = state.rects.reference;
     var popperRect = state.rects.popper;
     var preventedOffsets = state.modifiersData.preventOverflow;
@@ -17383,7 +14606,7 @@
     var popperEscapeOffsets = getSideOffsets(popperAltOverflow, popperRect, preventedOffsets);
     var isReferenceHidden = isAnySideFullyClipped(referenceClippingOffsets);
     var hasPopperEscaped = isAnySideFullyClipped(popperEscapeOffsets);
-    state.modifiersData[name5] = {
+    state.modifiersData[name] = {
       referenceClippingOffsets,
       popperEscapeOffsets,
       isReferenceHidden,
@@ -17420,7 +14643,7 @@
     };
   }
   function offset(_ref2) {
-    var state = _ref2.state, options = _ref2.options, name5 = _ref2.name;
+    var state = _ref2.state, options = _ref2.options, name = _ref2.name;
     var _options$offset = options.offset, offset2 = _options$offset === void 0 ? [0, 0] : _options$offset;
     var data = placements.reduce(function(acc, placement) {
       acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset2);
@@ -17431,7 +14654,7 @@
       state.modifiersData.popperOffsets.x += x2;
       state.modifiersData.popperOffsets.y += y2;
     }
-    state.modifiersData[name5] = data;
+    state.modifiersData[name] = data;
   }
   var offset_default = {
     name: "offset",
@@ -17443,8 +14666,8 @@
 
   // node_modules/@popperjs/core/lib/modifiers/popperOffsets.js
   function popperOffsets(_ref) {
-    var state = _ref.state, name5 = _ref.name;
-    state.modifiersData[name5] = computeOffsets({
+    var state = _ref.state, name = _ref.name;
+    state.modifiersData[name] = computeOffsets({
       reference: state.rects.reference,
       element: state.rects.popper,
       strategy: "absolute",
@@ -17466,7 +14689,7 @@
 
   // node_modules/@popperjs/core/lib/modifiers/preventOverflow.js
   function preventOverflow(_ref) {
-    var state = _ref.state, options = _ref.options, name5 = _ref.name;
+    var state = _ref.state, options = _ref.options, name = _ref.name;
     var _options$mainAxis = options.mainAxis, checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis, _options$altAxis = options.altAxis, checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis, boundary = options.boundary, rootBoundary = options.rootBoundary, altBoundary = options.altBoundary, padding = options.padding, _options$tether = options.tether, tether = _options$tether === void 0 ? true : _options$tether, _options$tetherOffset = options.tetherOffset, tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
     var overflow = detectOverflow(state, {
       boundary,
@@ -17547,7 +14770,7 @@
       popperOffsets2[altAxis] = _preventedOffset;
       data[altAxis] = _preventedOffset - _offset;
     }
-    state.modifiersData[name5] = data;
+    state.modifiersData[name] = data;
   }
   var preventOverflow_default = {
     name: "preventOverflow",
@@ -17768,12 +14991,12 @@
               index = -1;
               continue;
             }
-            var _state$orderedModifie = state.orderedModifiers[index], fn3 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name5 = _state$orderedModifie.name;
+            var _state$orderedModifie = state.orderedModifiers[index], fn3 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
             if (typeof fn3 === "function") {
               state = fn3({
                 state,
                 options: _options,
-                name: name5,
+                name,
                 instance
               }) || state;
             }
@@ -17802,11 +15025,11 @@
       });
       function runModifierEffects() {
         state.orderedModifiers.forEach(function(_ref) {
-          var name5 = _ref.name, _ref$options = _ref.options, options2 = _ref$options === void 0 ? {} : _ref$options, effect4 = _ref.effect;
+          var name = _ref.name, _ref$options = _ref.options, options2 = _ref$options === void 0 ? {} : _ref$options, effect4 = _ref.effect;
           if (typeof effect4 === "function") {
             var cleanupFn = effect4({
               state,
-              name: name5,
+              name,
               instance,
               options: options2
             });
@@ -18008,12 +15231,12 @@
     onDOMContentLoaded(() => {
       const $2 = getjQuery();
       if ($2) {
-        const name5 = plugin.NAME;
-        const JQUERY_NO_CONFLICT = $2.fn[name5];
-        $2.fn[name5] = plugin.jQueryInterface;
-        $2.fn[name5].Constructor = plugin;
-        $2.fn[name5].noConflict = () => {
-          $2.fn[name5] = JQUERY_NO_CONFLICT;
+        const name = plugin.NAME;
+        const JQUERY_NO_CONFLICT = $2.fn[name];
+        $2.fn[name] = plugin.jQueryInterface;
+        $2.fn[name].Constructor = plugin;
+        $2.fn[name].noConflict = () => {
+          $2.fn[name] = JQUERY_NO_CONFLICT;
           return plugin.jQueryInterface;
         };
       }
@@ -18128,14 +15351,14 @@
     }
     let [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction);
     if (originalTypeEvent in customEvents) {
-      const wrapFunction2 = (fn4) => {
+      const wrapFunction = (fn4) => {
         return function(event) {
           if (!event.relatedTarget || event.relatedTarget !== event.delegateTarget && !event.delegateTarget.contains(event.relatedTarget)) {
             return fn4.call(this, event);
           }
         };
       };
-      callable = wrapFunction2(callable);
+      callable = wrapFunction(callable);
     }
     const events = getElementEvents(element);
     const handlers = events[typeEvent] || (events[typeEvent] = {});
@@ -18390,8 +15613,8 @@
     static get EVENT_KEY() {
       return `.${this.DATA_KEY}`;
     }
-    static eventName(name5) {
-      return `${name5}${this.EVENT_KEY}`;
+    static eventName(name) {
+      return `${name}${this.EVENT_KEY}`;
     }
   };
   var getSelector = (element) => {
@@ -18470,15 +15693,15 @@
   };
   var enableDismissTrigger = (component, method = "hide") => {
     const clickEvent = `click.dismiss${component.EVENT_KEY}`;
-    const name5 = component.NAME;
-    EventHandler.on(document, clickEvent, `[data-bs-dismiss="${name5}"]`, function(event) {
+    const name = component.NAME;
+    EventHandler.on(document, clickEvent, `[data-bs-dismiss="${name}"]`, function(event) {
       if (["A", "AREA"].includes(this.tagName)) {
         event.preventDefault();
       }
       if (isDisabled(this)) {
         return;
       }
-      const target = SelectorEngine.getElementFromSelector(this) || this.closest(`.${name5}`);
+      const target = SelectorEngine.getElementFromSelector(this) || this.closest(`.${name}`);
       const instance = component.getOrCreateInstance(target);
       instance[method]();
     });
@@ -21491,712 +18714,6 @@
   window.Bootstrap = bootstrap_esm_exports;
 })();
 /*! Bundled license information:
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2022 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-  (**
-   * @license
-   * Copyright 2021 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2022 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2022 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/util/dist/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2021 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/component/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/logger/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/app/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/app/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/app/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-  (**
-   * @license
-   * Copyright 2023 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/app/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/app/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2021 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-firebase/app/dist/esm/index.esm.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/installations/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/installations/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/installations/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/installations/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/installations/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/installations/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/analytics/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-@firebase/analytics/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-  (**
-   * @license
-   * Copyright 2019 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
 
 bootstrap/dist/js/bootstrap.esm.js:
   (*!

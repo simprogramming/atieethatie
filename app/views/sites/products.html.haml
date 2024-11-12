@@ -1,19 +1,9 @@
 %body#products_page
   #carouselExampleSlidesOnly.carousel.slide{"data-bs-ride" => "carousel"}
     .carousel-inner
-      .carousel-item.active{"data-bs-interval" => "4000"}
-        = image_tag "banner9.jpg", class: 'd-block w-100'
-      .carousel-item{"data-bs-interval" => "4000"}
-        = image_tag "banner10.jpg", class: 'd-block w-100'
-      .carousel-item{"data-bs-interval" => "4000"}
-        = image_tag "banner6.jpg", class: 'd-block w-100'
-      .carousel-item{"data-bs-interval" => "4000"}
-        = image_tag "banner5.jpg", class: 'd-block w-100'
-      .carousel-item{"data-bs-interval" => "4000"}
-        = image_tag "banner11.jpg", class: 'd-block w-100'
-      .carousel-item{"data-bs-interval" => "4000"}
-        = image_tag "banner12.jpg", class: 'd-block w-100'
-
+      - ["banner9.jpg", "banner10.jpg", "banner6.jpg", "banner5.jpg", "banner11.jpg", "banner12.jpg"].each_with_index do |banner, index|
+        .carousel-item{"class" => ("active" if index == 0), "data-bs-interval" => "4000"}
+          = image_tag banner, class: 'd-block w-100'
 
   %section.cards-section
     = turbo_frame_tag "products" do
@@ -26,20 +16,18 @@
             %p.pb-3.pe-3= t(".convince_them").html_safe
             .d-none.d-md-block.p-3.mb-5= image_tag "LogoAtie_Hatie_transparent_bg.png"
 
-
           .container
             .row
               - @catalog_item_variations.each do |product|
                 - if product.images.last.present?
-                  .col-md-4.card-container
-                    .card
-                      = image_tag product.images.first.image_url, alt: "Bougie de haute qualité", class: "card-img-top"
-                      -# = image_tag "original.jpeg", class: "card-img-top"
-                      .card-body
-                        .d-flex.align-items-center
-                          %h5.card-title= product.catalog_item.name
-                          %p.mb-0.ms-2= "- #{product.name}"
-                        .d-flex
-                          = link_to product_path(product.id), data: { turbo_frame: "_top" } do
-                            = t("helpers.links.learn_more")
-                          %p= t("helpers.format.money", val: number_with_precision(product.price, precision: 2))
+                  = link_to product_path(product.id), data: { turbo_frame: "_top" }, style: "text-decoration: none;" do
+                    .col-md-4.card-container
+                      .card
+                        = image_tag product.images.first.image_url, alt: "Bougie de haute qualité", class: "card-img-top", loading: "lazy"
+                        .card-body
+                          .d-flex.align-items-center
+                            %h5.card-title= product.catalog_item.name
+                            %p.mb-0.ms-2= "- #{product.name}"
+                          .d-flex
+                            .learn-more= t("helpers.links.learn_more")
+                            %p= t("helpers.format.money", val: number_with_precision(product.price, precision: 2))

@@ -232,7 +232,7 @@
           .card-img-top {
             width: 100%;
             height: 260px;
-            object-fit: fill;
+            object-fit: fit;
           }
 
           .card-body {
@@ -247,7 +247,7 @@
               font-weight: lighter;
             }
 
-            a {
+            .learn-more {
               text-decoration: none;
               color: rgb(82, 88, 88);
               font-weight: bolder;

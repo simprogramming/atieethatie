@@ -10,7 +10,7 @@
 
 // Styles spécifiques pour mobile
 @include media(mobile) {
-  #carouselExampleSlidesOnly2 .carousel-inner .carousel-item img {
+  #img-home img {
     margin-top: 100px;
     width: 100%;
     height: auto; /* S'assure que la hauteur soit proportionnelle à la largeur */
@@ -144,7 +144,7 @@
 
 // Styles spécifiques pour tablette et desktop
 @include media(tabletAndUp) {
-  #carouselExampleSlidesOnly2 .carousel-inner .carousel-item img {
+  #img-home img {
     margin-top: 100px;
     width: 100%;
     height: auto; /* S'assure que la hauteur soit proportionnelle à la largeur */

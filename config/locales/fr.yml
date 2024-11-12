@@ -121,6 +121,7 @@ fr:
       phone: "Téléphone (optionnel)"
       contact: "Contact"
       delivery: "Adresse de livraison"
+      secure_payment: "Toutes les transactions sont sécurisées et encryptées"
       payment: "Paiement"
       same_address: "Utiliser la même adresse de facturation que l'adresse de livraison"
       pay: "Payer"

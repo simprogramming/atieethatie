@@ -23,7 +23,7 @@
                   = link_to product_path(product.id), data: { turbo_frame: "_top" }, style: "text-decoration: none;" do
                     .col-md-4.card-container
                       .card
-                        = image_tag product.images.first.image_url, alt: "Bougie de haute qualité", class: "card-img-top"
+                        = image_tag product.images.first.image_url, alt: "Bougie de haute qualité", class: "card-img-top", loading: "lazy"
                         .card-body
                           .d-flex.align-items-center
                             %h5.card-title= product.catalog_item.name

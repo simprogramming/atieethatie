@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   before_action -> { authorize :sites }
   before_action :set_product, only: :product
 
-  add_controller_helpers :catalog_item_variations, helpers: %i[search sort], only: :products
+  add_controller_helpers :catalog_item_variations, only: :products
   def home
     @catalog_item_variations = CatalogItemVariation.available.sample(5)
   end
@@ -51,6 +51,6 @@ class SitesController < ApplicationController
     fragrance_profile_ids = params[:fragrance_profile_ids].split(",")
     @catalog_item_variations = @catalog_item_variations.joins(catalog_item: :fragrance)
                                                        .where(fragrances: { fragrance_profile_id: fragrance_profile_ids }).distinct
-    
+    @catalog_item_variations = @catalog_item_variations.page(params[:page]).per(12)
   end
 end

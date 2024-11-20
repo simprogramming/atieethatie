@@ -19,14 +19,16 @@
           .container
             .row
               - @catalog_item_variations.each do |product|
-                - if product.images.last.present?
-                  = link_to product_path(product.id), data: { turbo_frame: "_top" }, class: "col-md-4 card-container", style: "text-decoration: none;" do
-                    .card
+                = link_to product_path(product.id), data: { turbo_frame: "_top" }, class: "col-md-4 card-container", style: "text-decoration: none;" do
+                  .card
+                    - if product.images.first.present?
                       = image_tag product.images.first.image_url, alt: "Bougie de haute qualité", class: "card-img-top"
-                      .card-body
-                        .d-flex.align-items-center
-                          %h5.card-title= product.catalog_item.name
-                          %p.mb-0.ms-2= "- #{product.name}"
-                        .d-flex
-                          .learn-more= t("helpers.links.learn_more")
-                          %p= t("helpers.format.money", val: number_with_precision(product.price, precision: 2))
+                    - else 
+                      = image_tag 'LogoAtie&Hatietspbg.png', alt: "Bougie de haute qualité", class: "card-img-top"
+                    .card-body
+                      .d-flex.align-items-center
+                        %h5.card-title= product.catalog_item.name
+                        %p.mb-0.ms-2= "- #{product.name}"
+                      .d-flex
+                        .learn-more= t("helpers.links.learn_more")
+                        %p= t("helpers.format.money", val: number_with_precision(product.price, precision: 2))

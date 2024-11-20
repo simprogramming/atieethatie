@@ -27,11 +27,14 @@
           %a.carousel-control-next{ href: "#carouselExampleIndicators", role: "button", data: { bs_slide: "next" } }
             %span.carousel-control-next-icon{ aria_hidden: "true" }
             %span.visually-hidden Next
-      -else
+      - else
         - if @catalog_item_variation.images.first.present?
           %div.product-image.mt-5
             -# = image_tag "original.jpeg", alt: "Bougie de haute qualité", class: "product-show-img"
             = image_tag @catalog_item_variation.images.first.image_url, alt: "Bougie de haute qualité", class: "product-show-img"
+        - else
+          %div.product-image.mt-5
+            = image_tag 'LogoAtie&Hatietspbg.png', alt: "Bougie de haute qualité", class: "product-show-img"
       .product-details
         .description
           %p=@catalog_item_variation.catalog_item.description

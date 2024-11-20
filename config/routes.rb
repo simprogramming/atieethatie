@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get :checkout
     get "receipt/:id", action: :receipt, as: :receipt
     post :process_square_payment
+    post :apply_promo_code
   end
 
   controller :sites do

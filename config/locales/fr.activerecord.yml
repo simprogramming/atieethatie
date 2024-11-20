@@ -15,6 +15,7 @@ fr:
         country: Pays
       order:
         session_id: Session ID
+        promo_code: Code promo
         state: Square statut
         paid_at: Payé le
         net_amount_due_money: Total cash

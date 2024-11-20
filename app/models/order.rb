@@ -9,4 +9,15 @@ class Order < ApplicationRecord
 
   enum shipping_status: { pending: "pending", processing: "processing", shipped: "shipped", completed: "completed" }
   translate_enum :shipping_status
+  
+  PROMO_CODE_FREE_SHIPPING = "SANSFRAIS"
+
+  def apply_promo_code!(code)
+    self.promo_code = code
+    save
+  end
+
+  def free_shipping?
+    promo_code == PROMO_CODE_FREE_SHIPPING
+  end
 end

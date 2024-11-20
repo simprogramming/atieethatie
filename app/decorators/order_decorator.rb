@@ -12,6 +12,8 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def shipping_fee
+    return 0 if object.free_shipping?
+
     total_quantity = order_items.sum(&:quantity)
     if total_quantity > 1
       ((total_quantity - 1) * 3) + 10

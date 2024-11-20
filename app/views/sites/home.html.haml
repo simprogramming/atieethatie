@@ -24,14 +24,16 @@
 %div.mx-lg-5.cards-container.mb-lg-5.text-center
   %div.grid
     - @catalog_item_variations.each do |item|
-      - if item.images.first.present?
-        .grid-item.text-center
-          %p.product-title= item.catalog_item.name
+      .grid-item.text-center
+        %p.product-title= item.catalog_item.name
+        - if item.images.first.present?
           = image_tag item.images.first.image_url, class: 'img-fluid px-3'
-          %p.product-description= item.catalog_item.fragrance.fragrance_profile.name if item.catalog_item.fragrance.present?
-          %p.product-description= item.name
-          = link_to product_path(item) do
-            %button.btn.btn--primary.mb-3= t("helpers.links.learn_more")
+        - else 
+          = image_tag 'LogoAtie&Hatietspbg.png', class: 'img-fluid px-3'
+        %p.product-description= item.catalog_item.fragrance.fragrance_profile.name if item.catalog_item.fragrance.present?
+        %p.product-description= item.name
+        = link_to product_path(item) do
+          %button.btn.btn--primary.mb-3= t("helpers.links.learn_more")
   = link_to products_path, class: "text-decoration-none" do
     %button.btn.btn--primary.mt-5.p-3= t("helpers.links.see_our_catalog")
 

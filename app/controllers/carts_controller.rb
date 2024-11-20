@@ -25,6 +25,18 @@ class CartsController < ApplicationController
     redirect_to cart_page_path, alert: "Vous ne pouvez pas faire cette action pour le moment"
   end
 
+  def apply_promo_code
+    promo_code = params[:promo_code]
+    promo_code.upcase!
+  
+    if promo_code.present? && promo_code == Order::PROMO_CODE_FREE_SHIPPING
+      @order.apply_promo_code!(promo_code)
+      redirect_to cart_page_path, notice: t("carts.checkout.promo_applied", code: promo_code)
+    else
+      redirect_to cart_page_path, alert: t("carts.checkout.invalid_promo")
+    end
+  end
+
   def receipt
     @receipt = Order.find_by(payment_id: params[:id])
   end

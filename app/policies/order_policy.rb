@@ -26,11 +26,15 @@ class OrderPolicy < ApplicationPolicy
     true
   end
 
+  def apply_promo_code?
+    true
+  end
+
   def shipped?
     user.admin?
   end
 
   def permitted_attributes
-    %i[]
+    %i[promo_code]
   end
 end

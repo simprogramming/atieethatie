@@ -94,8 +94,6 @@
             #payment-status-container
               %p#payment-status-message
 
-
-
     .col-12.col-md-6.bg-light
       .container.mt-5.p-5{style: "position: sticky; top: 90px;"}
         - subtotal = 0
@@ -126,3 +124,11 @@
               %h3= t(".total")
               %h3#total_money
                 = "CAD #{t("helpers.format.money", val: number_with_precision((subtotal + @order.decorate.shipping_fee), precision: 2))}"
+          .col-12.mt-4.text-start
+            %form{action: apply_promo_code_path, method: "post", data: { turbo: false }}
+              .input-group.mb-3
+                %input.form-control{name: "promo_code", placeholder: t(".apply_promo_code")}
+                %button.btn.btn-outline-primary{type: "submit"}= t(".apply_promo_code")
+            - if @order.promo_code.present?
+              %p.text-success.mt-2
+                = t(".promo_applied", code: @order.promo_code)

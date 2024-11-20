@@ -13,6 +13,8 @@
   %dd.col-sm-9= order.state
   %dt.col-sm-3= model_class.human_attribute_name :paid_at
   %dd.col-sm-9= order.paid_at
+  %dt.col-sm-3= model_class.human_attribute_name :promo_code
+  %dd.col-sm-9= order.promo_code
   %dt.col-sm-3= model_class.human_attribute_name :net_amount_due_money
   %dd.col-sm-9= order.net_amount_due_money.present? ? t("helpers.format.money", val: number_with_precision((order.net_amount_due_money / 100), precision: 2)) : ""
   %dt.col-sm-3= model_class.human_attribute_name :payment_id
